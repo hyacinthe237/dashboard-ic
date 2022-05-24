@@ -1,0 +1,129 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins');
+
+html, body {
+  font-family: 'Poppins', sans-serif;
+  height: 100%;
+}
+
+*{
+  text-transform: none !important;
+}
+
+#app {
+  font-family: 'Poppins', sans-serif;
+  height: 90px !important;
+}
+
+.radio >>> label
+
+.main-content {
+  background: url("../assets/img/family.png") no-repeat center center;
+}
+
+.icon-search{
+  margin-top: 18px;
+  margin-right: 50px;
+}
+
+
+.menu-title {
+  font-weight: 600 !important;
+}
+
+.page-title {
+  margin-left: 90px !important; 
+  margin-top: 15px; 
+  color: #ccc;
+  font-size: 14px
+}
+
+.main-content {
+  height: 100%;
+  width: 100%;
+  background: url("../src/assets/img/fam2.png") no-repeat center center;
+  background-size: contain;
+  position: relative;
+  width: 100%;
+}
+ 
+.centered {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  opacity: 1 !important;
+}
+
+.bold {
+  font-weight: bold !important;
+}
+
+.card-reporting {
+  border-radius: 20px !important; 
+  padding: 30px !important;
+   margin-bottom: 30px !important;
+}
+
+.card-reporting-subtitle {
+  font-size: 17px; 
+  color: #15b715
+}
+
+.reporting-number {
+  color: #28a7e3 !important;
+  font-weight: 900 !important;
+  font-size: 30px !important;
+}
+
+.card-stats {
+  border-radius: 20px !important; 
+  padding: 10px;
+}
+
+.title {
+  font-size: 17px !important;
+  font-weight: bold !important;
+}
+
+.number {
+  font-size: 30px !important;
+  font-weight: bold !important;
+}
+
+.text-blue {
+  color: #28a7e3 !important;
+}
+ 
+.centered {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  opacity: 1 !important;
+}
+
+.alert-title {
+  font-size: 17px;
+  font-weight: 900; 
+  font-style: italic
+}
+
+.v-expansion-panel{
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  background-color: inherit;
+  border: 0px !important;
+  padding: 0 !important;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+

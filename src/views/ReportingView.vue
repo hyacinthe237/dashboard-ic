@@ -1,0 +1,166 @@
+<template>
+  <v-app>
+    <AppBarLogged title="Monitoring / Reporting" />
+
+    <navigation-app-drawer />
+    <v-content>
+      <div class="main-content">
+        <v-row>
+          <v-col cols="4" md="4" sm="12" xs="12">
+            <v-card
+              rounded-lg
+              elevation="2"
+              dark
+              color="secondary"
+              class="card-stats"
+            >
+              <v-list-item class="pa-3">
+                <v-list-item-content>
+                  <v-list-item-title>
+                    <span class="title">Number of kids</span> <br />
+                    <span class="number"> 100</span>
+                  </v-list-item-title>
+                </v-list-item-content>
+              </v-list-item>
+            </v-card>
+          </v-col>
+          <v-col cols="4" md="4" sm="12" xs="12">
+            <v-card
+              rounded-lg
+              elevation="2"
+              color="white"
+              class="card-stats"
+            >
+              <v-list-item class="mt-2 mb-2">
+                <v-list-item-content class="text-blue">
+                  <v-list-item-title>
+                    <span class="title">Number of agencies</span> <br />
+                    <span class="number"> 5</span>
+                  </v-list-item-title>
+                </v-list-item-content>
+              </v-list-item>
+            </v-card>
+          </v-col>
+          <v-col cols="4" md="4" sm="12" xs="12">
+            <v-card
+              rounded-lg
+              elevation="2"
+              color="light"
+              class="card-stats"
+            >
+              <v-list-item class="mt-2 mb-2 text-blue">
+                <v-list-item-content>
+                  <v-list-item-title>
+                    <span class="title">Number of users</span> <br />
+                    <span class="number"> 200</span>
+                  </v-list-item-title>
+                </v-list-item-content>
+              </v-list-item>
+            </v-card>
+          </v-col>
+          <v-col cols="12" md="12" sm="12">
+            <v-card
+              rounded-lg
+              elevation="2"
+              color="white"
+              class="card-reporting"
+            >
+              <v-list-item class="mt-2 mb-2">
+                <v-list-item-content>
+                  <v-list-item-title class="bold"
+                    >Number of reported issues
+                  </v-list-item-title>
+                </v-list-item-content>
+              </v-list-item>
+              <br />
+              <v-row>
+                <v-col cols="3" sm="3" md="3">
+                  <v-list-item>
+                    <v-list-item-content class="text-center">
+                      <v-list-item-title
+                        class="mb-2 bold card-reporting-subtitle"
+                      >
+                        This month</v-list-item-title
+                      >
+                      <v-list-item-subtitle
+                        class="reporting-number"
+                      >
+                        50
+                      </v-list-item-subtitle>
+                    </v-list-item-content>
+                  </v-list-item>
+                </v-col>
+                <icon-vertical-divider />
+
+                <v-col cols="3" sm="3" md="3">
+                  <v-list-item>
+                    <v-list-item-content class="text-center">
+                      <v-list-item-title
+                        class="mb-2 bold card-reporting-subtitle"
+                      >
+                        Last month</v-list-item-title
+                      >
+                      <v-list-item-subtitle
+                        class="reporting-number"
+                      >
+                        50
+                      </v-list-item-subtitle>
+                    </v-list-item-content>
+                  </v-list-item>
+                </v-col>
+                <icon-vertical-divider />
+                <v-col cols="3" sm="3" md="3">
+                  <v-list-item>
+                    <v-list-item-content class="text-center">
+                      <v-list-item-title
+                        class="mb-2 bold card-reporting-subtitle"
+                      >
+                        November</v-list-item-title
+                      >
+                      <v-list-item-subtitle
+                        class="reporting-number"
+                      >
+                        50
+                      </v-list-item-subtitle>
+                    </v-list-item-content>
+                  </v-list-item>
+                </v-col>
+              </v-row>
+            </v-card>
+          </v-col>
+        </v-row>
+      </div>
+    </v-content>
+  </v-app>
+</template>
+
+<script lang="ts">
+import Vue from "vue";
+import AppBarLogged from "../components/layouts/AppBarLogged.vue";
+import NavigationAppDrawer from "../components/layouts/NavigationAppDrawer.vue";
+import IconVerticalDivider from "../components/icons/IconVerticalDivider.vue";
+
+export default Vue.extend({
+  name: "ReportingView",
+  data: () => ({}),
+  components: {
+    AppBarLogged,
+    NavigationAppDrawer,
+    IconVerticalDivider,
+  },
+});
+</script>
+
+<style scoped>
+.main-content {
+  height: 100%;
+  width: 100%;
+  background: url("../assets/img/fam2.png") no-repeat center center;
+  background-size: contain;
+  position: relative;
+  width: 100%;
+  padding: 100px;
+}
+
+</style>
+
