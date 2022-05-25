@@ -86,6 +86,7 @@
 
 <script lang="ts">
 import Vue from "vue";
+import ResponseData from "@/types/ResponseData";
 import IconClose from "../icons/IconClose.vue";
 
 export default Vue.extend({
@@ -117,4 +118,3 @@ export default Vue.extend({
 }
 
 </style>
-
