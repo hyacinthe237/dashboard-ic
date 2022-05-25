@@ -19,7 +19,7 @@
             </v-list-item-action>
         </v-list-item>
         <v-divider></v-divider>
-        <v-list-item class="mt-2 mb-2" to="/reported-issues">
+        <v-list-item class="mt-2 mb-2" to="/reported-issues" v-if="isSuperAdmin">
           <v-list-item-icon>
             <icon-report/>
           </v-list-item-icon>
@@ -36,7 +36,24 @@
             </v-list-item-action>
         </v-list-item>
         <v-divider></v-divider>
-        <v-list-item class="mt-2 mb-2" to="/manage-kids">
+        <v-list-item class="mt-2 mb-2" to="/tickets" v-if="isSuperAdmin">
+          <v-list-item-icon>
+            <icon-alert/>
+          </v-list-item-icon>
+
+          <v-list-item-content>
+            <v-list-item-title  class="menu-title"
+              >Tickets</v-list-item-title
+            >
+          </v-list-item-content>
+
+          <v-list-item-action>
+                <v-icon x-small
+                >fa fa-angle-right</v-icon>
+            </v-list-item-action>
+        </v-list-item>
+        <v-divider></v-divider>
+        <v-list-item class="mt-2 mb-2" to="/manage-kids" v-if="isAgencyAdmin">
           <v-list-item-icon>
             <icon-kid/>
           </v-list-item-icon>
@@ -53,7 +70,7 @@
             </v-list-item-action>
         </v-list-item>
         <v-divider></v-divider>
-        <v-list-item class="mt-2 mb-2" to="/manage-ressources">
+        <v-list-item class="mt-2 mb-2" to="/manage-ressources" v-if="isAgencyAdmin">
           <v-list-item-icon>
             <icon-manage-ressource/>
           </v-list-item-icon>
@@ -70,7 +87,7 @@
             </v-list-item-action>
         </v-list-item>
         <v-divider></v-divider>
-        <v-list-item class="mt-2 mb-2" to="/alerts">
+        <v-list-item class="mt-2 mb-2" to="/alerts" v-if="isAgencyAdmin">
           <v-list-item-icon>
             <icon-alert/>
           </v-list-item-icon>
@@ -87,7 +104,7 @@
             </v-list-item-action>
         </v-list-item>
         <v-divider></v-divider>
-        <v-list-item class="mt-2 mb-2" to="/reporting">
+        <v-list-item class="mt-2 mb-2" to="/reporting" v-if="isAgencyAdmin">
           <v-list-item-icon>
             <icon-reporting/>
           </v-list-item-icon>
@@ -149,15 +166,14 @@ export default Vue.extend({
     IconLogout
   },
 
-  computed: {
-      auth () {
-          return localStorage.getItem('infinite_user')
-      },
+  mounted () {},
 
-      isSuperAdmin () { return this.auth.is_superadmin },
-      isKid () { return this.auth.is_kid },
-      isFamily () { return this.auth.is_family },
-      isAgencyAdmin () { return this.auth.is_agency_admin },
+  computed: {
+      auth (): any { return JSON.parse(localStorage.getItem('infinite_user')) },
+      isSuperAdmin (): boolean { return this.auth.is_superuser },
+      isKid (): boolean { return this.auth.is_kid },
+      isFamily (): boolean { return this.auth.is_family },
+      isAgencyAdmin (): boolean { return this.auth.is_agency_admin },
   },
 
   methods: {

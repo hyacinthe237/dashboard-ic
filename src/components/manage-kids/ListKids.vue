@@ -582,7 +582,6 @@
 
 <script lang="ts">
 import Vue from "vue";
-import * as moment from 'moment';
 import * as swal from 'sweetalert2';
 import IconClose from "../icons/IconClose.vue";
 import IconEdit from "../icons/IconEdit.vue";
@@ -617,8 +616,8 @@ export default Vue.extend({
   },
 
   data: () => ({
-      ghost: { id: null, first_name: '', last_name: '', email: '', date_of_arrival: moment().format('YYYY-MM-DD'), birthdate: moment().format('YYYY-MM-DD'), sex: '', age: null, phone: '' } as Kid,
-      kid: { id: null, first_name: '', last_name: '', email: '', date_of_arrival: moment().format('YYYY-MM-DD'), birthdate: moment().format('YYYY-MM-DD'), sex: '', age: null, phone: '' } as Kid,
+      ghost: { id: null, first_name: '', last_name: '', email: '', date_of_arrival: new Date(), birthdate: new Date(), sex: '', age: null, phone: '' } as Kid,
+      kid: { id: null, first_name: '', last_name: '', email: '', date_of_arrival: new Date(), birthdate: new Date(), sex: '', age: null, phone: '' } as Kid,
       historyObject: { id: null, kid: null, name: '', image: '', content: '' } as History,
       medicalObject: { id: null, kid: null, name: '', image: '', content: '' } as Medical,
       schoolObject: { id: null, kid: null, name: '', image: '', content: '' } as School,
@@ -736,7 +735,7 @@ export default Vue.extend({
     },
 
     resetGhost () {
-        this.ghost = { id: null, first_name: '', last_name: '', email: '', date_of_arrival: moment().format('YYYY-MM-DD'), birthdate: moment().format('YYYY-MM-DD'), sex: '', age: null, phone: '' }
+        this.ghost = { id: null, first_name: '', last_name: '', email: '', date_of_arrival: new Date(), birthdate: new Date(), sex: '', age: null, phone: '' }
     },
     resetHistoryObject () {
         this.historyObject= { id: null, kid: null, name: '', image: '', content: '' }
