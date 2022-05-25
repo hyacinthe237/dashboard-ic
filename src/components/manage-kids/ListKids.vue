@@ -101,13 +101,13 @@
                 </v-toolbar-items>
                 <template v-slot:extension>
                     <v-tabs v-model="tab" active-class="bordered" align-with-title>
-                    <v-tabs-slider color="secondary"></v-tabs-slider>
+                        <v-tabs-slider color="secondary"></v-tabs-slider>
 
-                    <v-tab> Personnal informations </v-tab>
-                    <v-tab> Parents informations </v-tab>
-                    <v-tab> School informations </v-tab>
-                    <v-tab> Medical informations </v-tab>
-                    <v-tab> Placement history </v-tab>
+                        <v-tab> Personnal informations </v-tab>
+                        <v-tab> Parents informations </v-tab>
+                        <v-tab> School informations </v-tab>
+                        <v-tab> Medical informations </v-tab>
+                        <v-tab> Placement history </v-tab>
                     </v-tabs>
                 </template>
             </v-toolbar>
@@ -118,119 +118,119 @@
                 ></v-divider>
                 <v-tabs-items v-model="tab">
                     <v-tab-item>
-                    <v-card flat v-show="!isLoading">
-                        <v-card-title>
-                        <v-list-item>
-                            <v-img
-                                alt="Infinite connection"
-                                class="shrink mr-2"
-                                contain src="@/assets/img/kid.png"
-                                transition="scale-transition"
-                                max-height="100%"
-                                width="60"
-                            />
+                        <v-card flat v-show="!isLoading">
+                            <v-card-title>
+                            <v-list-item>
+                                <v-img
+                                    alt="Infinite connection"
+                                    class="shrink mr-2"
+                                    contain src="@/assets/img/kid.png"
+                                    transition="scale-transition"
+                                    max-height="100%"
+                                    width="60"
+                                />
 
+                                <v-list-item-content>
+                                    <v-list-item-title class="font-weight-bold">
+                                        {{ kid.first_name }} {{ kid.last_name }} <icon-edit class="ml-2" />
+                                    </v-list-item-title>
+                                </v-list-item-content>
+                            </v-list-item>
+                            <v-list-item class="">
                             <v-list-item-content>
-                                <v-list-item-title class="font-weight-bold">
-                                    {{ kid.first_name }} {{ kid.last_name }} <icon-edit class="ml-2" />
-                                </v-list-item-title>
+                            <v-list-item-title
+                            ><v-row>
+                            <v-col cols="2" align="right">
+                            <v-subheader class="pt-7">First Name :</v-subheader>
+                            </v-col>
+                            <v-col cols="4">
+                            <v-text-field focus v-model="kid.first_name" name="first_name"></v-text-field>
+                            </v-col>
+                            <v-col cols="2" align="right">
+                            <v-subheader class="pt-7">Last Name :</v-subheader>
+                            </v-col>
+                            <v-col cols="4">
+                            <v-text-field focus v-model="kid.last_name" name="last_name"></v-text-field>
+                            </v-col>
+                            </v-row>
+                            </v-list-item-title>
                             </v-list-item-content>
-                        </v-list-item>
-                        <v-list-item class="">
-                        <v-list-item-content>
-                        <v-list-item-title
-                        ><v-row>
-                        <v-col cols="2" align="right">
-                        <v-subheader class="pt-7">First Name :</v-subheader>
-                        </v-col>
-                        <v-col cols="4">
-                        <v-text-field focus v-model="kid.first_name" name="first_name"></v-text-field>
-                        </v-col>
-                        <v-col cols="2" align="right">
-                        <v-subheader class="pt-7">Last Name :</v-subheader>
-                        </v-col>
-                        <v-col cols="4">
-                        <v-text-field focus v-model="kid.last_name" name="last_name"></v-text-field>
-                        </v-col>
-                        </v-row>
-                        </v-list-item-title>
-                        </v-list-item-content>
-                        </v-list-item>
-                        <v-list-item class="">
-                        <v-list-item-content>
-                        <v-list-item-title
-                        ><v-row>
-                        <v-col cols="2" align="right">
-                        <v-subheader class="pt-7">Email Adress :</v-subheader>
-                        </v-col>
-                        <v-col cols="4">
-                        <v-text-field focus v-model="kid.email" name="email"></v-text-field>
-                        </v-col>
-                        <v-col cols="2" align="right">
-                        <v-subheader class="pt-7">Gender :</v-subheader>
-                        </v-col>
-                        <v-col cols="4">
-                        <v-text-field focus v-model="kid.sex" name="sex"></v-text-field>
-                        </v-col>
-                        </v-row>
-                        </v-list-item-title>
-                        </v-list-item-content>
-                        </v-list-item>
-                        <v-list-item class="">
-                        <v-list-item-content>
-                        <v-list-item-title
-                        ><v-row>
-                        <v-col cols="2" align="right">
-                        <v-subheader class="pt-7">Date of arrival :</v-subheader>
-                        </v-col>
-                        <v-col cols="4">
-                        <v-text-field focus v-model="kid.date_of_arrival" name="date_of_arrival" type="date"></v-text-field>
-                        </v-col>
-                        <v-col cols="2" align="right">
-                        <v-subheader class="pt-7">Birthdate :</v-subheader>
-                        </v-col>
-                        <v-col cols="4">
-                        <v-text-field focus v-model="kid.birthdate" name="birthdate" type="date"></v-text-field>
-                        </v-col>
-                        </v-row>
-                        </v-list-item-title>
-                        </v-list-item-content>
-                        </v-list-item>
+                            </v-list-item>
+                            <v-list-item class="">
+                            <v-list-item-content>
+                            <v-list-item-title
+                            ><v-row>
+                            <v-col cols="2" align="right">
+                            <v-subheader class="pt-7">Email Adress :</v-subheader>
+                            </v-col>
+                            <v-col cols="4">
+                            <v-text-field focus v-model="kid.email" name="email"></v-text-field>
+                            </v-col>
+                            <v-col cols="2" align="right">
+                            <v-subheader class="pt-7">Gender :</v-subheader>
+                            </v-col>
+                            <v-col cols="4">
+                            <v-text-field focus v-model="kid.sex" name="sex"></v-text-field>
+                            </v-col>
+                            </v-row>
+                            </v-list-item-title>
+                            </v-list-item-content>
+                            </v-list-item>
+                            <v-list-item class="">
+                            <v-list-item-content>
+                            <v-list-item-title
+                            ><v-row>
+                            <v-col cols="2" align="right">
+                            <v-subheader class="pt-7">Date of arrival :</v-subheader>
+                            </v-col>
+                            <v-col cols="4">
+                            <v-text-field focus v-model="kid.date_of_arrival" name="date_of_arrival" type="date"></v-text-field>
+                            </v-col>
+                            <v-col cols="2" align="right">
+                            <v-subheader class="pt-7">Birthdate :</v-subheader>
+                            </v-col>
+                            <v-col cols="4">
+                            <v-text-field focus v-model="kid.birthdate" name="birthdate" type="date"></v-text-field>
+                            </v-col>
+                            </v-row>
+                            </v-list-item-title>
+                            </v-list-item-content>
+                            </v-list-item>
 
-                        <v-list-item class="">
-                        <v-list-item-content>
-                        <v-list-item-title
-                        ><v-row>
-                        <v-col cols="2" align="right">
-                        <v-subheader class="pt-7">Age :</v-subheader>
-                        </v-col>
-                        <v-col cols="4">
-                        <v-text-field focus v-model="kid.age" name="age"></v-text-field>
-                        </v-col>
-                        <v-col cols="2" align="right">
-                        <v-subheader class="pt-7">Phone :</v-subheader>
-                        </v-col>
-                        <v-col cols="4">
-                        <v-text-field focus v-model="kid.phone" name="phone"></v-text-field>
-                        </v-col>
-                        </v-row>
-                        </v-list-item-title>
-                        </v-list-item-content>
-                        </v-list-item>
-                        </v-card-title>
-                        <v-card-actions>
-                            <v-spacer></v-spacer>
-                            <v-btn
-                                color="success"
-                                rounded
-                                class="pa-4"
-                                width="200"
-                                :disabled="isLoading"
-                                @click="updateKid()"
-                            >Update</v-btn>
-                        </v-card-actions>
-                    </v-card>
-                    <v-progress-circular :indeterminate="true" :color="'success'" v-show="isLoading"></v-progress-circular>
+                            <v-list-item class="">
+                            <v-list-item-content>
+                            <v-list-item-title
+                            ><v-row>
+                            <v-col cols="2" align="right">
+                            <v-subheader class="pt-7">Age :</v-subheader>
+                            </v-col>
+                            <v-col cols="4">
+                            <v-text-field focus v-model="kid.age" name="age"></v-text-field>
+                            </v-col>
+                            <v-col cols="2" align="right">
+                            <v-subheader class="pt-7">Phone :</v-subheader>
+                            </v-col>
+                            <v-col cols="4">
+                            <v-text-field focus v-model="kid.phone" name="phone"></v-text-field>
+                            </v-col>
+                            </v-row>
+                            </v-list-item-title>
+                            </v-list-item-content>
+                            </v-list-item>
+                            </v-card-title>
+                            <v-card-actions>
+                                <v-spacer></v-spacer>
+                                <v-btn
+                                    color="success"
+                                    rounded
+                                    class="pa-4"
+                                    width="200"
+                                    :disabled="isLoading"
+                                    @click="updateKid()"
+                                >Update</v-btn>
+                            </v-card-actions>
+                        </v-card>
+                        <v-progress-circular :indeterminate="true" :color="'success'" v-show="isLoading"></v-progress-circular>
                     </v-tab-item>
                 <v-tab-item>
                 <v-card flat>
@@ -339,8 +339,8 @@
                             class="pa-4"
                             width="200"
                             :disabled="isLoading"
-                            @click="updateParentInfos()"
-                        >Update Parent Infos</v-btn>
+                            @click="createParentInfos()"
+                        >Create Parent Infos</v-btn>
                     </v-card-actions>
                 </v-card-text>
                 </v-card>
@@ -619,10 +619,10 @@ export default Vue.extend({
   data: () => ({
       ghost: { id: null, first_name: '', last_name: '', email: '', date_of_arrival: moment().format('YYYY-MM-DD'), birthdate: moment().format('YYYY-MM-DD'), sex: '', age: null, phone: '' } as Kid,
       kid: { id: null, first_name: '', last_name: '', email: '', date_of_arrival: moment().format('YYYY-MM-DD'), birthdate: moment().format('YYYY-MM-DD'), sex: '', age: null, phone: '' } as Kid,
-      historyObject: { id: null, kid: '', name: '', image: '', content: '' } as History,
-      medicalObject: { id: null, kid: '', name: '', image: '', content: '' } as Medical,
-      schoolObject: { id: null, kid: '', name: '', image: '', content: '' } as School,
-      parentObject: { id: null, kid: '', father_name: '', father_phone: '', father_address: '', father_profession: '', mother_name: '', mother_phone: '', mother_address: '', mother_profession: '' } as Parent,
+      historyObject: { id: null, kid: null, name: '', image: '', content: '' } as History,
+      medicalObject: { id: null, kid: null, name: '', image: '', content: '' } as Medical,
+      schoolObject: { id: null, kid: null, name: '', image: '', content: '' } as School,
+      parentObject: { id: null, kid: null, father_name: '', father_phone: '', father_address: '', father_profession: '', mother_name: '', mother_phone: '', mother_address: '', mother_profession: '' } as Parent,
       dialog: false,
       isLoading: false,
       edit: false,
@@ -670,7 +670,6 @@ export default Vue.extend({
             swal.fire({ type: 'error', title: 'Kid create error', text: e });
         });
     },
-
     async getParentInfos () {
         this.isLoading = true
 
@@ -684,7 +683,7 @@ export default Vue.extend({
         .catch((e: Error) => {
             this.isLoading = false
             console.log(e);
-            swal.fire({ type: 'error', title: 'Kid create error', text: e });
+            swal.fire({ type: 'error', title: 'Get Kid parent infos error', text: e });
         });
     },
     async getSchoolInfos () {
@@ -700,6 +699,7 @@ export default Vue.extend({
         .catch((e: Error) => {
             this.isLoading = false
             console.log(e);
+            swal.fire({ type: 'error', title: 'Get Kid school infos error', text: e });
         });
     },
     async getMedicalInfos () {
@@ -715,6 +715,7 @@ export default Vue.extend({
         .catch((e: Error) => {
             this.isLoading = false
             console.log(e);
+            swal.fire({ type: 'error', title: 'Get Kid medical infos error', text: e });
         });
     },
     async getHistoryInfos () {
@@ -730,6 +731,7 @@ export default Vue.extend({
         .catch((e: Error) => {
             this.isLoading = false
             console.log(e);
+            swal.fire({ type: 'error', title: 'Get Kid history infos error', text: e });
         });
     },
 
@@ -737,16 +739,16 @@ export default Vue.extend({
         this.ghost = { id: null, first_name: '', last_name: '', email: '', date_of_arrival: moment().format('YYYY-MM-DD'), birthdate: moment().format('YYYY-MM-DD'), sex: '', age: null, phone: '' }
     },
     resetHistoryObject () {
-        this.historyObject= { id: null, kid: '', name: '', image: '', content: '' }
+        this.historyObject= { id: null, kid: null, name: '', image: '', content: '' }
     },
     resetMedicalObject () {
-        this.medicalObject= { id: null, kid: '', name: '', image: '', content: '' }
+        this.medicalObject= { id: null, kid: null, name: '', image: '', content: '' }
     },
     resetSchoolObject () {
-        this.schoolObject= { id: null, kid: '', name: '', image: '', content: '' }
+        this.schoolObject= { id: null, kid: null, name: '', image: '', content: '' }
     },
     resetParentObject () {
-        this.parentObject= { id: null, kid: '', father_name: '', father_phone: '', father_address: '', father_profession: '', mother_name: '', mother_phone: '', mother_address: '', mother_profession: '' }
+        this.parentObject= { id: null, kid: null, father_name: '', father_phone: '', father_address: '', father_profession: '', mother_name: '', mother_phone: '', mother_address: '', mother_profession: '' }
     },
 
     async openItem (kid: any) {
@@ -766,7 +768,32 @@ export default Vue.extend({
         .catch((e: Error) => {
             this.isLoading = false
             console.log(e);
+            swal.fire({ type: 'error', title: 'Get Kid infos error', text: e });
         });
+    },
+
+    async createParentInfos () {
+      this.isLoading = true
+      let id = localStorage.getItem('kidId')
+      let data = {
+          kid: id, father_name: this.parentObject.father_name, father_phone: this.parentObject.father_phone, father_address: this.parentObject.father_address, father_profession: this.parentObject.father_profession,
+          mother_name: this.parentObject.mother_name, mother_phone: this.parentObject.mother_phone, mother_address: this.parentObject.mother_address, mother_profession: this.parentObject.mother_profession
+      };
+
+      await ParentDataService.create(data)
+      .then((response: ResponseData) => {
+          this.isLoading = false
+          console.log(response.data);
+          this.kid = Object.assign({}, response.data)
+          this.edit = false
+          this.resetGhost()
+          swal.fire({ type: 'success', title: 'Parent infos created successfull', text: 'Your parent infos details have been successfully created.' });
+      })
+      .catch((e: Error) => {
+          this.isLoading = false
+          console.log(e);
+          swal.fire({ type: 'error', title: 'Kid update error', text: e });
+      });
     },
 
     async updateKid () {

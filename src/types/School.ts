@@ -1,6 +1,6 @@
 export default interface School {
   id: null;
-  kid: string;
+  kid: null;
   name: string;
   image: string;
   content: string;

@@ -7,7 +7,6 @@ class SchoolDataService {
     uploadDocSchool(id: any, data: any): Promise<any> {
       return http.post(`/user-api/kids/${id}/upload-doc-school-info`, data);
     }
-    }
 }
 
 export default new SchoolDataService();

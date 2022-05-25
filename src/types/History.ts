@@ -1,6 +1,6 @@
 export default interface History {
   id: null;
-  kid: string;
+  kid: null;
   name: string;
   image: string;
   content: string;

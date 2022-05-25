@@ -1,6 +1,6 @@
 export default interface Parent {
   id: null;
-  kid: string;
+  kid: null;
   father_name: string;
   father_phone: string;
   father_address: string;

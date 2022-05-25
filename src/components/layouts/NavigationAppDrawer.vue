@@ -2,7 +2,7 @@
     <v-navigation-drawer clipped app permanent color="primary" width="300" dark>
 
       <v-list dense nav>
-        <v-list-item class="mt-2 mb-2" to="/home">
+        <v-list-item class="mt-2 mb-2" to="/home" v-if="isSuperAdmin">
           <v-list-item-icon>
             <icon-manage/>
           </v-list-item-icon>
@@ -147,6 +147,17 @@ export default Vue.extend({
     IconManageRessource,
     IconAlert,
     IconLogout
+  },
+
+  computed: {
+      auth () {
+          return localStorage.getItem('infinite_user')
+      },
+
+      isSuperAdmin () { return this.auth.is_superadmin },
+      isKid () { return this.auth.is_kid },
+      isFamily () { return this.auth.is_family },
+      isAgencyAdmin () { return this.auth.is_agency_admin },
   },
 
   methods: {
