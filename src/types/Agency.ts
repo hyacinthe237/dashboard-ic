@@ -1,6 +1,8 @@
 export default interface Agency {
   id: null;
-  title: string;
+  adminitrator: null;
+  admin_email: string;
+  name: string;
+  address: string;
   description: string;
-  published: boolean;
 }
