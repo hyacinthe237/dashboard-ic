@@ -167,7 +167,10 @@ export default Vue.extend({
   },
 
   computed: {
-      auth (): any { return JSON.parse(localStorage.getItem('infinite_user')) },
+      auth (): any {
+        let thau: any = localStorage.getItem('infinite_user')
+        return JSON.parse(thau)
+      },
       isSuperAdmin (): boolean { return this.auth.is_superuser },
       isKid (): boolean { return this.auth.is_kid },
       isFamily (): boolean { return this.auth.is_family },
