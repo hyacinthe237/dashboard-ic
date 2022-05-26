@@ -55,6 +55,7 @@
 <script lang="ts">
 import env from '../../env';
 import Vue from "vue";
+import Swal from 'sweetalert2';
 import VueRouter from "vue-router";
 import AppBar from "../components/layouts/AppBar.vue";
 import LoginDataService from "@/services/LoginDataService";
@@ -95,6 +96,7 @@ export default Vue.extend({
         .catch((e: Error) => {
             this.isLoading = false
             console.log(e);
+            Swal.fire({ title: 'Login error', html: e });
         });
     }
   }

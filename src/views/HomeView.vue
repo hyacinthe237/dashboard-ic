@@ -14,6 +14,7 @@
 
 <script lang="ts">
 import Vue from "vue";
+import Swal from 'sweetalert2';
 import VueRouter from "vue-router";
 import AppBarLogged from "../components/layouts/AppBarLogged.vue";
 import NavigationAppDrawer from "../components/layouts/NavigationAppDrawer.vue";
@@ -49,6 +50,7 @@ export default Vue.extend({
           .catch((e: Error) => {
               this.isLoading = false
               console.log(e);
+              Swal.fire({ title: 'Get Agencies error', html: e });
           });
       }
   }

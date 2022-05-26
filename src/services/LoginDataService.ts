@@ -1,4 +1,4 @@
-import http from "@/http-common";
+import http from "@/http-login";
 
 class LoginDataService {
     login(data: any): Promise<any> {

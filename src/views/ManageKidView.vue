@@ -12,6 +12,7 @@
 
 <script lang="ts">
 import Vue from "vue";
+import Swal from 'sweetalert2';
 import AppBarLogged from "../components/layouts/AppBarLogged.vue";
 import ListKids from "../components/manage-kids/ListKids.vue";
 import NavigationAppDrawer from "../components/layouts/NavigationAppDrawer.vue";
@@ -48,6 +49,7 @@ export default Vue.extend({
             .catch((e: Error) => {
                 this.isLoading = false
                 console.log(e);
+                Swal.fire({ title: 'Get Kids error', html: e });
             });
         }
     }
