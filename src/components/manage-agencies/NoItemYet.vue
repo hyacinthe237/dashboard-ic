@@ -1,7 +1,7 @@
 <template>
   <div class="main-content text-center">
     <div class="centered">
-      <h2 class="mb-1">Not item yet</h2>
+      <h2 class="mb-1" v-if="agencies.length==0 && !isLoading">Not item yet</h2>
       <v-dialog
         v-model="dialog"
         persistent
@@ -11,10 +11,11 @@
           <v-btn
             color="success"
             rounded
-            class="pa-4"
+            class="pa-4 mb-10"
             width="200"
             v-bind="attrs"
             v-on="on"
+            :disabled="isLoading"
           >
             Create new
           </v-btn>
@@ -61,16 +62,6 @@
                   v-model="agencyObject.admin_email"
                   name="admin_email"
                 ></v-text-field>
-                <v-text-field
-                  label="Foster home adminitrator"
-                  solo
-                  rounded
-                  elevation="0"
-                  outlined
-                  dense
-                  v-model="agencyObject.administrator"
-                  name="administrator"
-                ></v-text-field>
                 <v-textarea
                     name="description"
                     v-model="agencyObject.description"
@@ -90,34 +81,44 @@
           </v-card-text>
         </v-card>
       </v-dialog>
+      <v-row v-show="!isLoading">
+          <v-col cols="4" md="4" sm="12" xs="12" v-for="a in agencies" :key="a.id">
+              <agency-item class="pointer" :agency="a" />
+          </v-col>
+      </v-row>
+      <v-progress-circular :indeterminate="true" :color="'success'" v-show="isLoading"></v-progress-circular>
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
+import Swal from 'sweetalert2'
 import ResponseData from "@/types/ResponseData";
 import IconClose from "../icons/IconClose.vue";
 import UserDataService from "@/services/UserDataService";
 import User from "@/types/User";
 import AgencyDataService from "@/services/AgencyDataService";
 import Agency from "@/types/Agency";
+import AgencyItem from "./AgencyItem.vue";
 
 export default Vue.extend({
   name: "NoItemYet",
 
+  props: {
+      agencies: { type: Array, default: () => {} },
+  },
+
   data: () => ({
-      agencyObject: { id: null, adminitrator: null, admin_email: '', name: '', address: '', description: '' } as Agency,
+      agencyObject: { id: null, admin_email: '', name: '', address: '', description: '' } as Agency,
       userObject: { id: null, email: '', username: '', password: '', phone: '', is_kid: false, is_family: false, is_agency_admin: false, is_superuser: false } as User,
       dialog: false,
+      isLoading: false,
   }),
 
   components: {
     IconClose,
-  },
-
-  mounted () {
-
+    AgencyItem
   },
 
   methods: {
@@ -134,19 +135,23 @@ export default Vue.extend({
             this.isLoading = false
             console.log(response.data)
             this.resetGhost()
-            swal.fire({ type: 'success', title: 'user agency create successfull', text: 'Your user details have been successfully created.' });
+            Swal.fire({ type: 'success', title: 'user agency create successfull', text: 'Your user details have been successfully created.' });
         })
         .catch((e: Error) => {
             this.isLoading = false
             console.log(e);
-            swal.fire({ type: 'error', title: 'user agency create error', text: e });
+            Swal.fire({ type: 'error', title: 'user agency create error', text: e });
         });
+    },
+
+    resetGhost () {
+        this.agencyObject = { id: null, admin_email: '', name: '', address: '', description: '' }
     },
 
     async CreateAgency () {
         this.isLoading = true
         let data = {
-            adminitrator: this.agencyObject.adminitrator, admin_email: this.agencyObject.admin_email, name: this.agencyObject.name,
+            admin_email: this.agencyObject.admin_email, name: this.agencyObject.name,
             address: this.agencyObject.address, description: this.agencyObject.description
         };
 
@@ -155,12 +160,13 @@ export default Vue.extend({
             this.isLoading = false
             console.log(response.data)
             this.resetGhost()
-            swal.fire({ type: 'success', title: 'user agency create successfull', text: 'Your user details have been successfully created.' });
+            Swal.fire({ type: 'success', title: 'agency create successfull', text: 'Your agency details have been successfully created.' });
+            this.$emit('added')
         })
         .catch((e: Error) => {
             this.isLoading = false
             console.log(e);
-            swal.fire({ type: 'error', title: 'user agency create error', text: e });
+            Swal.fire({ type: 'error', title: 'user agency create error', text: e });
         });
     },
   }

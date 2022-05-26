@@ -166,8 +166,6 @@ export default Vue.extend({
     IconLogout
   },
 
-  mounted () {},
-
   computed: {
       auth (): any { return JSON.parse(localStorage.getItem('infinite_user')) },
       isSuperAdmin (): boolean { return this.auth.is_superuser },
