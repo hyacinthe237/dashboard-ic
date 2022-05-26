@@ -629,7 +629,7 @@ export default Vue.extend({
       attrs: [],
       items: ["Personnal informations", "shopping", "videos", "images", "news"],
       genders: ["Female", "Male"],
-      text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod...",
+      html: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod...",
   }),
 
   components: {
@@ -661,12 +661,12 @@ export default Vue.extend({
             console.log(response.data);
             this.$router.push({ name: 'manage-kids' })
             this.resetGhost()
-            Swal.fire({ type: 'success', title: 'Kid create successfull', text: 'Your kid details have been successfully created.' });
+            Swal.fire({ title: 'Kid create successfull', html: 'Your kid details have been successfully created.' })
         })
         .catch((e: Error) => {
             this.isLoading = false
             console.log(e);
-            Swal.fire({ type: 'error', title: 'Kid create error', text: e });
+            Swal.fire({ title: 'Kid create error', html: e });
         });
     },
     async getParentInfos () {
@@ -682,7 +682,7 @@ export default Vue.extend({
         .catch((e: Error) => {
             this.isLoading = false
             console.log(e);
-            Swal.fire({ type: 'error', title: 'Get Kid parent infos error', text: e });
+            Swal.fire({ title: 'Get Kid parent infos error', html: e });
         });
     },
     async getSchoolInfos () {
@@ -698,7 +698,7 @@ export default Vue.extend({
         .catch((e: Error) => {
             this.isLoading = false
             console.log(e);
-            Swal.fire({ type: 'error', title: 'Get Kid school infos error', text: e });
+            Swal.fire({ title: 'Get Kid school infos error', html: e });
         });
     },
     async getMedicalInfos () {
@@ -714,7 +714,7 @@ export default Vue.extend({
         .catch((e: Error) => {
             this.isLoading = false
             console.log(e);
-            Swal.fire({ type: 'error', title: 'Get Kid medical infos error', text: e });
+            Swal.fire({ title: 'Get Kid medical infos error', html: e });
         });
     },
     async getHistoryInfos () {
@@ -730,7 +730,7 @@ export default Vue.extend({
         .catch((e: Error) => {
             this.isLoading = false
             console.log(e);
-            Swal.fire({ type: 'error', title: 'Get Kid history infos error', text: e });
+            Swal.fire({ title: 'Get Kid history infos error', html: e });
         });
     },
 
@@ -767,7 +767,7 @@ export default Vue.extend({
         .catch((e: Error) => {
             this.isLoading = false
             console.log(e);
-            Swal.fire({ type: 'error', title: 'Get Kid infos error', text: e });
+            Swal.fire({ title: 'Get Kid infos error', html: e });
         });
     },
 
@@ -786,12 +786,12 @@ export default Vue.extend({
           this.kid = Object.assign({}, response.data)
           this.edit = false
           this.resetGhost()
-          Swal.fire({ type: 'success', title: 'Parent infos created successfull', text: 'Your parent infos details have been successfully created.' });
+          Swal.fire({ title: 'Parent infos created successfull', html: 'Your parent infos details have been successfully created.' });
       })
       .catch((e: Error) => {
           this.isLoading = false
           console.log(e);
-          Swal.fire({ type: 'error', title: 'Kid update error', text: e });
+          Swal.fire({title: 'Kid update error', html: e });
       });
     },
 
@@ -811,13 +811,13 @@ export default Vue.extend({
           this.kid = Object.assign({}, response.data)
           this.edit = false
           this.resetGhost()
-          Swal.fire({ type: 'success', title: 'Kid update successfull', text: 'Your kid details have been successfully updated.' });
+          Swal.fire({ title: 'Kid update successfull', html: 'Your kid details have been successfully updated.' });
           this.$emit('added')
       })
       .catch((e: Error) => {
           this.isLoading = false
           console.log(e);
-          Swal.fire({ type: 'error', title: 'Kid update error', text: e });
+          Swal.fire({title: 'Kid update error', html: e });
       });
     },
   }
