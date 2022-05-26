@@ -661,12 +661,12 @@ export default Vue.extend({
             console.log(response.data);
             this.$router.push({ name: 'manage-kids' })
             this.resetGhost()
-            swal.fire({ type: 'success', title: 'Kid create successfull', text: 'Your kid details have been successfully created.' });
+            this.$swal({ type: 'success', title: 'Kid create successfull', text: 'Your kid details have been successfully created.' });
         })
         .catch((e: Error) => {
             this.isLoading = false
             console.log(e);
-            swal.fire({ type: 'error', title: 'Kid create error', text: e });
+            this.$swal({ type: 'error', title: 'Kid create error', text: e });
         });
     },
     async getParentInfos () {
@@ -682,7 +682,7 @@ export default Vue.extend({
         .catch((e: Error) => {
             this.isLoading = false
             console.log(e);
-            swal.fire({ type: 'error', title: 'Get Kid parent infos error', text: e });
+            this.$swal({ type: 'error', title: 'Get Kid parent infos error', text: e });
         });
     },
     async getSchoolInfos () {
@@ -698,7 +698,7 @@ export default Vue.extend({
         .catch((e: Error) => {
             this.isLoading = false
             console.log(e);
-            swal.fire({ type: 'error', title: 'Get Kid school infos error', text: e });
+            this.$swal({ type: 'error', title: 'Get Kid school infos error', text: e });
         });
     },
     async getMedicalInfos () {
@@ -714,7 +714,7 @@ export default Vue.extend({
         .catch((e: Error) => {
             this.isLoading = false
             console.log(e);
-            swal.fire({ type: 'error', title: 'Get Kid medical infos error', text: e });
+            this.$swal({ type: 'error', title: 'Get Kid medical infos error', text: e });
         });
     },
     async getHistoryInfos () {
@@ -730,7 +730,7 @@ export default Vue.extend({
         .catch((e: Error) => {
             this.isLoading = false
             console.log(e);
-            swal.fire({ type: 'error', title: 'Get Kid history infos error', text: e });
+            this.$swal({ type: 'error', title: 'Get Kid history infos error', text: e });
         });
     },
 
@@ -767,7 +767,7 @@ export default Vue.extend({
         .catch((e: Error) => {
             this.isLoading = false
             console.log(e);
-            swal.fire({ type: 'error', title: 'Get Kid infos error', text: e });
+            this.$swal({ type: 'error', title: 'Get Kid infos error', text: e });
         });
     },
 
@@ -786,12 +786,12 @@ export default Vue.extend({
           this.kid = Object.assign({}, response.data)
           this.edit = false
           this.resetGhost()
-          swal.fire({ type: 'success', title: 'Parent infos created successfull', text: 'Your parent infos details have been successfully created.' });
+          this.$swal({ type: 'success', title: 'Parent infos created successfull', text: 'Your parent infos details have been successfully created.' });
       })
       .catch((e: Error) => {
           this.isLoading = false
           console.log(e);
-          swal.fire({ type: 'error', title: 'Kid update error', text: e });
+          this.$swal({ type: 'error', title: 'Kid update error', text: e });
       });
     },
 
@@ -811,13 +811,13 @@ export default Vue.extend({
           this.kid = Object.assign({}, response.data)
           this.edit = false
           this.resetGhost()
-          swal.fire({ type: 'success', title: 'Kid update successfull', text: 'Your kid details have been successfully updated.' });
+          this.$swal({ type: 'success', title: 'Kid update successfull', text: 'Your kid details have been successfully updated.' });
           this.$emit('added')
       })
       .catch((e: Error) => {
           this.isLoading = false
           console.log(e);
-          swal.fire({ type: 'error', title: 'Kid update error', text: e });
+          this.$swal({ type: 'error', title: 'Kid update error', text: e });
       });
     },
   }

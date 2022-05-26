@@ -38,6 +38,8 @@
                   outlined
                   dense
                   color="success"
+                  v-model="agencyObject.name"
+                  name="name"
                 ></v-text-field>
                 <v-text-field
                   label="Address"
@@ -46,6 +48,18 @@
                   elevation="0"
                   outlined
                   dense
+                  v-model="agencyObject.address"
+                  name="address"
+                ></v-text-field>
+                <v-text-field
+                  label="Admin email"
+                  solo
+                  rounded
+                  elevation="0"
+                  outlined
+                  dense
+                  v-model="agencyObject.admin_email"
+                  name="admin_email"
                 ></v-text-field>
                 <v-text-field
                   label="Foster home adminitrator"
@@ -54,25 +68,21 @@
                   elevation="0"
                   outlined
                   dense
+                  v-model="agencyObject.administrator"
+                  name="administrator"
                 ></v-text-field>
-                <v-text-field
-                  label="Login"
-                  solo
-                  rounded
-                  elevation="0"
-                  outlined
-                  dense
-                ></v-text-field>
-                <v-text-field
-                  label="Password"
-                  solo
-                  rounded
-                  elevation="0"
-                  outlined
-                  dense
-                ></v-text-field>
+                <v-textarea
+                    name="description"
+                    v-model="agencyObject.description"
+                    label="Description"
+                    solo
+                    rounded
+                    elevation="0"
+                    outlined
+                    dense
+                ></v-textarea>
 
-                <v-btn color="success" rounded class="pa-3" width="100%">
+                <v-btn color="success" rounded class="pa-3" width="100%" @click="CreateAgency()">
                   Create
                 </v-btn>
               </v-form>
@@ -88,18 +98,72 @@
 import Vue from "vue";
 import ResponseData from "@/types/ResponseData";
 import IconClose from "../icons/IconClose.vue";
+import UserDataService from "@/services/UserDataService";
+import User from "@/types/User";
+import AgencyDataService from "@/services/AgencyDataService";
+import Agency from "@/types/Agency";
 
 export default Vue.extend({
   name: "NoItemYet",
 
-  data() {
-    return {
+  data: () => ({
+      agencyObject: { id: null, adminitrator: null, admin_email: '', name: '', address: '', description: '' } as Agency,
+      userObject: { id: null, email: '', username: '', password: '', phone: '', is_kid: false, is_family: false, is_agency_admin: false, is_superuser: false } as User,
       dialog: false,
-    };
-  },
+  }),
+
   components: {
     IconClose,
   },
+
+  mounted () {
+
+  },
+
+  methods: {
+    async CreateUserAgency () {
+        this.isLoading = true
+        let data = {
+            email: this.userObject.email, username: this.userObject.username, password: this.userObject.password,
+            phone: this.userObject.phone, is_kid: this.userObject.is_kid,
+            is_family: this.userObject.is_family, is_agency_admin: true, is_superuser: this.userObject.is_superuser
+        };
+
+        await UserDataService.create(data)
+        .then((response: ResponseData) => {
+            this.isLoading = false
+            console.log(response.data)
+            this.resetGhost()
+            swal.fire({ type: 'success', title: 'user agency create successfull', text: 'Your user details have been successfully created.' });
+        })
+        .catch((e: Error) => {
+            this.isLoading = false
+            console.log(e);
+            swal.fire({ type: 'error', title: 'user agency create error', text: e });
+        });
+    },
+
+    async CreateAgency () {
+        this.isLoading = true
+        let data = {
+            adminitrator: this.agencyObject.adminitrator, admin_email: this.agencyObject.admin_email, name: this.agencyObject.name,
+            address: this.agencyObject.address, description: this.agencyObject.description
+        };
+
+        await AgencyDataService.create(data)
+        .then((response: ResponseData) => {
+            this.isLoading = false
+            console.log(response.data)
+            this.resetGhost()
+            swal.fire({ type: 'success', title: 'user agency create successfull', text: 'Your user details have been successfully created.' });
+        })
+        .catch((e: Error) => {
+            this.isLoading = false
+            console.log(e);
+            swal.fire({ type: 'error', title: 'user agency create error', text: e });
+        });
+    },
+  }
 });
 </script>
 
