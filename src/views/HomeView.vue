@@ -48,7 +48,6 @@ export default Vue.extend({
           })
           .catch((e: Error) => {
               this.isLoading = false
-              console.log(e);
               Swal.fire({ title: 'Get Agencies error', html: e });
           });
       }

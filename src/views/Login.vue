@@ -88,7 +88,6 @@ export default Vue.extend({
             this.isLoading = false
             localStorage.setItem('infinite_user', JSON.stringify(response.data))
             localStorage.setItem('infinitec_api_token', response.data.token)
-            console.log(response.data);
             this.submitted = true;
             this.$router.push({ name: 'home' })
         })

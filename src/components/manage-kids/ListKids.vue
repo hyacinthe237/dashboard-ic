@@ -91,492 +91,492 @@
         </v-card>
         </v-dialog>
 
-    <!-- Modal off more informations -->
-    <v-dialog v-model="edit" width="1100">
-        <v-card class="rounded-lg">
-            <v-toolbar color="white" elevation="0">
-                <v-spacer></v-spacer>
-                <v-toolbar-items class="pa-4">
-                    <icon-close @click.native="edit = false" class="pointer" :disabled="isLoading"/>
-                </v-toolbar-items>
-                <template v-slot:extension>
-                    <v-tabs v-model="tab" active-class="bordered" align-with-title>
-                        <v-tabs-slider color="secondary"></v-tabs-slider>
+        <!-- Modal off more informations -->
+        <v-dialog v-model="edit" width="1100">
+            <v-card class="rounded-lg">
+                <v-toolbar color="white" elevation="0">
+                    <v-spacer></v-spacer>
+                    <v-toolbar-items class="pa-4">
+                        <icon-close @click.native="edit = false" class="pointer" :disabled="isLoading"/>
+                    </v-toolbar-items>
+                    <template v-slot:extension>
+                        <v-tabs v-model="tab" active-class="bordered" align-with-title>
+                            <v-tabs-slider color="secondary"></v-tabs-slider>
 
-                        <v-tab> Personnal informations </v-tab>
-                        <v-tab> Parents informations </v-tab>
-                        <v-tab> School informations </v-tab>
-                        <v-tab> Medical informations </v-tab>
-                        <v-tab> Placement history </v-tab>
-                    </v-tabs>
-                </template>
-            </v-toolbar>
-            <v-card-text>
-                <v-divider
-                    color="#28a7e3"
-                    style="margin: 0 0 17px 17px !important"
-                ></v-divider>
-                <v-tabs-items v-model="tab">
-                    <v-tab-item>
-                        <v-card flat v-show="!isLoading">
-                            <v-card-title>
-                            <v-list-item>
-                                <v-img
-                                    alt="Infinite connection"
-                                    class="shrink mr-2"
-                                    contain src="@/assets/img/kid.png"
-                                    transition="scale-transition"
-                                    max-height="100%"
-                                    width="60"
-                                />
+                            <v-tab> Personnal informations </v-tab>
+                            <v-tab> Parents informations </v-tab>
+                            <v-tab> School informations </v-tab>
+                            <v-tab> Medical informations </v-tab>
+                            <v-tab> Placement history </v-tab>
+                        </v-tabs>
+                    </template>
+                </v-toolbar>
+                <v-card-text>
+                    <v-divider
+                        color="#28a7e3"
+                        style="margin: 0 0 17px 17px !important"
+                    ></v-divider>
+                    <v-tabs-items v-model="tab">
+                        <v-tab-item>
+                            <v-card flat v-show="!isLoading">
+                                <v-card-title>
+                                <v-list-item>
+                                    <v-img
+                                        alt="Infinite connection"
+                                        class="shrink mr-2"
+                                        contain src="@/assets/img/kid.png"
+                                        transition="scale-transition"
+                                        max-height="100%"
+                                        width="60"
+                                    />
 
+                                    <v-list-item-content>
+                                        <v-list-item-title class="font-weight-bold">
+                                            {{ kid.first_name }} {{ kid.last_name }} <icon-edit class="ml-2" />
+                                        </v-list-item-title>
+                                    </v-list-item-content>
+                                </v-list-item>
+                                <v-list-item class="">
                                 <v-list-item-content>
-                                    <v-list-item-title class="font-weight-bold">
-                                        {{ kid.first_name }} {{ kid.last_name }} <icon-edit class="ml-2" />
-                                    </v-list-item-title>
+                                <v-list-item-title
+                                ><v-row>
+                                <v-col cols="2" align="right">
+                                <v-subheader class="pt-7">First Name :</v-subheader>
+                                </v-col>
+                                <v-col cols="4">
+                                <v-text-field focus v-model="kid.first_name" name="first_name"></v-text-field>
+                                </v-col>
+                                <v-col cols="2" align="right">
+                                <v-subheader class="pt-7">Last Name :</v-subheader>
+                                </v-col>
+                                <v-col cols="4">
+                                <v-text-field focus v-model="kid.last_name" name="last_name"></v-text-field>
+                                </v-col>
+                                </v-row>
+                                </v-list-item-title>
                                 </v-list-item-content>
-                            </v-list-item>
-                            <v-list-item class="">
-                            <v-list-item-content>
-                            <v-list-item-title
-                            ><v-row>
-                            <v-col cols="2" align="right">
-                            <v-subheader class="pt-7">First Name :</v-subheader>
-                            </v-col>
-                            <v-col cols="4">
-                            <v-text-field focus v-model="kid.first_name" name="first_name"></v-text-field>
-                            </v-col>
-                            <v-col cols="2" align="right">
-                            <v-subheader class="pt-7">Last Name :</v-subheader>
-                            </v-col>
-                            <v-col cols="4">
-                            <v-text-field focus v-model="kid.last_name" name="last_name"></v-text-field>
-                            </v-col>
-                            </v-row>
-                            </v-list-item-title>
-                            </v-list-item-content>
-                            </v-list-item>
-                            <v-list-item class="">
-                            <v-list-item-content>
-                            <v-list-item-title
-                            ><v-row>
-                            <v-col cols="2" align="right">
-                            <v-subheader class="pt-7">Email Adress :</v-subheader>
-                            </v-col>
-                            <v-col cols="4">
-                            <v-text-field focus v-model="kid.email" name="email"></v-text-field>
-                            </v-col>
-                            <v-col cols="2" align="right">
-                            <v-subheader class="pt-7">Gender :</v-subheader>
-                            </v-col>
-                            <v-col cols="4">
-                            <v-text-field focus v-model="kid.sex" name="sex"></v-text-field>
-                            </v-col>
-                            </v-row>
-                            </v-list-item-title>
-                            </v-list-item-content>
-                            </v-list-item>
-                            <v-list-item class="">
-                            <v-list-item-content>
-                            <v-list-item-title
-                            ><v-row>
-                            <v-col cols="2" align="right">
-                            <v-subheader class="pt-7">Date of arrival :</v-subheader>
-                            </v-col>
-                            <v-col cols="4">
-                            <v-text-field focus v-model="kid.date_of_arrival" name="date_of_arrival" type="date"></v-text-field>
-                            </v-col>
-                            <v-col cols="2" align="right">
-                            <v-subheader class="pt-7">Birthdate :</v-subheader>
-                            </v-col>
-                            <v-col cols="4">
-                            <v-text-field focus v-model="kid.birthdate" name="birthdate" type="date"></v-text-field>
-                            </v-col>
-                            </v-row>
-                            </v-list-item-title>
-                            </v-list-item-content>
-                            </v-list-item>
+                                </v-list-item>
+                                <v-list-item class="">
+                                <v-list-item-content>
+                                <v-list-item-title
+                                ><v-row>
+                                <v-col cols="2" align="right">
+                                <v-subheader class="pt-7">Email Adress :</v-subheader>
+                                </v-col>
+                                <v-col cols="4">
+                                <v-text-field focus v-model="kid.email" name="email"></v-text-field>
+                                </v-col>
+                                <v-col cols="2" align="right">
+                                <v-subheader class="pt-7">Gender :</v-subheader>
+                                </v-col>
+                                <v-col cols="4">
+                                <v-text-field focus v-model="kid.sex" name="sex"></v-text-field>
+                                </v-col>
+                                </v-row>
+                                </v-list-item-title>
+                                </v-list-item-content>
+                                </v-list-item>
+                                <v-list-item class="">
+                                <v-list-item-content>
+                                <v-list-item-title
+                                ><v-row>
+                                <v-col cols="2" align="right">
+                                <v-subheader class="pt-7">Date of arrival :</v-subheader>
+                                </v-col>
+                                <v-col cols="4">
+                                <v-text-field focus v-model="kid.date_of_arrival" name="date_of_arrival" type="date"></v-text-field>
+                                </v-col>
+                                <v-col cols="2" align="right">
+                                <v-subheader class="pt-7">Birthdate :</v-subheader>
+                                </v-col>
+                                <v-col cols="4">
+                                <v-text-field focus v-model="kid.birthdate" name="birthdate" type="date"></v-text-field>
+                                </v-col>
+                                </v-row>
+                                </v-list-item-title>
+                                </v-list-item-content>
+                                </v-list-item>
 
-                            <v-list-item class="">
+                                <v-list-item class="">
+                                <v-list-item-content>
+                                <v-list-item-title
+                                ><v-row>
+                                <v-col cols="2" align="right">
+                                <v-subheader class="pt-7">Age :</v-subheader>
+                                </v-col>
+                                <v-col cols="4">
+                                <v-text-field focus v-model="kid.age" name="age"></v-text-field>
+                                </v-col>
+                                <v-col cols="2" align="right">
+                                <v-subheader class="pt-7">Phone :</v-subheader>
+                                </v-col>
+                                <v-col cols="4">
+                                <v-text-field focus v-model="kid.phone" name="phone"></v-text-field>
+                                </v-col>
+                                </v-row>
+                                </v-list-item-title>
+                                </v-list-item-content>
+                                </v-list-item>
+                                </v-card-title>
+                                <v-card-actions>
+                                    <v-spacer></v-spacer>
+                                    <v-btn
+                                        color="success"
+                                        rounded
+                                        class="pa-4"
+                                        width="200"
+                                        :disabled="isLoading"
+                                        @click="updateKid()"
+                                    >Update</v-btn>
+                                </v-card-actions>
+                            </v-card>
+                            <v-progress-circular :indeterminate="true" :color="'success'" v-show="isLoading"></v-progress-circular>
+                        </v-tab-item>
+                    <v-tab-item>
+                    <v-card flat>
+                    <v-card-text>
+                        <v-list-item>
+                            <v-img
+                                alt="Infinite connection"
+                                class="shrink mr-2"
+                                contain src="@/assets/img/kid.png"
+                                transition="scale-transition"
+                                max-height="100%"
+                                width="60"
+                            />
+
                             <v-list-item-content>
-                            <v-list-item-title
-                            ><v-row>
-                            <v-col cols="2" align="right">
-                            <v-subheader class="pt-7">Age :</v-subheader>
-                            </v-col>
-                            <v-col cols="4">
-                            <v-text-field focus v-model="kid.age" name="age"></v-text-field>
-                            </v-col>
-                            <v-col cols="2" align="right">
-                            <v-subheader class="pt-7">Phone :</v-subheader>
-                            </v-col>
-                            <v-col cols="4">
-                            <v-text-field focus v-model="kid.phone" name="phone"></v-text-field>
-                            </v-col>
-                            </v-row>
-                            </v-list-item-title>
+                                <v-list-item-title class="font-weight-bold">
+                                    {{ kid.first_name }} {{ kid.last_name }}
+                                </v-list-item-title>
                             </v-list-item-content>
-                            </v-list-item>
-                            </v-card-title>
-                            <v-card-actions>
-                                <v-spacer></v-spacer>
-                                <v-btn
-                                    color="success"
-                                    rounded
-                                    class="pa-4"
-                                    width="200"
-                                    :disabled="isLoading"
-                                    @click="updateKid()"
-                                >Update</v-btn>
-                            </v-card-actions>
-                        </v-card>
-                        <v-progress-circular :indeterminate="true" :color="'success'" v-show="isLoading"></v-progress-circular>
+                        </v-list-item>
+                        <v-list-item class="">
+                            <v-list-item-content>
+                                <v-list-item-title>
+                                    <v-row>
+                                        <v-col cols="2" align="right">
+                                            <v-subheader class="pt-7">Father Name :</v-subheader>
+                                        </v-col>
+                                        <v-col cols="4">
+                                              <v-text-field focus v-model="parentObject.father_name" name="father_name"></v-text-field>
+                                        </v-col>
+                                        <v-col cols="2" align="right">
+                                            <v-subheader class="pt-7">Father phone :</v-subheader>
+                                        </v-col>
+                                        <v-col cols="4">
+                                              <v-text-field focus v-model="parentObject.father_phone" name="father_phone"></v-text-field>
+                                        </v-col>
+                                    </v-row>
+                                </v-list-item-title>
+                            </v-list-item-content>
+                        </v-list-item>
+                        <v-list-item class="">
+                            <v-list-item-content>
+                                <v-list-item-title>
+                                    <v-row>
+                                        <v-col cols="2" align="right">
+                                            <v-subheader class="pt-7">father address :</v-subheader>
+                                        </v-col>
+                                        <v-col cols="4">
+                                              <v-text-field focus v-model="parentObject.father_address" name="father_address"></v-text-field>
+                                        </v-col>
+                                        <v-col cols="2" align="right">
+                                            <v-subheader class="pt-7">father profession :</v-subheader>
+                                        </v-col>
+                                        <v-col cols="4">
+                                              <v-text-field focus v-model="parentObject.father_profession" name="father_profession"></v-text-field>
+                                        </v-col>
+                                    </v-row>
+                                </v-list-item-title>
+                            </v-list-item-content>
+                        </v-list-item>
+                        <v-list-item class="">
+                            <v-list-item-content>
+                                <v-list-item-title>
+                                    <v-row>
+                                        <v-col cols="2" align="right">
+                                            <v-subheader class="pt-7">mother Name :</v-subheader>
+                                        </v-col>
+                                        <v-col cols="4">
+                                              <v-text-field focus v-model="parentObject.mother_name" name="mother_name"></v-text-field>
+                                        </v-col>
+                                        <v-col cols="2" align="right">
+                                            <v-subheader class="pt-7">mother phone :</v-subheader>
+                                        </v-col>
+                                        <v-col cols="4">
+                                              <v-text-field focus v-model="parentObject.mother_phone" name="mother_phone"></v-text-field>
+                                        </v-col>
+                                    </v-row>
+                                </v-list-item-title>
+                            </v-list-item-content>
+                        </v-list-item>
+                        <v-list-item class="">
+                            <v-list-item-content>
+                                <v-list-item-title>
+                                    <v-row>
+                                        <v-col cols="2" align="right">
+                                            <v-subheader class="pt-7">mother address :</v-subheader>
+                                        </v-col>
+                                        <v-col cols="4">
+                                              <v-text-field focus v-model="parentObject.mother_address" name="mother_address"></v-text-field>
+                                        </v-col>
+                                        <v-col cols="2" align="right">
+                                            <v-subheader class="pt-7">mother profession :</v-subheader>
+                                        </v-col>
+                                        <v-col cols="4">
+                                              <v-text-field focus v-model="parentObject.mother_profession" name="mother_profession"></v-text-field>
+                                        </v-col>
+                                    </v-row>
+                                </v-list-item-title>
+                            </v-list-item-content>
+                        </v-list-item>
+                        <v-card-actions>
+                            <v-spacer></v-spacer>
+                            <v-btn
+                                color="success"
+                                rounded
+                                class="pa-4"
+                                width="200"
+                                :disabled="isLoading"
+                                @click="createParentInfos()"
+                            >Create Parent Infos</v-btn>
+                        </v-card-actions>
+                    </v-card-text>
+                    </v-card>
                     </v-tab-item>
-                <v-tab-item>
-                <v-card flat>
-                <v-card-text>
-                    <v-list-item>
-                        <v-img
-                            alt="Infinite connection"
-                            class="shrink mr-2"
-                            contain src="@/assets/img/kid.png"
-                            transition="scale-transition"
-                            max-height="100%"
-                            width="60"
-                        />
+                    <v-tab-item>
+                    <v-card flat>
+                    <v-card-text>
+                      <v-list-item>
+                          <v-img
+                              alt="Infinite connection"
+                              class="shrink mr-2"
+                              contain src="@/assets/img/kid.png"
+                              transition="scale-transition"
+                              max-height="100%"
+                              width="60"
+                          />
 
-                        <v-list-item-content>
-                            <v-list-item-title class="font-weight-bold">
-                                {{ kid.first_name }} {{ kid.last_name }}
-                            </v-list-item-title>
-                        </v-list-item-content>
-                    </v-list-item>
-                    <v-list-item class="">
-                        <v-list-item-content>
-                            <v-list-item-title>
-                                <v-row>
-                                    <v-col cols="2" align="right">
-                                        <v-subheader class="pt-7">Father Name :</v-subheader>
-                                    </v-col>
-                                    <v-col cols="4">
-                                          <v-text-field focus v-model="parentObject.father_name" name="father_name"></v-text-field>
-                                    </v-col>
-                                    <v-col cols="2" align="right">
-                                        <v-subheader class="pt-7">Father phone :</v-subheader>
-                                    </v-col>
-                                    <v-col cols="4">
-                                          <v-text-field focus v-model="parentObject.father_phone" name="father_phone"></v-text-field>
-                                    </v-col>
-                                </v-row>
-                            </v-list-item-title>
-                        </v-list-item-content>
-                    </v-list-item>
-                    <v-list-item class="">
-                        <v-list-item-content>
-                            <v-list-item-title>
-                                <v-row>
-                                    <v-col cols="2" align="right">
-                                        <v-subheader class="pt-7">father address :</v-subheader>
-                                    </v-col>
-                                    <v-col cols="4">
-                                          <v-text-field focus v-model="parentObject.father_address" name="father_address"></v-text-field>
-                                    </v-col>
-                                    <v-col cols="2" align="right">
-                                        <v-subheader class="pt-7">father profession :</v-subheader>
-                                    </v-col>
-                                    <v-col cols="4">
-                                          <v-text-field focus v-model="parentObject.father_profession" name="father_profession"></v-text-field>
-                                    </v-col>
-                                </v-row>
-                            </v-list-item-title>
-                        </v-list-item-content>
-                    </v-list-item>
-                    <v-list-item class="">
-                        <v-list-item-content>
-                            <v-list-item-title>
-                                <v-row>
-                                    <v-col cols="2" align="right">
-                                        <v-subheader class="pt-7">mother Name :</v-subheader>
-                                    </v-col>
-                                    <v-col cols="4">
-                                          <v-text-field focus v-model="parentObject.mother_name" name="mother_name"></v-text-field>
-                                    </v-col>
-                                    <v-col cols="2" align="right">
-                                        <v-subheader class="pt-7">mother phone :</v-subheader>
-                                    </v-col>
-                                    <v-col cols="4">
-                                          <v-text-field focus v-model="parentObject.mother_phone" name="mother_phone"></v-text-field>
-                                    </v-col>
-                                </v-row>
-                            </v-list-item-title>
-                        </v-list-item-content>
-                    </v-list-item>
-                    <v-list-item class="">
-                        <v-list-item-content>
-                            <v-list-item-title>
-                                <v-row>
-                                    <v-col cols="2" align="right">
-                                        <v-subheader class="pt-7">mother address :</v-subheader>
-                                    </v-col>
-                                    <v-col cols="4">
-                                          <v-text-field focus v-model="parentObject.mother_address" name="mother_address"></v-text-field>
-                                    </v-col>
-                                    <v-col cols="2" align="right">
-                                        <v-subheader class="pt-7">mother profession :</v-subheader>
-                                    </v-col>
-                                    <v-col cols="4">
-                                          <v-text-field focus v-model="parentObject.mother_profession" name="mother_profession"></v-text-field>
-                                    </v-col>
-                                </v-row>
-                            </v-list-item-title>
-                        </v-list-item-content>
-                    </v-list-item>
-                    <v-card-actions>
-                        <v-spacer></v-spacer>
-                        <v-btn
-                            color="success"
-                            rounded
-                            class="pa-4"
-                            width="200"
-                            :disabled="isLoading"
-                            @click="createParentInfos()"
-                        >Create Parent Infos</v-btn>
-                    </v-card-actions>
-                </v-card-text>
-                </v-card>
-                </v-tab-item>
-                <v-tab-item>
-                <v-card flat>
-                <v-card-text>
-                  <v-list-item>
-                      <v-img
-                          alt="Infinite connection"
-                          class="shrink mr-2"
-                          contain src="@/assets/img/kid.png"
-                          transition="scale-transition"
-                          max-height="100%"
-                          width="60"
-                      />
+                          <v-list-item-content>
+                              <v-list-item-title class="font-weight-bold">
+                                  {{ kid.first_name }} {{ kid.last_name }}
+                              </v-list-item-title>
+                          </v-list-item-content>
+                      </v-list-item>
+                      <v-list-item class="">
+                          <v-list-item-content>
+                              <v-list-item-title>
+                                  <v-row>
+                                      <v-col cols="2" align="right">
+                                          <v-subheader class="pt-7">Name :</v-subheader>
+                                      </v-col>
+                                      <v-col cols="4">
+                                            <v-text-field focus v-model="schoolObject.name" name="name"></v-text-field>
+                                      </v-col>
+                                      <v-col cols="2" align="right">
+                                          <v-subheader class="pt-7">Content :</v-subheader>
+                                      </v-col>
+                                      <v-col cols="4">
+                                            <v-text-field focus v-model="schoolObject.content" name="content"></v-text-field>
+                                      </v-col>
+                                  </v-row>
+                              </v-list-item-title>
+                          </v-list-item-content>
+                      </v-list-item>
+                      <v-list-item class="">
+                          <v-list-item-content>
+                              <v-list-item-title>
+                                  <v-row>
+                                      <v-col cols="2" align="right">
+                                          <v-subheader class="pt-7">Image :</v-subheader>
+                                      </v-col>
+                                      <v-col cols="10">
+                                        <v-file-input
+                                          accept=".png"
+                                          label="Click here to select a .png file"
+                                          outlined
+                                          name="image"
+                                          v-model="schoolObject.image"
+                                        >
+                                        </v-file-input>
+                                      </v-col>
+                                  </v-row>
+                              </v-list-item-title>
+                          </v-list-item-content>
+                      </v-list-item>
+                      <v-card-actions>
+                          <v-spacer></v-spacer>
+                          <v-btn
+                              color="success"
+                              rounded
+                              class="pa-4"
+                              width="200"
+                              :disabled="isLoading"
+                              @click="updateSchoolInfos()"
+                          >Update School Infos</v-btn>
+                      </v-card-actions>
+                    </v-card-text>
+                    </v-card>
+                    </v-tab-item>
+                    <v-tab-item>
+                    <v-card flat>
+                    <v-card-text>
+                        <v-list-item>
+                            <v-img
+                                alt="Infinite connection"
+                                class="shrink mr-2"
+                                contain src="@/assets/img/kid.png"
+                                transition="scale-transition"
+                                max-height="100%"
+                                width="60"
+                            />
 
-                      <v-list-item-content>
-                          <v-list-item-title class="font-weight-bold">
-                              {{ kid.first_name }} {{ kid.last_name }}
-                          </v-list-item-title>
-                      </v-list-item-content>
-                  </v-list-item>
-                  <v-list-item class="">
-                      <v-list-item-content>
-                          <v-list-item-title>
-                              <v-row>
-                                  <v-col cols="2" align="right">
-                                      <v-subheader class="pt-7">Name :</v-subheader>
-                                  </v-col>
-                                  <v-col cols="4">
-                                        <v-text-field focus v-model="schoolObject.name" name="name"></v-text-field>
-                                  </v-col>
-                                  <v-col cols="2" align="right">
-                                      <v-subheader class="pt-7">Content :</v-subheader>
-                                  </v-col>
-                                  <v-col cols="4">
-                                        <v-text-field focus v-model="schoolObject.content" name="content"></v-text-field>
-                                  </v-col>
-                              </v-row>
-                          </v-list-item-title>
-                      </v-list-item-content>
-                  </v-list-item>
-                  <v-list-item class="">
-                      <v-list-item-content>
-                          <v-list-item-title>
-                              <v-row>
-                                  <v-col cols="2" align="right">
-                                      <v-subheader class="pt-7">Image :</v-subheader>
-                                  </v-col>
-                                  <v-col cols="10">
-                                    <v-file-input
-                                      accept=".png"
-                                      label="Click here to select a .png file"
-                                      outlined
-                                      name="image"
-                                      v-model="schoolObject.image"
-                                    >
-                                    </v-file-input>
-                                  </v-col>
-                              </v-row>
-                          </v-list-item-title>
-                      </v-list-item-content>
-                  </v-list-item>
-                  <v-card-actions>
-                      <v-spacer></v-spacer>
-                      <v-btn
-                          color="success"
-                          rounded
-                          class="pa-4"
-                          width="200"
-                          :disabled="isLoading"
-                          @click="updateSchoolInfos()"
-                      >Update School Infos</v-btn>
-                  </v-card-actions>
-                </v-card-text>
-                </v-card>
-                </v-tab-item>
-                <v-tab-item>
-                <v-card flat>
-                <v-card-text>
-                    <v-list-item>
-                        <v-img
-                            alt="Infinite connection"
-                            class="shrink mr-2"
-                            contain src="@/assets/img/kid.png"
-                            transition="scale-transition"
-                            max-height="100%"
-                            width="60"
-                        />
-
-                        <v-list-item-content>
-                            <v-list-item-title class="font-weight-bold">
-                                {{ kid.first_name }} {{ kid.last_name }}
-                            </v-list-item-title>
-                        </v-list-item-content>
-                    </v-list-item>
-                    <v-list-item class="">
-                        <v-list-item-content>
-                            <v-list-item-title>
-                                <v-row>
-                                    <v-col cols="2" align="right">
-                                        <v-subheader class="pt-7">Name :</v-subheader>
-                                    </v-col>
-                                    <v-col cols="4">
-                                          <v-text-field focus v-model="medicalObject.name" name="name"></v-text-field>
-                                    </v-col>
-                                    <v-col cols="2" align="right">
-                                        <v-subheader class="pt-7">Content :</v-subheader>
-                                    </v-col>
-                                    <v-col cols="4">
-                                          <v-text-field focus v-model="medicalObject.content" name="content"></v-text-field>
-                                    </v-col>
-                                </v-row>
-                            </v-list-item-title>
-                        </v-list-item-content>
-                    </v-list-item>
-                    <v-list-item class="">
-                        <v-list-item-content>
-                            <v-list-item-title>
-                                <v-row>
-                                    <v-col cols="2" align="right">
-                                        <v-subheader class="pt-7">Image :</v-subheader>
-                                    </v-col>
-                                    <v-col cols="10">
-                                      <v-file-input
-                                        accept=".png"
-                                        label="Click here to select a .png file"
-                                        outlined
-                                        name="image"
-                                        v-model="medicalObject.image"
-                                      >
-                                      </v-file-input>
-                                    </v-col>
-                                </v-row>
-                            </v-list-item-title>
-                        </v-list-item-content>
-                    </v-list-item>
-                    <v-card-actions>
-                        <v-spacer></v-spacer>
-                        <v-btn
-                            color="success"
-                            rounded
-                            class="pa-4"
-                            width="200"
-                            :disabled="isLoading"
-                            @click="updateMedicalInfos()"
-                        >Update Medical Infos</v-btn>
-                    </v-card-actions>
-                </v-card-text>
-                </v-card>
-                </v-tab-item>
-                <v-tab-item>
-                <v-card flat>
-                <v-card-text>
-                    <v-list-item>
-                        <v-img
-                            alt="Infinite connection"
-                            class="shrink mr-2"
-                            contain src="@/assets/img/kid.png"
-                            transition="scale-transition"
-                            max-height="100%"
-                            width="60"
-                        />
-
-                        <v-list-item-content>
-                            <v-list-item-title class="font-weight-bold">
-                                {{ kid.first_name }} {{ kid.last_name }}
-                            </v-list-item-title>
-                        </v-list-item-content>
-                    </v-list-item>
-                    <v-list-item class="">
-                        <v-list-item-content>
-                            <v-list-item-title>
-                                <v-row>
-                                    <v-col cols="2" align="right">
-                                        <v-subheader class="pt-7">Name :</v-subheader>
-                                    </v-col>
-                                    <v-col cols="4">
-                                          <v-text-field focus v-model="historyObject.name" name="name"></v-text-field>
-                                    </v-col>
-                                    <v-col cols="2" align="right">
-                                        <v-subheader class="pt-7">Content :</v-subheader>
-                                    </v-col>
-                                    <v-col cols="4">
-                                          <v-text-field focus v-model="historyObject.content" name="content"></v-text-field>
-                                    </v-col>
-                                </v-row>
-                            </v-list-item-title>
-                        </v-list-item-content>
-                    </v-list-item>
-                    <v-list-item class="">
-                        <v-list-item-content>
-                            <v-list-item-title>
-                                <v-row>
-                                    <v-col cols="2" align="right">
-                                        <v-subheader class="pt-7">Image :</v-subheader>
-                                    </v-col>
-                                    <v-col cols="10">
+                            <v-list-item-content>
+                                <v-list-item-title class="font-weight-bold">
+                                    {{ kid.first_name }} {{ kid.last_name }}
+                                </v-list-item-title>
+                            </v-list-item-content>
+                        </v-list-item>
+                        <v-list-item class="">
+                            <v-list-item-content>
+                                <v-list-item-title>
+                                    <v-row>
+                                        <v-col cols="2" align="right">
+                                            <v-subheader class="pt-7">Name :</v-subheader>
+                                        </v-col>
+                                        <v-col cols="4">
+                                              <v-text-field focus v-model="medicalObject.name" name="name"></v-text-field>
+                                        </v-col>
+                                        <v-col cols="2" align="right">
+                                            <v-subheader class="pt-7">Content :</v-subheader>
+                                        </v-col>
+                                        <v-col cols="4">
+                                              <v-text-field focus v-model="medicalObject.content" name="content"></v-text-field>
+                                        </v-col>
+                                    </v-row>
+                                </v-list-item-title>
+                            </v-list-item-content>
+                        </v-list-item>
+                        <v-list-item class="">
+                            <v-list-item-content>
+                                <v-list-item-title>
+                                    <v-row>
+                                        <v-col cols="2" align="right">
+                                            <v-subheader class="pt-7">Image :</v-subheader>
+                                        </v-col>
+                                        <v-col cols="10">
                                           <v-file-input
                                             accept=".png"
                                             label="Click here to select a .png file"
                                             outlined
                                             name="image"
-                                            v-model="historyObject.image"
+                                            v-model="medicalObject.image"
                                           >
                                           </v-file-input>
-                                    </v-col>
-                                </v-row>
-                            </v-list-item-title>
-                        </v-list-item-content>
-                    </v-list-item>
-                    <v-card-actions>
-                        <v-spacer></v-spacer>
-                        <v-btn
-                            color="success"
-                            rounded
-                            class="pa-4"
-                            width="200"
-                            :disabled="isLoading"
-                            @click="updateHistoryInfos()"
-                        >Update History Infos</v-btn>
-                    </v-card-actions>
+                                        </v-col>
+                                    </v-row>
+                                </v-list-item-title>
+                            </v-list-item-content>
+                        </v-list-item>
+                        <v-card-actions>
+                            <v-spacer></v-spacer>
+                            <v-btn
+                                color="success"
+                                rounded
+                                class="pa-4"
+                                width="200"
+                                :disabled="isLoading"
+                                @click="updateMedicalInfos()"
+                            >Update Medical Infos</v-btn>
+                        </v-card-actions>
+                    </v-card-text>
+                    </v-card>
+                    </v-tab-item>
+                    <v-tab-item>
+                    <v-card flat>
+                    <v-card-text>
+                        <v-list-item>
+                            <v-img
+                                alt="Infinite connection"
+                                class="shrink mr-2"
+                                contain src="@/assets/img/kid.png"
+                                transition="scale-transition"
+                                max-height="100%"
+                                width="60"
+                            />
+
+                            <v-list-item-content>
+                                <v-list-item-title class="font-weight-bold">
+                                    {{ kid.first_name }} {{ kid.last_name }}
+                                </v-list-item-title>
+                            </v-list-item-content>
+                        </v-list-item>
+                        <v-list-item class="">
+                            <v-list-item-content>
+                                <v-list-item-title>
+                                    <v-row>
+                                        <v-col cols="2" align="right">
+                                            <v-subheader class="pt-7">Name :</v-subheader>
+                                        </v-col>
+                                        <v-col cols="4">
+                                              <v-text-field focus v-model="historyObject.name" name="name"></v-text-field>
+                                        </v-col>
+                                        <v-col cols="2" align="right">
+                                            <v-subheader class="pt-7">Content :</v-subheader>
+                                        </v-col>
+                                        <v-col cols="4">
+                                              <v-text-field focus v-model="historyObject.content" name="content"></v-text-field>
+                                        </v-col>
+                                    </v-row>
+                                </v-list-item-title>
+                            </v-list-item-content>
+                        </v-list-item>
+                        <v-list-item class="">
+                            <v-list-item-content>
+                                <v-list-item-title>
+                                    <v-row>
+                                        <v-col cols="2" align="right">
+                                            <v-subheader class="pt-7">Image :</v-subheader>
+                                        </v-col>
+                                        <v-col cols="10">
+                                              <v-file-input
+                                                accept=".png"
+                                                label="Click here to select a .png file"
+                                                outlined
+                                                name="image"
+                                                v-model="historyObject.image"
+                                              >
+                                              </v-file-input>
+                                        </v-col>
+                                    </v-row>
+                                </v-list-item-title>
+                            </v-list-item-content>
+                        </v-list-item>
+                        <v-card-actions>
+                            <v-spacer></v-spacer>
+                            <v-btn
+                                color="success"
+                                rounded
+                                class="pa-4"
+                                width="200"
+                                :disabled="isLoading"
+                                @click="updateHistoryInfos()"
+                            >Update History Infos</v-btn>
+                        </v-card-actions>
+                    </v-card-text>
+                    </v-card>
+                    </v-tab-item>
+                    </v-tabs-items>
                 </v-card-text>
-                </v-card>
-                </v-tab-item>
-                </v-tabs-items>
-            </v-card-text>
-        </v-card>
-    </v-dialog>
-    <v-row v-show="!isLoading">
-        <v-col cols="4" md="4" sm="12" xs="12" v-for="kid in kids" :key="kid.id">
-            <kid-item @openItem="openItem" class="pointer" :kid="kid" />
-        </v-col>
-    </v-row>
-    <v-progress-circular :indeterminate="true" :color="'success'" v-show="isLoading"></v-progress-circular>
+            </v-card>
+        </v-dialog>
+        <v-row v-show="!isLoading">
+            <v-col cols="4" md="4" sm="12" xs="12" v-for="kid in kids" :key="kid.id">
+                <kid-item @openItem="openItem" class="pointer" :kid="kid" />
+            </v-col>
+        </v-row>
+        <v-progress-circular :indeterminate="true" :color="'success'" v-show="isLoading"></v-progress-circular>
     </div>
 </template>
 

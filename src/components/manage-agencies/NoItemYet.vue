@@ -1,6 +1,6 @@
 <template>
   <div class="main-content text-center">
-    <div class="centered">
+    <!-- <div class="centered"> -->
       <h2 class="mb-1" v-if="agencies.length==0 && !isLoading">Not item yet</h2>
       <v-dialog
         v-model="dialog"
@@ -87,7 +87,7 @@
           </v-col>
       </v-row>
       <v-progress-circular :indeterminate="true" :color="'success'" v-show="isLoading"></v-progress-circular>
-    </div>
+    <!-- </div> -->
   </div>
 </template>
 
