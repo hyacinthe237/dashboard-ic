@@ -1,7 +1,7 @@
 import axios, { AxiosInstance } from 'axios';
 
 const apiClient: AxiosInstance = axios.create({
-    baseURL: 'http://infinite-connect.herokuapp.com',
+    baseURL: 'https://infinite-connect.herokuapp.com',
     headers: {
         'Content-Type': 'application/json',
         Accept: 'application/json'
