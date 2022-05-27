@@ -53,9 +53,6 @@ import Vue from "vue";
 export default Vue.extend({
   name: "icon-alert",
 
-  data: () => ({}),
+  // data: () => ({}),
 });
 </script>
-
-
-

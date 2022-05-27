@@ -17,7 +17,7 @@ import AlertItem from "./AlertItem.vue";
 export default Vue.extend({
   name: "list-alert",
 
-  data: () => ({}),
+  // data: () => ({}),
   components: {
     AlertItem,
   },

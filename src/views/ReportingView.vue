@@ -142,7 +142,7 @@ import IconVerticalDivider from "../components/icons/IconVerticalDivider.vue";
 
 export default Vue.extend({
   name: "ReportingView",
-  data: () => ({}),
+  // data: () => ({}),
   components: {
     AppBarLogged,
     NavigationAppDrawer,
@@ -163,4 +163,3 @@ export default Vue.extend({
 }
 
 </style>
-

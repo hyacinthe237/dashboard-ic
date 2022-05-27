@@ -40,7 +40,7 @@ import IconSearch from '../icons/IconSearch.vue';
 export default Vue.extend({
   name: "app-bar",
 
-  data: () => ({}),
+  // data: () => ({}),
   components: {
       IconSearch
   }
@@ -48,5 +48,5 @@ export default Vue.extend({
 </script>
 
 <style scoped>
-    
+
 </style>

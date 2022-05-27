@@ -11,14 +11,13 @@
 
 <script lang="ts">
 import Vue from "vue";
-import VueRouter from "vue-router";
 import AppBarLogged from "../components/layouts/AppBarLogged.vue";
 import NavigationAppDrawer from "../components/layouts/NavigationAppDrawer.vue";
 import ListAlert from "../components/alerts/ListAlert.vue";
 
 export default Vue.extend({
   name: "Alert",
-  data: () => ({}),
+  // data: () => ({}),
   components: {
     AppBarLogged,
     NavigationAppDrawer,
@@ -26,5 +25,3 @@ export default Vue.extend({
   },
 });
 </script>
-
-

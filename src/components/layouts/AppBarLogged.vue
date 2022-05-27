@@ -42,7 +42,7 @@ import IconSearch from "../icons/IconSearch.vue";
 export default Vue.extend({
   name: "app-bar-logged",
 
-  data: () => ({}),
+  // data: () => ({}),
   components: {
     IconSearch,
   },

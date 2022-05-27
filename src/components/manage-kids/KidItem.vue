@@ -29,7 +29,6 @@
 
 <script lang="ts">
 import Vue from "vue";
-import * as moment from 'moment';
 
 export default Vue.extend({
   name: "kid-item",
@@ -38,11 +37,7 @@ export default Vue.extend({
       kid: { type: Object, default: () => {} }
   },
 
-  computed: {
-
-  },
-
-  data: () => ({}),
+  // data: () => ({}),
 
   methods: {
       openItem (kid: any) {

@@ -181,10 +181,23 @@ export default Vue.extend({
   background-size: contain;
   position: relative;
   width: 100%;
+  padding: 50px;
 }
 
 .v-text-field--outlined >>> fieldset {
   border-color: #15b715;
+}
+
+.bordered {
+  background: #28a7e3;
+  border-radius: 20px 20px 0 0;
+  height: 50px;
+  color: #fff !important;
+  font-weight: bold;
+}
+
+v-row {
+  padding: 40px;
 }
 
 </style>

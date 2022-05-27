@@ -32,7 +32,7 @@ import IconVerticalDivider from "../icons/IconVerticalDivider.vue";
 export default Vue.extend({
   name: "ticket-item",
 
-  data: () => ({}),
+  // data: () => ({}),
   components: {
     IconVerticalDivider,
   },

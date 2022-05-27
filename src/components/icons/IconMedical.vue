@@ -14,9 +14,6 @@ import Vue from "vue";
 export default Vue.extend({
   name: "icon-medical",
 
-  data: () => ({}),
+  // data: () => ({}),
 });
 </script>
-
-
-

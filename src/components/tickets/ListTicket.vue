@@ -17,7 +17,7 @@ import TicketItem from "./TicketItem.vue";
 export default Vue.extend({
   name: "list-ticket",
 
-  data: () => ({}),
+  // data: () => ({}),
   components: {
     TicketItem,
   },

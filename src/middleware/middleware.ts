@@ -6,6 +6,6 @@ export default {
     },
 
     auth (to: any, from: any, next: any) {
-        next(auth.check() ? true : '/login')
+        next(auth.check() ? true : '/')
     }
 }

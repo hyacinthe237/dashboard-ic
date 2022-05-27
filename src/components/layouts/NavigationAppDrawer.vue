@@ -155,7 +155,7 @@ import IconLogout from "../icons/IconLogout.vue";
 export default Vue.extend({
   name: "NavigationAppDrawer",
 
-  data: () => ({}),
+  // data: () => ({}),
   components: {
     IconManage,
     IconReport,

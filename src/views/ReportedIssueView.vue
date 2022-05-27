@@ -125,4 +125,3 @@ export default Vue.extend({
   padding-left: 2px;
 }
 </style>
-

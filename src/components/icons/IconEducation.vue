@@ -12,9 +12,6 @@ import Vue from "vue";
 export default Vue.extend({
   name: "icon-education",
 
-  data: () => ({}),
+  // data: () => ({}),
 });
 </script>
-
-
-

@@ -11,8 +11,7 @@ import Vue from "vue";
 export default Vue.extend({
   name: "icon-search",
 
-  data: () => ({
-  }),
+  // data: () => ({
+  // }),
 });
 </script>
-

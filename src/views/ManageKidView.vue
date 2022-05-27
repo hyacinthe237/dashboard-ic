@@ -17,7 +17,7 @@ import AppBarLogged from "../components/layouts/AppBarLogged.vue";
 import ListKids from "../components/manage-kids/ListKids.vue";
 import NavigationAppDrawer from "../components/layouts/NavigationAppDrawer.vue";
 import KidDataService from "@/services/KidDataService";
-import Kid from "@/types/Kid";
+// import Kid from "@/types/Kid";
 import ResponseData from "@/types/ResponseData";
 
 export default Vue.extend({

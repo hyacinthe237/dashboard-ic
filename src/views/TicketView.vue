@@ -11,7 +11,6 @@
 
 <script lang="ts">
 import Vue from "vue";
-import VueRouter from "vue-router";
 import AppBarLogged from "../components/layouts/AppBarLogged.vue";
 import NavigationAppDrawer from "../components/layouts/NavigationAppDrawer.vue";
 import ListTicket from "../components/tickets/ListTicket.vue";

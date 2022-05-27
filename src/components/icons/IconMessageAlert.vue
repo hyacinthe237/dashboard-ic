@@ -12,9 +12,6 @@ import Vue from "vue";
 export default Vue.extend({
   name: "icon-message-alert",
 
-  data: () => ({}),
+  // data: () => ({}),
 });
 </script>
-
-
-

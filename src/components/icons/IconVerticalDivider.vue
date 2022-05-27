@@ -12,8 +12,6 @@ import Vue from "vue";
 export default Vue.extend({
   name: "icon-vertical-divider",
 
-  data: () => ({
-  }),
+  // data: () => ({}),
 });
 </script>
-

@@ -20,9 +20,6 @@ import Vue from "vue";
 export default Vue.extend({
   name: "icon-close",
 
-  data: () => ({}),
+  // data: () => ({}),
 });
 </script>
-
-
-

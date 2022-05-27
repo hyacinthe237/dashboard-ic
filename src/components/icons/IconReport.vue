@@ -63,9 +63,6 @@ import Vue from "vue";
 export default Vue.extend({
   name: "icon-report",
 
-  data: () => ({}),
+  // data: () => ({}),
 });
 </script>
-
-
-

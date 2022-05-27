@@ -1,28 +1,26 @@
-import env from '../../env'
-
 export default {
     // setUser (user: any) {
-    //     localStorage.setItem(env.USER_NAME, JSON.stringify(user))
+    //     localStorage.setItem('infinite_user', JSON.stringify(user))
     // },
     //
     // getUser (env: any) {
-    //     return JSON.parse(localStorage.getItem(env.USER_NAME))
-    // },
+    //     return JSON.parse(localStorage.getItem('infinite_user'))
+    // },BASE_URL: 'http://infinite-connect.herokuapp.com',
 
     logout () {
-        localStorage.removeItem(env.USER_NAME)
-        localStorage.removeItem(env.TOKEN)
+        localStorage.removeItem('infinite_user')
+        localStorage.removeItem('infinitec_api_token')
     },
 
     setToken (token: string) {
-        localStorage.setItem(env.TOKEN, token)
+        localStorage.setItem('infinitec_api_token', token)
     },
 
     check () {
-        return localStorage.getItem(env.TOKEN)
+        return localStorage.getItem('infinitec_api_token')
     },
 
     getToken () {
-        return localStorage.getItem(env.TOKEN)
+        return localStorage.getItem('infinitec_api_token')
     }
 }

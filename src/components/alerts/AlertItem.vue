@@ -32,10 +32,9 @@ import IconVerticalDivider from "../icons/IconVerticalDivider.vue";
 export default Vue.extend({
   name: "alert-item",
 
-  data: () => ({}),
+  // data: () => ({}),
   components: {
     IconVerticalDivider,
   },
 });
 </script>
-

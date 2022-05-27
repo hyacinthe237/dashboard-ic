@@ -13,9 +13,6 @@ import Vue from "vue";
 export default Vue.extend({
   name: "icon-finance",
 
-  data: () => ({}),
+  // data: () => ({}),
 });
 </script>
-
-
-

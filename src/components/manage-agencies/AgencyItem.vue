@@ -36,11 +36,7 @@ export default Vue.extend({
       agency: { type: Object, default: () => {} }
   },
 
-  computed: {
-
-  },
-
-  data: () => ({}),
+  // data: () => ({}),
 
   methods: {
       openItem (agency: any) {

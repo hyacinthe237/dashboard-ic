@@ -34,9 +34,6 @@ import Vue from "vue";
 export default Vue.extend({
   name: "icon-emergency",
 
-  data: () => ({}),
+  // data: () => ({}),
 });
 </script>
-
-
-

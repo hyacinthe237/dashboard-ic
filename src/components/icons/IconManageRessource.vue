@@ -30,9 +30,6 @@ import Vue from "vue";
 export default Vue.extend({
   name: "icon-manage-ressource",
 
-  data: () => ({}),
+  // data: () => ({}),
 });
 </script>
-
-
-

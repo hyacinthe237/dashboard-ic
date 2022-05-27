@@ -17,7 +17,7 @@ import ListRessources from "../components/manage-ressources/ListRessources.vue";
 
 export default Vue.extend({
   name: "ManageRessourceView",
-  data: () => ({}),
+  // data: () => ({}),
   components: {
     AppBarLogged,
     NavigationAppDrawer,
@@ -25,5 +25,3 @@ export default Vue.extend({
   },
 });
 </script>
-
-
