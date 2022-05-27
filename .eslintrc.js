@@ -18,6 +18,10 @@ module.exports = {
       'off',
       { allow: ['arrowFunctions'] },
     ],
+    '@typescript-eslint/no-empty-interface': [
+      'off',
+      { allow: ['arrowFunctions'] },
+    ],
   },
   overrides: [
     {

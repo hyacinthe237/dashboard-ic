@@ -19,7 +19,7 @@ import AppBarLogged from "../components/layouts/AppBarLogged.vue";
 import NavigationAppDrawer from "../components/layouts/NavigationAppDrawer.vue";
 import NoItemYet from "../components/manage-agencies/NoItemYet.vue";
 import AgencyDataService from "@/services/AgencyDataService";
-import Agency from "@/types/Agency";
+// import Agency from "@/types/Agency";
 import ResponseData from "@/types/ResponseData";
 
 export default Vue.extend({

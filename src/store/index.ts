@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import KidDataService from "@/services/KidDataService";
-import ResponseData from "@/types/ResponseData";
+// import ResponseData from "@/types/ResponseData";
 
 Vue.use(Vuex)
 
