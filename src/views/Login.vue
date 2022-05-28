@@ -53,7 +53,7 @@
 </template>
 
 <script lang="ts">
-// import env from '../../env';
+import env from '../../env';
 import Vue from "vue";
 import Swal from 'sweetalert2';
 import AppBar from "../components/layouts/AppBar.vue";
@@ -86,8 +86,8 @@ export default Vue.extend({
         await LoginDataService.login(data)
         .then((response: ResponseData) => {
             this.isLoading = false
-            localStorage.setItem('infinite_user', JSON.stringify(response.data))
-            localStorage.setItem('infinitec_api_token', response.data.token)
+            localStorage.setItem(env.USER_NAME, JSON.stringify(response.data))
+            localStorage.setItem(env.TOKEN, response.data.token)
             this.submitted = true;
             this.$router.push({ name: 'home' })
         })
