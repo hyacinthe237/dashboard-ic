@@ -88,6 +88,7 @@ export default Vue.extend({
             this.isLoading = false
             localStorage.setItem(env.USER_NAME, JSON.stringify(response.data))
             localStorage.setItem(env.TOKEN, response.data.token)
+            console.log('user login data', response.data)
             this.submitted = true;
             this.$router.push({ name: 'home' })
         })
