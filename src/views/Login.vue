@@ -1,13 +1,13 @@
 <template>
     <v-app>
-        <AppBar />
+        <AppBar v-show="!isLoading" />
 
         <v-content>
             <v-row style="height: 93.5vh" v-show="!isLoading">
                 <v-col cols="6" md="6" sm="12" class="pb-10 pt-10 "  align-self="center">
                     <div class="card-login">
                     <h1 class="mb-10 text-center">Sign In</h1>
-                        <v-form style="width: 400px; margin: auto" @submit.prevent="signIn()">
+                        <v-form style="width: 400px; margin: auto" @submit.prevent>
                             <v-text-field
                                 label="Login"
                                 placeholder="Enter your login"
@@ -47,7 +47,9 @@
                     <img src="@/assets/img/fam.png" class="login-img-right" alt="" />
                 </v-col>
             </v-row>
-            <v-progress-circular :indeterminate="true" :color="'success'" v-show="isLoading"></v-progress-circular>
+            <div class="text-center">
+                <v-progress-circular :indeterminate="true" :color="'success'" v-show="isLoading"></v-progress-circular>
+            </div>
         </v-content>
     </v-app>
 </template>
