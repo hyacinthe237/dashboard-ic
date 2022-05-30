@@ -23,7 +23,7 @@ class KidDataService {
       return http.post(`/user-api/kids/${id}/upload-doc-medical-info`, data);
     }
     update(id: any, data: any): Promise<any> {
-      return http.put(`/user-api/kids/${id}/`, data);
+      return http.patch(`/user-api/kids/${id}/`, data);
     }
     partial_update(id: any, data: any): Promise<any> {
       return http.patch(`/user-api/kids/${id}/`, data);

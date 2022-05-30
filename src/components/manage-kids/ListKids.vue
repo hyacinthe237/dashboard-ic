@@ -662,6 +662,7 @@ export default Vue.extend({
             this.$router.push({ name: 'manage-kids' })
             this.resetGhost()
             Swal.fire({ title: 'Kid create successfull', html: 'Your kid details have been successfully created.' })
+            this.$emit('added')
         })
         .catch((e: Error) => {
             this.isLoading = false
@@ -669,10 +670,10 @@ export default Vue.extend({
             Swal.fire({ title: 'Kid create error', html: e });
         });
     },
-    async getParentInfos () {
+    async getParentInfos (id: any) {
         this.isLoading = true
 
-        let id = localStorage.getItem('kidId')
+        // let id = localStorage.getItem('kidId')
         await ParentDataService.getParentInfos(id)
         .then((response: ResponseData) => {
             this.isLoading = false
@@ -685,10 +686,10 @@ export default Vue.extend({
             Swal.fire({ title: 'Get Kid parent infos error', html: e });
         });
     },
-    async getSchoolInfos () {
+    async getSchoolInfos (id: any) {
         this.isLoading = true
 
-        let id = localStorage.getItem('kidId')
+        // let id = localStorage.getItem('kidId')
         await SchoolDataService.getSchoolInfos(id)
         .then((response: ResponseData) => {
             this.isLoading = false
@@ -701,10 +702,10 @@ export default Vue.extend({
             Swal.fire({ title: 'Get Kid school infos error', html: e });
         });
     },
-    async getMedicalInfos () {
+    async getMedicalInfos (id: any) {
         this.isLoading = true
 
-        let id = localStorage.getItem('kidId')
+        // let id = localStorage.getItem('kidId')
         await MedicalDataService.getMedicalInfos(id)
         .then((response: ResponseData) => {
             this.isLoading = false
@@ -717,10 +718,10 @@ export default Vue.extend({
             Swal.fire({ title: 'Get Kid medical infos error', html: e });
         });
     },
-    async getHistoryInfos () {
+    async getHistoryInfos (id: any) {
         this.isLoading = true
 
-        let id = localStorage.getItem('kidId')
+        // let id = localStorage.getItem('kidId')
         await HistoryDataService.getPlacementInfos(id)
         .then((response: ResponseData) => {
             this.isLoading = false
@@ -757,11 +758,11 @@ export default Vue.extend({
         .then((response: ResponseData) => {
             this.isLoading = false
             this.kid = Object.assign({}, response.data)
-            this.getParentInfos()
-            this.getHistoryInfos()
-            this.getSchoolInfos()
-            this.getMedicalInfos()
-            localStorage.setItem('kidId', response.data.id)
+            this.getParentInfos(kid.id)
+            this.getHistoryInfos(kid.id)
+            this.getSchoolInfos(kid.id)
+            this.getMedicalInfos(kid.id)
+            localStorage.setItem('kidId', kid.id)
             this.edit = true
         })
         .catch((e: Error) => {

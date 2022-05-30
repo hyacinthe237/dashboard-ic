@@ -35,11 +35,14 @@ export default Vue.extend({
     },
 
     mounted () {
-        this.getKids()
+        this.$nextTick(() => {
+            this.getKids()
+        })
     },
 
     methods: {
         async getKids () {
+            console.log('get kids from managekidview')
             this.isLoading = true
             await KidDataService.getAll()
             .then((response: ResponseData) => {
