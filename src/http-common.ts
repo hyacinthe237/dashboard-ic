@@ -3,15 +3,15 @@ import env from '../env';
 import AuthService from './middleware/auth';
 import Swal from 'sweetalert2';
 
-const apiClient: AxiosInstance = axios.create({
-    baseURL: env.BASE_URL,
-    headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-    },
-});
+const apiClient: AxiosInstance = axios.create();
+apiClient.defaults.baseURL = env.BASE_URL
+apiClient.defaults.headers.common['Content-Type'] = 'application/json;charset=utf-8'
+apiClient.defaults.headers.common['Accept'] = 'application/json'
 
-apiClient.defaults.headers.common['Authorization'] = 'Token ' + localStorage.getItem('infinite_api_token')
+if (localStorage.getItem(env.TOKEN) !== null) {
+    apiClient.defaults.headers.common['Authorization'] = 'Token ' + localStorage.getItem(env.TOKEN)
+}
+
 // Intercept all 401
 apiClient.interceptors.response.use(response => {
     return response
