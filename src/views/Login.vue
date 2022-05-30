@@ -91,7 +91,14 @@ export default Vue.extend({
             localStorage.setItem(env.USER_NAME, JSON.stringify(response.data))
             localStorage.setItem(env.TOKEN, response.data.token)
             this.submitted = true;
-            this.$router.push({ name: 'home' })
+            if(response.data.is_superuser) {
+              this.$router.push({ name: 'home' })
+            }
+
+            if(response.data.is_agency_admin) {
+              this.$router.push({ name: 'manage-kids' })
+            }
+
         })
         .catch((e: Error) => {
             this.isLoading = false
