@@ -21,6 +21,7 @@ import NoItemYet from "../components/manage-agencies/NoItemYet.vue";
 import AgencyDataService from "@/services/AgencyDataService";
 // import Agency from "@/types/Agency";
 import ResponseData from "@/types/ResponseData";
+import env from '../../env';
 
 export default Vue.extend({
   name: "Login",
