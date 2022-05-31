@@ -79,7 +79,7 @@
                               v-for="(g, index) in genders"
                               :key="index+1"
                               :label="`${g}`"
-                              :value="g"
+                              :value="`${g}`"
                           ></v-radio>
                       </v-radio-group>
 
@@ -763,6 +763,7 @@ export default Vue.extend({
             this.getSchoolInfos(kid.id)
             this.getMedicalInfos(kid.id)
             localStorage.setItem('kidId', kid.id)
+            localStorage.setItem('userId', kid.user_id)
             this.edit = true
         })
         .catch((e: Error) => {
@@ -774,9 +775,9 @@ export default Vue.extend({
 
     async createParentInfos () {
       this.isLoading = true
-      let id = localStorage.getItem('kidId')
+      let user_id = parseInt(localStorage.getItem('userId'), 10)
       let data = {
-          kid: id, father_name: this.parentObject.father_name, father_phone: this.parentObject.father_phone, father_address: this.parentObject.father_address, father_profession: this.parentObject.father_profession,
+          kid: user_id, father_name: this.parentObject.father_name, father_phone: this.parentObject.father_phone, father_address: this.parentObject.father_address, father_profession: this.parentObject.father_profession,
           mother_name: this.parentObject.mother_name, mother_phone: this.parentObject.mother_phone, mother_address: this.parentObject.mother_address, mother_profession: this.parentObject.mother_profession
       };
 
@@ -784,7 +785,7 @@ export default Vue.extend({
       .then((response: ResponseData) => {
           this.isLoading = false
           console.log(response.data);
-          this.kid = Object.assign({}, response.data)
+          this.parentObject = Object.assign({}, response.data)
           this.edit = false
           this.resetGhost()
           Swal.fire({ title: 'Parent infos created successfull', html: 'Your parent infos details have been successfully created.' });
