@@ -161,7 +161,7 @@ export default Vue.extend({
             console.log(response.data)
             this.resetGhost()
             Swal.fire({ title: 'agency create successfull', html: 'Your agency details have been successfully created.' });
-            this.$emit('added')
+            this.$emit('addedAgency')
         })
         .catch((e: Error) => {
             this.isLoading = false

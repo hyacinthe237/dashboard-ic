@@ -4,7 +4,7 @@
 
     <navigation-app-drawer/>
     <v-content>
-        <list-kids :kids="kids" v-show="!isLoading" @added="getKids" />
+        <list-kids :kids="kids" v-show="!isLoading" @addedKid="getKids" />
         <v-progress-circular :indeterminate="true" :color="'success'" v-show="isLoading"></v-progress-circular>
     </v-content>
   </v-app>
@@ -35,14 +35,11 @@ export default Vue.extend({
     },
 
     mounted () {
-        this.$nextTick(() => {
-            this.getKids()
-        })
+        this.$nextTick(() => { this.getKids() })
     },
 
     methods: {
         async getKids () {
-            console.log('get kids from managekidview')
             this.isLoading = true
             await KidDataService.getAll()
             .then((response: ResponseData) => {

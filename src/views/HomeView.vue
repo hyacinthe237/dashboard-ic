@@ -4,7 +4,7 @@
 
     <navigation-app-drawer v-show="!isLoading"/>
     <v-content v-show="!isLoading">
-      <no-item-yet :agencies="agencies" @added="getAgencies"/>
+      <no-item-yet :agencies="agencies" @addedAgency="getAgencies"/>
     </v-content>
     <div class="centered">
           <v-progress-circular :indeterminate="true" :color="'success'" v-show="isLoading"></v-progress-circular>
@@ -21,7 +21,7 @@ import NoItemYet from "../components/manage-agencies/NoItemYet.vue";
 import AgencyDataService from "@/services/AgencyDataService";
 // import Agency from "@/types/Agency";
 import ResponseData from "@/types/ResponseData";
-import env from '../../env';
+// import env from '../../env';
 
 export default Vue.extend({
   name: "Login",

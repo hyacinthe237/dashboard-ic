@@ -619,9 +619,13 @@ export default Vue.extend({
       ghost: { id: null, first_name: '', last_name: '', email: '', date_of_arrival: new Date(), birthdate: new Date(), sex: '', age: null, phone: '' } as Kid,
       kid: { id: null, first_name: '', last_name: '', email: '', date_of_arrival: new Date(), birthdate: new Date(), sex: '', age: null, phone: '' } as Kid,
       historyObject: { id: null, kid: null, name: '', image: '', content: '' } as History,
+      history: { id: null, kid: null, name: '', image: '', content: '' } as History,
       medicalObject: { id: null, kid: null, name: '', image: '', content: '' } as Medical,
+      medical: { id: null, kid: null, name: '', image: '', content: '' } as Medical,
       schoolObject: { id: null, kid: null, name: '', image: '', content: '' } as School,
+      school: { id: null, kid: null, name: '', image: '', content: '' } as School,
       parentObject: { id: null, kid: null, father_name: '', father_phone: '', father_address: '', father_profession: '', mother_name: '', mother_phone: '', mother_address: '', mother_profession: '' } as Parent,
+      parent: { id: null, kid: null, father_name: '', father_phone: '', father_address: '', father_profession: '', mother_name: '', mother_phone: '', mother_address: '', mother_profession: '' } as Parent,
       dialog: false,
       isLoading: false,
       edit: false,
@@ -662,7 +666,7 @@ export default Vue.extend({
             this.$router.push({ name: 'manage-kids' })
             this.resetGhost()
             Swal.fire({ title: 'Kid create successfull', html: 'Your kid details have been successfully created.' })
-            this.$emit('added')
+            this.$emit('addedKid')
         })
         .catch((e: Error) => {
             this.isLoading = false
@@ -686,6 +690,30 @@ export default Vue.extend({
             Swal.fire({ title: 'Get Kid parent infos error', html: e });
         });
     },
+    async createParentInfos () {
+      this.isLoading = true
+      let userId: any = localStorage.getItem('userId')
+      let user_id = parseInt(userId, 10)
+      let data = {
+          kid: user_id, father_name: this.parentObject.father_name, father_phone: this.parentObject.father_phone, father_address: this.parentObject.father_address, father_profession: this.parentObject.father_profession,
+          mother_name: this.parentObject.mother_name, mother_phone: this.parentObject.mother_phone, mother_address: this.parentObject.mother_address, mother_profession: this.parentObject.mother_profession
+      };
+
+      await ParentDataService.create(data)
+      .then((response: ResponseData) => {
+          this.isLoading = false
+          console.log(response.data);
+          this.parent = Object.assign({}, response.data)
+          this.edit = false
+          this.resetParentObject()
+          Swal.fire({ title: 'Parent infos created successfull', html: 'Your parent infos details have been successfully created.' });
+      })
+      .catch((e: Error) => {
+          this.isLoading = false
+          console.log(e);
+          Swal.fire({title: 'Kid update error', html: e });
+      });
+    },
     async getSchoolInfos (id: any) {
         this.isLoading = true
 
@@ -701,6 +729,28 @@ export default Vue.extend({
             console.log(e);
             Swal.fire({ title: 'Get Kid school infos error', html: e });
         });
+    },
+    async createSchoolInfos () {
+      this.isLoading = true
+      let userId: any = localStorage.getItem('userId')
+      let user_id = parseInt(userId, 10)
+      let data = {
+          kid: user_id, name: this.schoolObject.name, image: this.schoolObject.image, content: this.schoolObject.content
+      };
+
+      await SchoolDataService.create(data)
+      .then((response: ResponseData) => {
+          this.isLoading = false
+          this.school = Object.assign({}, response.data)
+          this.edit = false
+          this.resetSchoolObject()
+          Swal.fire({ title: 'School infos created successfull', html: 'Your school infos details have been successfully created.' });
+      })
+      .catch((e: Error) => {
+          this.isLoading = false
+          console.log(e);
+          Swal.fire({title: 'create school infos error', html: e });
+      });
     },
     async getMedicalInfos (id: any) {
         this.isLoading = true
@@ -773,30 +823,6 @@ export default Vue.extend({
         });
     },
 
-    async createParentInfos () {
-      this.isLoading = true
-      let user_id = parseInt(localStorage.getItem('userId'), 10)
-      let data = {
-          kid: user_id, father_name: this.parentObject.father_name, father_phone: this.parentObject.father_phone, father_address: this.parentObject.father_address, father_profession: this.parentObject.father_profession,
-          mother_name: this.parentObject.mother_name, mother_phone: this.parentObject.mother_phone, mother_address: this.parentObject.mother_address, mother_profession: this.parentObject.mother_profession
-      };
-
-      await ParentDataService.create(data)
-      .then((response: ResponseData) => {
-          this.isLoading = false
-          console.log(response.data);
-          this.parentObject = Object.assign({}, response.data)
-          this.edit = false
-          this.resetGhost()
-          Swal.fire({ title: 'Parent infos created successfull', html: 'Your parent infos details have been successfully created.' });
-      })
-      .catch((e: Error) => {
-          this.isLoading = false
-          console.log(e);
-          Swal.fire({title: 'Kid update error', html: e });
-      });
-    },
-
     async updateKid () {
       this.isLoading = true
       let data = {
@@ -814,7 +840,7 @@ export default Vue.extend({
           this.edit = false
           this.resetGhost()
           Swal.fire({ title: 'Kid update successfull', html: 'Your kid details have been successfully updated.' });
-          this.$emit('added')
+          this.$emit('updatedKid')
       })
       .catch((e: Error) => {
           this.isLoading = false

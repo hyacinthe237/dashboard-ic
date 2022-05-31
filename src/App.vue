@@ -8,9 +8,10 @@ import Vue from 'vue';
 export default Vue.extend({
   name: 'App',
 
+  // data: () => ({}),
 
-  data: () => ({
-    //
-  }),
+  mounted () {
+      console.log('app')
+  }
 });
 </script>

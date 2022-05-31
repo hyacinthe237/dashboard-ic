@@ -17,7 +17,7 @@ import ListTicket from "../components/tickets/ListTicket.vue";
 
 export default Vue.extend({
   name: "Ticket",
-  data: () => ({}),
+  // data: () => ({}),
   components: {
     AppBarLogged,
     NavigationAppDrawer,

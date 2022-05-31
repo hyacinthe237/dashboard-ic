@@ -6,7 +6,7 @@ import Swal from 'sweetalert2';
 const apiClient: AxiosInstance = axios.create();
 apiClient.defaults.baseURL = env.BASE_URL
 apiClient.defaults.headers.common['Content-Type'] = 'application/json;charset=utf-8'
-apiClient.defaults.headers.common['Accept'] = 'application/json'
+// apiClient.defaults.headers.common['Accept'] = 'application/json'
 
 if (localStorage.getItem(env.TOKEN) !== null) {
     apiClient.defaults.headers.common['Authorization'] = 'Token ' + localStorage.getItem(env.TOKEN)
