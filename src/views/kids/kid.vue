@@ -309,20 +309,20 @@
                                   </v-list-item-title>
                               </v-list-item-content>
                           </v-list-item>
-                          <v-list-item class="">
+                          <v-list-item class="mt-40">
                               <v-list-item-content>
                                   <v-list-item-title>
                                       <v-row>
-                                          <v-col cols="2" align="right">
-                                              <v-subheader class="pt-7">Image :</v-subheader>
+                                          <v-col cols="4" align="right">
+                                              <v-subheader class="pt-7">Upload school information :</v-subheader>
                                           </v-col>
-                                          <v-col cols="10">
+                                          <v-col cols="8">
                                             <v-file-input
-                                              accept=".png"
-                                              label="Click here to select a .png file"
+                                              accept=".pdf"
+                                              label="Click here to select a .pdf file"
                                               outlined
                                               name="image"
-                                              v-model="schoolObject.image"
+                                              @change="onSchoolFileChange"
                                             >
                                             </v-file-input>
                                           </v-col>
@@ -338,9 +338,32 @@
                                   class="pa-4"
                                   width="200"
                                   :disabled="isLoading"
-                                  @click="updateSchoolInfos()"
-                              >Update School Infos</v-btn>
+                                  @click="createSchoolInfos()"
+                              >Create School Infos</v-btn>
                           </v-card-actions>
+                            <v-simple-table >
+                                <template v-slot:default>
+                                    <thead>
+                                        <tr>
+                                          <th class="text-left">Name</th>
+                                          <th class="text-left">Content</th>
+                                          <th class="text-left">Created at</th>
+                                          <th class="text-left"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr
+                                            v-for="item in school_files"
+                                            :key="item.id"
+                                        >
+                                            <td>{{ item.name }}</td>
+                                            <td>{{ item.content }}</td>
+                                            <td>{{ item.created_at }}</td>
+                                            <td> <a :href="item.image" target="_blank" class="pointer">More...</a> </td>
+                                        </tr>
+                                    </tbody>
+                                </template>
+                            </v-simple-table>
                         </v-card-text>
                         </v-card>
                         </v-tab-item>
@@ -383,22 +406,23 @@
                                     </v-list-item-title>
                                 </v-list-item-content>
                             </v-list-item>
-                            <v-list-item class="">
+                            <v-list-item class="mt-40">
                                 <v-list-item-content>
                                     <v-list-item-title>
                                         <v-row>
-                                            <v-col cols="2" align="right">
-                                                <v-subheader class="pt-7">Image :</v-subheader>
-                                            </v-col>
-                                            <v-col cols="10">
-                                              <v-file-input
-                                                accept=".png"
-                                                label="Click here to select a .png file"
-                                                outlined
-                                                name="image"
-                                                v-model="medicalObject.image"
-                                              >
-                                              </v-file-input>
+                                                <v-col cols="4" align="right">
+                                                    <v-subheader class="pt-7">Upload medical information :</v-subheader>
+                                                </v-col>
+                                                <v-col cols="8">
+                                                  <v-file-input
+                                                    accept=".pdf"
+                                                    label="Click here to select a .pdf file"
+                                                    outlined
+                                                    name="image"
+                                                    @change="onMedicalFileChange"
+                                                  >
+                                                  </v-file-input>
+                                                </v-col>
                                             </v-col>
                                         </v-row>
                                     </v-list-item-title>
@@ -412,10 +436,33 @@
                                     class="pa-4"
                                     width="200"
                                     :disabled="isLoading"
-                                    @click="updateMedicalInfos()"
-                                >Update Medical Infos</v-btn>
+                                    @click="createMedicalInfos()"
+                                >Create Medical Infos</v-btn>
                             </v-card-actions>
                         </v-card-text>
+                        <v-simple-table >
+                            <template v-slot:default>
+                                <thead>
+                                    <tr>
+                                      <th class="text-left">Name</th>
+                                      <th class="text-left">Content</th>
+                                      <th class="text-left">Created at</th>
+                                      <th class="text-left"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr
+                                        v-for="item in medical_files"
+                                        :key="item.id"
+                                    >
+                                        <td>{{ item.name }}</td>
+                                        <td>{{ item.content }}</td>
+                                        <td>{{ item.created_at }}</td>
+                                        <td> <a :href="item.image" target="_blank" class="pointer">More...</a> </td>
+                                    </tr>
+                                </tbody>
+                            </template>
+                        </v-simple-table>
                         </v-card>
                         </v-tab-item>
                         <v-tab-item>
@@ -457,23 +504,23 @@
                                     </v-list-item-title>
                                 </v-list-item-content>
                             </v-list-item>
-                            <v-list-item class="">
+                            <v-list-item class="mt-40">
                                 <v-list-item-content>
                                     <v-list-item-title>
                                         <v-row>
-                                            <v-col cols="2" align="right">
-                                                <v-subheader class="pt-7">Image :</v-subheader>
-                                            </v-col>
-                                            <v-col cols="10">
-                                                  <v-file-input
-                                                    accept=".png"
-                                                    label="Click here to select a .png file"
-                                                    outlined
-                                                    name="image"
-                                                    v-model="historyObject.image"
-                                                  >
-                                                  </v-file-input>
-                                            </v-col>
+                                              <v-col cols="4" align="right">
+                                                  <v-subheader class="pt-7">Upload placement information :</v-subheader>
+                                              </v-col>
+                                              <v-col cols="8">
+                                                <v-file-input
+                                                  accept=".pdf"
+                                                  label="Click here to select a .pdf file"
+                                                  outlined
+                                                  name="image"
+                                                  @change="onHistoryFileChange"
+                                                >
+                                                </v-file-input>
+                                              </v-col>
                                         </v-row>
                                     </v-list-item-title>
                                 </v-list-item-content>
@@ -486,10 +533,33 @@
                                     class="pa-4"
                                     width="200"
                                     :disabled="isLoading"
-                                    @click="updateHistoryInfos()"
-                                >Update History Infos</v-btn>
+                                    @click="createHistoryInfos()"
+                                >Create History Infos</v-btn>
                             </v-card-actions>
                         </v-card-text>
+                        <v-simple-table >
+                            <template v-slot:default>
+                                <thead>
+                                    <tr>
+                                      <th class="text-left">Name</th>
+                                      <th class="text-left">Content</th>
+                                      <th class="text-left">Created at</th>
+                                      <th class="text-left"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr
+                                        v-for="item in history_files"
+                                        :key="item.id"
+                                    >
+                                        <td>{{ item.name }}</td>
+                                        <td>{{ item.content }}</td>
+                                        <td>{{ item.created_at }}</td>
+                                        <td> <a :href="item.image" target="_blank" class="pointer">More...</a> </td>
+                                    </tr>
+                                </tbody>
+                            </template>
+                        </v-simple-table>
                         </v-card>
                         </v-tab-item>
                         </v-tabs-items>
@@ -534,18 +604,18 @@ export default Vue.extend({
       ghost: { id: null, first_name: '', last_name: '', email: '', date_of_arrival: new Date(), birthdate: new Date(), sex: '', age: null, phone: '' } as Kid,
       kid: { id: null, first_name: '', last_name: '', email: '', date_of_arrival: new Date(), birthdate: new Date(), sex: '', age: null, phone: '' } as Kid,
       historyObject: { id: null, kid: null, name: '', image: '', content: '' } as History,
-      history: { id: null, kid: null, name: '', image: '', content: '' } as History,
       medicalObject: { id: null, kid: null, name: '', image: '', content: '' } as Medical,
-      medical: { id: null, kid: null, name: '', image: '', content: '' } as Medical,
       schoolObject: { id: null, kid: null, name: '', image: '', content: '' } as School,
-      school: { id: null, kid: null, name: '', image: '', content: '' } as School,
       parentObject: { id: null, kid: null, father_name: '', father_phone: '', father_address: '', father_profession: '', mother_name: '', mother_phone: '', mother_address: '', mother_profession: '' } as Parent,
-      parent: { id: null, kid: null, father_name: '', father_phone: '', father_address: '', father_profession: '', mother_name: '', mother_phone: '', mother_address: '', mother_profession: '' } as Parent,
       dialog: false,
       isLoading: false,
       edit: false,
+      selectedFile: {},
       parentIsNotNull: true,
       tab: null,
+      school_files: [],
+      history_files: [],
+      medical_files: [],
       attrs: [],
       items: ["Personnal informations", "shopping", "videos", "images", "news"],
       genders: ["Female", "Male"],
@@ -558,13 +628,13 @@ export default Vue.extend({
       this.getSchoolInfos()
       this.getMedicalInfos()
       this.getHistoryInfos()
-      // this.resetHistoryObject()
-      // this.resetMedicalObject()
-      // this.resetSchoolObject()
-      // this.resetParentObject()
   },
 
   methods: {
+    onSchoolFileChange (file) { this.selectedFile = file },
+    onHistoryFileChange (file) { this.selectedFile = file },
+    onMedicalFileChange (file) { this.selectedFile = file },
+
     async getParentInfos () {
         this.isLoading = true
 
@@ -626,13 +696,11 @@ export default Vue.extend({
 
     async getSchoolInfos () {
         this.isLoading = true
-
         let id = this.$router.history.current.params.id
         await SchoolDataService.getSchoolInfos(id)
         .then((response: ResponseData) => {
             this.isLoading = false
-            console.log(response.data);
-            this.schoolObject = Object.assign({}, response.data)
+            this.school_files = response.data
         })
         .catch((e: Error) => {
             this.isLoading = false
@@ -641,27 +709,30 @@ export default Vue.extend({
         });
     },
     async createSchoolInfos () {
-      this.isLoading = true
-      let userId: any = localStorage.getItem('userId')
-      let user_id = parseInt(userId, 10)
-      let data = {
-          kid: user_id, name: this.schoolObject.name, image: this.schoolObject.image, content: this.schoolObject.content
-      };
+        this.isLoading = true
+        let userId: any = localStorage.getItem('userId')
+        let user_id = parseInt(userId, 10)
+        let id = this.$router.history.current.params.id
+        let data = new FormData()
+        data.append('kid', user_id)
+        data.append('image', this.selectedFile)
+        data.append('name', this.schoolObject.name)
+        data.append('content', this.schoolObject.content)
 
-      await SchoolDataService.create(data)
-      .then((response: ResponseData) => {
-          this.isLoading = false
-          this.school = Object.assign({}, response.data)
-          this.edit = false
-          this.resetSchoolObject()
-          Swal.fire({ title: 'School infos created successfull', html: 'Your school infos details have been successfully created.' });
-      })
-      .catch((e: Error) => {
-          this.isLoading = false
-          console.log(e);
-          Swal.fire({title: 'create school infos error', html: e });
-      });
+        await SchoolDataService.create(id, data)
+        .then((response: ResponseData) => {
+            this.isLoading = false
+            console.log('School doc uploaded', response.data)
+            Swal.fire({ title: 'School doc uploaded successfull', html: 'Your school document have been successfully uploaded.' });
+
+        })
+        .catch((e: Error) => {
+            this.isLoading = false
+            console.log(e);
+            Swal.fire({ title: 'Upload school document error', html: e });
+        });
     },
+
     async getMedicalInfos () {
         this.isLoading = true
 
@@ -669,8 +740,7 @@ export default Vue.extend({
         await MedicalDataService.getMedicalInfos(id)
         .then((response: ResponseData) => {
             this.isLoading = false
-            console.log(response.data);
-            this.medicalObject = Object.assign({}, response.data)
+            this.medical_files = response.data
         })
         .catch((e: Error) => {
             this.isLoading = false
@@ -678,6 +748,31 @@ export default Vue.extend({
             Swal.fire({ title: 'Get Kid medical infos error', html: e });
         });
     },
+    async createMedicalInfos () {
+        this.isLoading = true
+        let userId: any = localStorage.getItem('userId')
+        let user_id = parseInt(userId, 10)
+        let id = this.$router.history.current.params.id
+        let data = new FormData()
+        data.append('kid', user_id)
+        data.append('image', this.selectedFile)
+        data.append('name', this.medicalObject.name)
+        data.append('content', this.medicalObject.content)
+
+        await MedicalDataService.create(id, data)
+        .then((response: ResponseData) => {
+            this.isLoading = false
+            console.log('Medical doc uploaded', response.data)
+            Swal.fire({ title: 'Medical doc uploaded successfull', html: 'Your medical document have been successfully uploaded.' });
+            this.getMedicalInfos()
+        })
+        .catch((e: Error) => {
+            this.isLoading = false
+            console.log(e);
+            Swal.fire({ title: 'Upload medical document error', html: e });
+        });
+    },
+
     async getHistoryInfos () {
         this.isLoading = true
 
@@ -685,13 +780,36 @@ export default Vue.extend({
         await HistoryDataService.getPlacementInfos(id)
         .then((response: ResponseData) => {
             this.isLoading = false
-            console.log(response.data);
-            this.historyObject = Object.assign({}, response.data)
+            this.history_files = response.data
         })
         .catch((e: Error) => {
             this.isLoading = false
             console.log(e);
             Swal.fire({ title: 'Get Kid history infos error', html: e });
+        });
+    },
+    async createHistoryInfos () {
+        this.isLoading = true
+        let userId: any = localStorage.getItem('userId')
+        let user_id = parseInt(userId, 10)
+        let id = this.$router.history.current.params.id
+        let data = new FormData()
+        data.append('kid', user_id)
+        data.append('image', this.selectedFile)
+        data.append('name', this.historyObject.name)
+        data.append('content', this.historyObject.content)
+
+        await HistoryDataService.create(id, data)
+        .then((response: ResponseData) => {
+            this.isLoading = false
+            console.log('History doc uploaded', response.data)
+            Swal.fire({ title: 'History doc uploaded successfull', html: 'Your history document have been successfully uploaded.' });
+            this.getHistoryInfos()
+        })
+        .catch((e: Error) => {
+            this.isLoading = false
+            console.log(e);
+            Swal.fire({ title: 'Upload history document error', html: e });
         });
     },
 
@@ -726,7 +844,6 @@ export default Vue.extend({
             Swal.fire({ title: 'Get Kid infos error', html: e });
         });
     },
-
     async updateKid () {
       this.isLoading = true
       let data = {
