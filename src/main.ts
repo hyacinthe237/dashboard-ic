@@ -12,6 +12,7 @@ import ListKids from "./components/manage-kids/ListKids.vue";
 import AppBar from "./components/layouts/AppBar.vue";
 import NoItemYet from "./components/manage-agencies/NoItemYet.vue";
 import ListAlert from "./components/alerts/ListAlert.vue";
+import ListRessources from "./components/manage-ressources/ListRessources.vue";
 
 Vue.config.productionTip = false
 
@@ -23,6 +24,7 @@ Vue.component('navigation-app-drawer', NavigationAppDrawer)
 Vue.component('list-kids', ListKids)
 Vue.component('no-item-yet', NoItemYet)
 Vue.component('list-alert', ListAlert)
+Vue.component('list-ressources', ListRessources)
 
 new Vue({
   router,
