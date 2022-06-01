@@ -10,6 +10,7 @@ import AppBarLogged from "./components/layouts/AppBarLogged.vue";
 import NavigationAppDrawer from "./components/layouts/NavigationAppDrawer.vue";
 import ListKids from "./components/manage-kids/ListKids.vue";
 import AppBar from "./components/layouts/AppBar.vue";
+import NoItemYet from "./components/manage-agencies/NoItemYet.vue";
 
 Vue.config.productionTip = false
 
@@ -19,6 +20,7 @@ Vue.component('AppBar', AppBar)
 Vue.component('AppBarLogged', AppBarLogged)
 Vue.component('navigation-app-drawer', NavigationAppDrawer)
 Vue.component('list-kids', ListKids)
+Vue.component('no-item-yet', NoItemYet)
 
 new Vue({
   router,

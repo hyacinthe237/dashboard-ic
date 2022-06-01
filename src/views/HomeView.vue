@@ -15,9 +15,6 @@
 <script lang="ts">
 import Vue from "vue";
 import Swal from 'sweetalert2';
-import AppBarLogged from "../components/layouts/AppBarLogged.vue";
-import NavigationAppDrawer from "../components/layouts/NavigationAppDrawer.vue";
-import NoItemYet from "../components/manage-agencies/NoItemYet.vue";
 import AgencyDataService from "@/services/AgencyDataService";
 // import Agency from "@/types/Agency";
 import ResponseData from "@/types/ResponseData";
@@ -29,11 +26,6 @@ export default Vue.extend({
       agencies: [],
       isLoading: false
   }),
-  components: {
-    AppBarLogged,
-    NavigationAppDrawer,
-    NoItemYet
-  },
 
   mounted () {
       this.getAgencies()
