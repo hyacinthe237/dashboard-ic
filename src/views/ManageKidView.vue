@@ -13,9 +13,6 @@
 <script lang="ts">
 import Vue from "vue";
 import Swal from 'sweetalert2';
-import AppBarLogged from "../components/layouts/AppBarLogged.vue";
-import ListKids from "../components/manage-kids/ListKids.vue";
-import NavigationAppDrawer from "../components/layouts/NavigationAppDrawer.vue";
 import KidDataService from "@/services/KidDataService";
 // import Kid from "@/types/Kid";
 import ResponseData from "@/types/ResponseData";
@@ -27,12 +24,6 @@ export default Vue.extend({
         kids: [],
         isLoading: false
     }),
-
-    components: {
-      AppBarLogged,
-      NavigationAppDrawer,
-      ListKids
-    },
 
     mounted () {
         this.$nextTick(() => { this.getKids() })

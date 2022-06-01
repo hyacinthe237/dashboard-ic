@@ -1,6 +1,6 @@
 import axios, { AxiosInstance } from 'axios';
 import env from '../env';
-import AuthService from './middleware/auth';
+// import AuthService from './middleware/auth';
 import Swal from 'sweetalert2';
 
 const token: any = localStorage.getItem(env.TOKEN)
@@ -19,8 +19,8 @@ apiClient.interceptors.response.use(response => {
     return response
 }, error => {
     if (error.response.status === 401) {
-        AuthService.logout()
-        location.reload()
+        // AuthService.logout()
+        // location.reload()
 
         Swal.fire({ title: 'Something wrong', html: error.response.data });
     }
