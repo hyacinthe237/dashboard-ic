@@ -43,7 +43,7 @@
 
           <v-list-item-content>
             <v-list-item-title  class="menu-title"
-              >Tickets</v-list-item-title
+              >Support ticket</v-list-item-title
             >
           </v-list-item-content>
 

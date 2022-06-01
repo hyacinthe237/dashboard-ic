@@ -802,7 +802,6 @@ export default Vue.extend({
     },
 
     async openItem (kid: any) {
-        console.log('OpenItem ==> ', kid)
         this.isLoading = true
         await KidDataService.get(kid.id)
         .then((response: ResponseData) => {

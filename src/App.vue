@@ -9,9 +9,5 @@ export default Vue.extend({
   name: 'App',
 
   // data: () => ({}),
-
-  mounted () {
-      console.log('app')
-  }
 });
 </script>
