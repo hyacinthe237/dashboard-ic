@@ -15,6 +15,7 @@ import ListAlert from "./components/alerts/ListAlert.vue";
 import ListRessources from "./components/manage-ressources/ListRessources.vue";
 import IconHorizontalDivider from "./components/icons/IconHorizontalDivider.vue";
 import IconVerticalDivider from "./components/icons/IconVerticalDivider.vue";
+import ListTicket from "./components/tickets/ListTicket.vue";
 
 Vue.config.productionTip = false
 
@@ -29,6 +30,7 @@ Vue.component('list-alert', ListAlert)
 Vue.component('list-ressources', ListRessources)
 Vue.component('icon-horizontal-divider', IconHorizontalDivider)
 Vue.component('icon-vertical-divider', IconVerticalDivider)
+Vue.component('list-ticket', ListTicket)
 
 new Vue({
   router,
