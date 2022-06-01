@@ -136,18 +136,10 @@
 
 <script lang="ts">
 import Vue from "vue";
-import AppBarLogged from "../components/layouts/AppBarLogged.vue";
-import NavigationAppDrawer from "../components/layouts/NavigationAppDrawer.vue";
-import IconVerticalDivider from "../components/icons/IconVerticalDivider.vue";
 
 export default Vue.extend({
   name: "ReportingView",
   // data: () => ({}),
-  components: {
-    AppBarLogged,
-    NavigationAppDrawer,
-    IconVerticalDivider,
-  },
 });
 </script>
 

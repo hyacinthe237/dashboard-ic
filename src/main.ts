@@ -14,6 +14,7 @@ import NoItemYet from "./components/manage-agencies/NoItemYet.vue";
 import ListAlert from "./components/alerts/ListAlert.vue";
 import ListRessources from "./components/manage-ressources/ListRessources.vue";
 import IconHorizontalDivider from "./components/icons/IconHorizontalDivider.vue";
+import IconVerticalDivider from "./components/icons/IconVerticalDivider.vue";
 
 Vue.config.productionTip = false
 
@@ -27,6 +28,7 @@ Vue.component('no-item-yet', NoItemYet)
 Vue.component('list-alert', ListAlert)
 Vue.component('list-ressources', ListRessources)
 Vue.component('icon-horizontal-divider', IconHorizontalDivider)
+Vue.component('icon-vertical-divider', IconVerticalDivider)
 
 new Vue({
   router,
