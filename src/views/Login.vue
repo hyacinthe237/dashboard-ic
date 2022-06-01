@@ -58,7 +58,6 @@
 import env from '../../env';
 import Vue from "vue";
 import Swal from 'sweetalert2';
-import AppBar from "../components/layouts/AppBar.vue";
 import LoginDataService from "@/services/LoginDataService";
 import Login from "@/types/Login";
 import ResponseData from "@/types/ResponseData";
@@ -74,9 +73,6 @@ export default Vue.extend({
       submitted: false,
       isLoading: false
   }),
-  components: {
-    AppBar,
-  },
 
   methods: {
     async signIn () {
