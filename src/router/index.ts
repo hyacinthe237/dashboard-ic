@@ -4,6 +4,7 @@ import Guard from '../middleware/middleware'
 import Login from '../views/Login.vue'
 import HomeView from '../views/HomeView.vue'
 import ManageKidView from '../views/ManageKidView.vue'
+import KidView from '../views/kids/kid.vue'
 import ManageRessourceView from '../views/ManageRessourceView.vue'
 import AlertView from  '../views/AlertView.vue'
 import TicketView from  '../views/TicketView.vue'
@@ -16,6 +17,7 @@ const routes: Array<RouteConfig> = [
   { path: '/', name: 'login', component: Login },
   { path: '/home', name: 'home', component: HomeView, beforeEnter: Guard.auth },
   { path: '/manage-kids', name: 'manage-kids', component: ManageKidView, beforeEnter: Guard.auth },
+  { path: '/manage-kids/:id/profile', name: 'kid-profile', component: KidView, beforeEnter: Guard.auth },
   { path: '/manage-ressources', name: 'manage-ressources', component: ManageRessourceView, beforeEnter: Guard.auth },
   { path: '/tickets', name: 'tickets', component: TicketView, beforeEnter: Guard.auth },
   { path: '/alerts', name: 'alerts', component: AlertView, beforeEnter: Guard.auth },

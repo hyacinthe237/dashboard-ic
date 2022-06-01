@@ -801,25 +801,26 @@ export default Vue.extend({
         this.parentObject= { id: null, kid: null, father_name: '', father_phone: '', father_address: '', father_profession: '', mother_name: '', mother_phone: '', mother_address: '', mother_profession: '' }
     },
 
-    async openItem (kid: any) {
-        this.isLoading = true
-        await KidDataService.get(kid.id)
-        .then((response: ResponseData) => {
-            this.isLoading = false
-            this.kid = Object.assign({}, response.data)
-            this.getParentInfos(kid.id)
-            this.getHistoryInfos(kid.id)
-            this.getSchoolInfos(kid.id)
-            this.getMedicalInfos(kid.id)
-            localStorage.setItem('kidId', kid.id)
-            localStorage.setItem('userId', kid.user_id)
-            this.edit = true
-        })
-        .catch((e: Error) => {
-            this.isLoading = false
-            console.log(e);
-            Swal.fire({ title: 'Get Kid infos error', html: e });
-        });
+    openItem (kid: any) {
+        this.$router.push({ name: 'kid-profile', params: { id: kid.id } })
+        // this.isLoading = true
+        // await KidDataService.get(kid.id)
+        // .then((response: ResponseData) => {
+        //     this.isLoading = false
+        //     this.kid = Object.assign({}, response.data)
+        //     this.getParentInfos(kid.id)
+        //     this.getHistoryInfos(kid.id)
+        //     this.getSchoolInfos(kid.id)
+        //     this.getMedicalInfos(kid.id)
+        //     localStorage.setItem('kidId', kid.id)
+        //     localStorage.setItem('userId', kid.user_id)
+        //     this.edit = true
+        // })
+        // .catch((e: Error) => {
+        //     this.isLoading = false
+        //     console.log(e);
+        //     Swal.fire({ title: 'Get Kid infos error', html: e });
+        // });
     },
 
     async updateKid () {

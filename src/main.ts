@@ -16,6 +16,9 @@ import ListRessources from "./components/manage-ressources/ListRessources.vue";
 import IconHorizontalDivider from "./components/icons/IconHorizontalDivider.vue";
 import IconVerticalDivider from "./components/icons/IconVerticalDivider.vue";
 import ListTicket from "./components/tickets/ListTicket.vue";
+import IconClose from "./components/icons/IconClose.vue";
+import IconEdit from "./components/icons/IconEdit.vue";
+import KidItem from "./components/manage-kids/KidItem.vue";
 
 Vue.config.productionTip = false
 
@@ -31,6 +34,9 @@ Vue.component('list-ressources', ListRessources)
 Vue.component('icon-horizontal-divider', IconHorizontalDivider)
 Vue.component('icon-vertical-divider', IconVerticalDivider)
 Vue.component('list-ticket', ListTicket)
+Vue.component('icon-close', IconClose)
+Vue.component('icon-edit', IconEdit)
+Vue.component('kid-item', KidItem)
 
 new Vue({
   router,
