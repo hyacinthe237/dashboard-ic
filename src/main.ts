@@ -13,6 +13,7 @@ import AppBar from "./components/layouts/AppBar.vue";
 import NoItemYet from "./components/manage-agencies/NoItemYet.vue";
 import ListAlert from "./components/alerts/ListAlert.vue";
 import ListRessources from "./components/manage-ressources/ListRessources.vue";
+import IconHorizontalDivider from "./components/icons/IconHorizontalDivider.vue";
 
 Vue.config.productionTip = false
 
@@ -25,6 +26,7 @@ Vue.component('list-kids', ListKids)
 Vue.component('no-item-yet', NoItemYet)
 Vue.component('list-alert', ListAlert)
 Vue.component('list-ressources', ListRessources)
+Vue.component('icon-horizontal-divider', IconHorizontalDivider)
 
 new Vue({
   router,

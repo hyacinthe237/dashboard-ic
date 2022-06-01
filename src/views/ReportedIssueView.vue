@@ -89,21 +89,13 @@
 </template>
 
 <script lang="ts">
-import IconHorizontalDivider from "@/components/icons/IconHorizontalDivider.vue";
 import Vue from "vue";
-import AppBarLogged from "../components/layouts/AppBarLogged.vue";
-import NavigationAppDrawer from "../components/layouts/NavigationAppDrawer.vue";
 
 export default Vue.extend({
   name: "ReportedIssueView",
   data: () => ({
     activate: true,
   }),
-  components: {
-    AppBarLogged,
-    NavigationAppDrawer,
-    IconHorizontalDivider,
-  },
 });
 </script>
 
