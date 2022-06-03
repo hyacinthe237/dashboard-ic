@@ -22,6 +22,7 @@
         </v-list-item-subtitle>
         <span style="font-size: 10px">1 hour ago</span>
       </v-list-item-content>
+      <v-divider/>
     </v-list-item>
 </template>
 

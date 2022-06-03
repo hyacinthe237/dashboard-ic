@@ -711,7 +711,7 @@ export default Vue.extend({
         data.append('image', this.selectedFile)
         data.append('name', this.schoolObject.name)
         data.append('content', this.schoolObject.content)
-
+        console.log('data', data)
         await SchoolDataService.create(id, data)
         .then((response: ResponseData) => {
             this.isLoading = false

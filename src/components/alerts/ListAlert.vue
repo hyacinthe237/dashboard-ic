@@ -1,12 +1,6 @@
 <template>
   <div class="main-content">
-    <alert-item />
-    <v-divider/>
-    <alert-item />
-    <v-divider/>
-    <alert-item />
-    <v-divider/>
-    <alert-item />
+    <alert-item v-for="a in alerts" :key="a.id" :alert="a" />
   </div>
 </template>
 
@@ -17,6 +11,7 @@ import AlertItem from "./AlertItem.vue";
 export default Vue.extend({
   name: "list-alert",
 
+  props: { alerts: { type: Array, default: () => [] } },
   // data: () => ({}),
   components: {
     AlertItem,
