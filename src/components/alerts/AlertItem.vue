@@ -1,5 +1,5 @@
 <template>
-  <v-list-item class="mt-2 mb-2" @click="openAlert(alert)">
+  <v-list-item class="mt-2 mb-2">
       <v-img
         alt="Infinite connection"
         class="shrink mr-10"
@@ -12,17 +12,26 @@
       <icon-vertical-divider />
 
       <v-list-item-content class="pa-6">
-        <v-list-item-title
-          class="alert-title"
-        >
-          {{ alert.title }}</v-list-item-title
-        >
-        <v-list-item-subtitle style="color: #15b715">
-          {{ alert.content }}
-        </v-list-item-subtitle>
-        <span style="font-size: 10px">1 hour ago</span>
+        <v-row>
+            <v-col cols="8" align="right" @click="openAlert(alert)">
+                <v-list-item-title
+                  class="alert-title"
+                >
+                  {{ alert.title }}</v-list-item-title
+                >
+                <v-list-item-subtitle style="color: #15b715">
+                  {{ alert.content }}
+                </v-list-item-subtitle>
+                <span style="font-size: 10px">1 hour ago</span>
+            </v-col>
+            <v-col cols="4">
+                <v-btn color="danger" rounded class="pa-4" width="100%" @click="confirm(alert)">
+                Delete</v-btn>
+            </v-col>
+        </v-row>
       </v-list-item-content>
-      
+
+
     </v-list-item>
 </template>
 
@@ -43,6 +52,9 @@ export default Vue.extend({
   methods: {
       openAlert (alert: any) {
           this.$emit('openAlert', alert)
+      },
+      confirm (alert: any) {
+          this.$emit('confirmDelete', alert)
       }
   }
 });

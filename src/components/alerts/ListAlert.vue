@@ -27,13 +27,6 @@
                           elevation="0" name="title"
                           v-model="ghost.title"
                       ></v-text-field>
-                      <v-text-field
-                          label="Viewers"
-                          solo rounded outlined
-                          dense elevation="0"
-                          type="number"
-                          name="viewers" v-model="ghost.viewers"
-                      ></v-text-field>
                       <v-textarea
                           label="Content"
                           solo rounded outlined
@@ -54,7 +47,7 @@
   </v-dialog>
 
 
-    <alert-item v-for="a in alerts" :key="a.id" :alert="a" @openAlert="openEdit" />
+    <alert-item v-for="a in alerts" :key="a.id" :alert="a" @openAlert="openEdit" @confirm="confirmDelete" />
   </div>
 </template>
 
@@ -123,6 +116,33 @@ export default Vue.extend({
               this.isLoading = false
               console.log(e);
               Swal.fire({ title: 'Alert update error', html: e });
+          });
+      },
+
+      confirmDelete (alert: any) {
+          Swal.fire({
+              title: 'Are you sure ?',
+              html: "Are you sure you want to delete the selected alert ?",
+
+          }).then((result) => {
+              if (result.value) {
+                  this.delete(alert)
+              }
+          })
+      },
+
+      async delete (alert: any) {
+          this.isLoading = true
+          await AlertDataService.delete(alert.id)
+          .then((response: ResponseData) => {
+              this.isLoading = false
+              Swal.fire({ title: 'Alert delete successfull', html: 'Your alert details have been successfully deleted.' })
+              this.$emit('alertUpdated')
+          })
+          .catch((e: Error) => {
+              this.isLoading = false
+              console.log(e);
+              Swal.fire({ title: 'Alert delete error', html: e });
           });
       },
 
