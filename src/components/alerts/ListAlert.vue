@@ -47,7 +47,7 @@
   </v-dialog>
 
 
-    <alert-item v-for="a in alerts" :key="a.id" :alert="a" @openAlert="openEdit" @confirm="confirmDelete" />
+    <alert-item v-for="a in alerts" :key="a.id" :alert="a" @openAlert="openEdit" @confirmDelete="confirmDelete" />
   </div>
 </template>
 
@@ -123,7 +123,6 @@ export default Vue.extend({
           Swal.fire({
               title: 'Are you sure ?',
               html: "Are you sure you want to delete the selected alert ?",
-
           }).then((result) => {
               if (result.value) {
                   this.delete(alert)
