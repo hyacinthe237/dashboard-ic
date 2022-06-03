@@ -15,10 +15,10 @@
         <v-list-item-title
           class="alert-title"
         >
-          New alert</v-list-item-title
+          {{ alert.title }}</v-list-item-title
         >
         <v-list-item-subtitle style="color: #15b715">
-          Lorem ipsum it donet sum.
+          {{ alert.content }}
         </v-list-item-subtitle>
         <span style="font-size: 10px">1 hour ago</span>
       </v-list-item-content>
@@ -32,6 +32,8 @@ import IconVerticalDivider from "../icons/IconVerticalDivider.vue";
 
 export default Vue.extend({
   name: "alert-item",
+
+  props: { alert: { type: Object, default: () => {} } },
 
   // data: () => ({}),
   components: {
