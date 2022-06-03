@@ -8,7 +8,7 @@ const token: any = localStorage.getItem(env.TOKEN)
 const apiClient: AxiosInstance = axios.create();
 apiClient.defaults.baseURL = env.BASE_URL
 apiClient.defaults.headers.common['Content-Type'] = 'application/json;charset=utf-8'
-apiClient.defaults.headers.common['Accept'] = 'application/json;multipart/form-data;application/x-www-form-urlencoded;'
+apiClient.defaults.headers.common['Accept'] = 'application/json;multipart/form-data;'
 
 if (token !== null) {
     apiClient.defaults.headers.common['Authorization'] = 'Token ' + token
