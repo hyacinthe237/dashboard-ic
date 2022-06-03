@@ -284,7 +284,7 @@
                                               </v-list-item-title>
                                           </v-list-item-content>
                                       </v-list-item>
-                                      <v-list-item class="">
+                                      <!-- <v-list-item class="">
                                           <v-list-item-content>
                                               <v-list-item-title>
                                                   <v-row>
@@ -303,7 +303,7 @@
                                                   </v-row>
                                               </v-list-item-title>
                                           </v-list-item-content>
-                                      </v-list-item>
+                                      </v-list-item> -->
                                       <v-list-item class="mt-40">
                                           <v-list-item-content>
                                               <v-list-item-title>
@@ -324,7 +324,7 @@
                                               </v-list-item-title>
                                           </v-list-item-content>
                                       </v-list-item>
-                                      <v-card-actions>
+                                      <!-- <v-card-actions>
                                           <v-spacer></v-spacer>
                                           <v-btn
                                               color="success"
@@ -334,7 +334,7 @@
                                               :disabled="isLoading"
                                               @click="createSchoolInfos()"
                                           >Create School Infos</v-btn>
-                                      </v-card-actions>
+                                      </v-card-actions> -->
                                       <v-simple-table >
                                           <template v-slot:default>
                                               <thead>
@@ -380,7 +380,7 @@
                                                 </v-list-item-title>
                                             </v-list-item-content>
                                         </v-list-item>
-                                        <v-list-item class="">
+                                        <!-- <v-list-item class="">
                                             <v-list-item-content>
                                                 <v-list-item-title>
                                                     <v-row>
@@ -399,7 +399,7 @@
                                                     </v-row>
                                                 </v-list-item-title>
                                             </v-list-item-content>
-                                        </v-list-item>
+                                        </v-list-item> -->
                                         <v-list-item class="mt-40">
                                             <v-list-item-content>
                                                 <v-list-item-title>
@@ -422,7 +422,7 @@
                                                 </v-list-item-title>
                                             </v-list-item-content>
                                         </v-list-item>
-                                        <v-card-actions>
+                                        <!-- <v-card-actions>
                                             <v-spacer></v-spacer>
                                             <v-btn
                                                 color="success"
@@ -432,7 +432,7 @@
                                                 :disabled="isLoading"
                                                 @click="createMedicalInfos()"
                                             >Create Medical Infos</v-btn>
-                                        </v-card-actions>
+                                        </v-card-actions> -->
                                     </v-card-text>
                                     <v-simple-table >
                                         <template v-slot:default>
@@ -478,7 +478,7 @@
                                                 </v-list-item-title>
                                             </v-list-item-content>
                                         </v-list-item>
-                                        <v-list-item class="">
+                                        <!-- <v-list-item class="">
                                             <v-list-item-content>
                                                 <v-list-item-title>
                                                     <v-row>
@@ -497,7 +497,7 @@
                                                     </v-row>
                                                 </v-list-item-title>
                                             </v-list-item-content>
-                                        </v-list-item>
+                                        </v-list-item> -->
                                         <v-list-item class="mt-40">
                                             <v-list-item-content>
                                                 <v-list-item-title>
@@ -519,7 +519,7 @@
                                                 </v-list-item-title>
                                             </v-list-item-content>
                                         </v-list-item>
-                                        <v-card-actions>
+                                        <!-- <v-card-actions>
                                             <v-spacer></v-spacer>
                                             <v-btn
                                                 color="success"
@@ -529,7 +529,7 @@
                                                 :disabled="isLoading"
                                                 @click="createHistoryInfos()"
                                             >Create History Infos</v-btn>
-                                        </v-card-actions>
+                                        </v-card-actions> -->
                                     </v-card-text>
                                     <v-simple-table >
                                         <template v-slot:default>
@@ -624,9 +624,91 @@ export default Vue.extend({
   },
 
   methods: {
-    onSchoolFileChange (file) { this.selectedFile = file },
-    onHistoryFileChange (file) { this.selectedFile = file },
-    onMedicalFileChange (file) { this.selectedFile = file },
+    async onFarentFileChange (file: any) {
+        if(!_.isEmpty(file)) {
+          this.isLoading = true
+          let id = this.$router.history.current.params.id
+          let data = new FormData()
+          data.append('parent_doc', file)
+          await ParentDataService.uploadDocParent(id, data)
+          .then((response: ResponseData) => {
+              this.isLoading = false
+              console.log('Parent doc uploaded', response.data)
+              Swal.fire({ title: 'Parent doc uploaded successfull', html: 'Your Parent document have been successfully uploaded.' });
+              this.getParentInfos()
+          })
+          .catch((e: Error) => {
+              this.isLoading = false
+              console.log(e);
+              Swal.fire({ title: 'Upload Parent document error', html: e });
+          });
+        }
+    },
+
+    async onSchoolFileChange (file: any) {
+      if(!_.isEmpty(file)) {
+          this.isLoading = true
+          let id = this.$router.history.current.params.id
+          let data = new FormData()
+          data.append('school_doc', file)
+          await SchoolDataService.uploadDocSchool(id, data)
+          .then((response: ResponseData) => {
+              this.isLoading = false
+              console.log('School doc uploaded', response.data)
+              Swal.fire({ title: 'School doc uploaded successfull', html: 'Your school document have been successfully uploaded.' });
+              this.getSchoolInfos()
+          })
+          .catch((e: Error) => {
+              this.isLoading = false
+              console.log(e);
+              Swal.fire({ title: 'Upload school document error', html: e });
+          });
+      }
+    },
+
+    async onHistoryFileChange (file: any) {
+        if (!_.isEmpty(file)) {
+            this.isLoading = true
+            let id = this.$router.history.current.params.id
+            let data = new FormData()
+            data.append('placement_doc', file)
+
+            await HistoryDataService.uploadDocPlacement(id, data)
+            .then((response: ResponseData) => {
+                this.isLoading = false
+                console.log('History doc uploaded', response.data)
+                Swal.fire({ title: 'History doc uploaded successfull', html: 'Your history document have been successfully uploaded.' });
+                this.getHistoryInfos()
+            })
+            .catch((e: Error) => {
+                this.isLoading = false
+                console.log(e);
+                Swal.fire({ title: 'Upload history document error', html: e });
+            });
+        }
+    },
+
+    async onMedicalFileChange (file: any) {
+        if (!_.isEmpty(file)) {
+            this.isLoading = true
+            let id = this.$router.history.current.params.id
+            let data = new FormData()
+            data.append('medical_doc', file)
+
+            await MedicalDataService.uploadDocMedical(id, data)
+            .then((response: ResponseData) => {
+                this.isLoading = false
+                console.log('Medical doc uploaded', response.data)
+                Swal.fire({ title: 'Medical doc uploaded successfull', html: 'Your medical document have been successfully uploaded.' });
+                this.getMedicalInfos()
+            })
+            .catch((e: Error) => {
+                this.isLoading = false
+                console.log(e);
+                Swal.fire({ title: 'Upload medical document error', html: e });
+            });
+        }
+    },
 
     async getParentInfos () {
         this.isLoading = true
