@@ -4,7 +4,7 @@
 
     <navigation-app-drawer/>
     <v-content>
-      <list-alert :alerts="alerts" @alertAdded="getAlerts" />
+      <list-alert :alerts="alerts" @alertAdded="getAlerts" @alertUpdated="getAlerts"/>
     </v-content>
   </v-app>
 </template>

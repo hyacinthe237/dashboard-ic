@@ -20,7 +20,7 @@
         <v-card-text>
             <v-container>
                 <v-form style="width: 300px; margin: auto" @submit.prevent="Create()" v-show="!isLoading">
-                      <h2 class="mb-10 text-center">Add new alert</h2>
+                      <h2 class="mb-10 text-center">{{ isEdit ? 'Edit alert' : 'Add new alert'}}</h2>
                       <v-text-field
                           label="Title"
                           solo rounded outlined dense
@@ -41,8 +41,11 @@
                           name="content" v-model="ghost.content"
                       ></v-textarea>
 
-                  <v-btn color="success" rounded class="pa-4" width="100%" @click="Create()">
+                  <v-btn color="success" rounded class="pa-4" width="100%" @click="Create()" v-show="!isEdit">
                   Create</v-btn>
+
+                  <v-btn color="success" rounded class="pa-4" width="100%" @click="Update()" v-show="isEdit">
+                  Update</v-btn>
                 </v-form>
                 <v-progress-circular :indeterminate="true" :color="'success'" v-show="isLoading"></v-progress-circular>
             </v-container>
@@ -51,7 +54,7 @@
   </v-dialog>
 
 
-    <alert-item v-for="a in alerts" :key="a.id" :alert="a" />
+    <alert-item v-for="a in alerts" :key="a.id" :alert="a" @openAlert="openEdit" />
   </div>
 </template>
 
@@ -72,7 +75,8 @@ export default Vue.extend({
   data: () => ({
     dialog: false,
     isLoading: false,
-    ghost: { id: null, viewers: null, title: '', content: '' } as Alert,
+    isEdit: false,
+    ghost: { id: null, title: '', content: '' } as Alert,
   }),
   components: {
     AlertItem,
@@ -81,7 +85,6 @@ export default Vue.extend({
   methods: {
       async Create () {
           this.isLoading = true
-          // let viewers = parseInt(this.ghost.viewers, 10)
           let data = {
               title: this.ghost.title, content: this.ghost.content
           };
@@ -101,8 +104,36 @@ export default Vue.extend({
           });
       },
 
+      async Update () {
+          this.isLoading = true
+          let data = {
+              title: this.ghost.title, content: this.ghost.content
+          };
+
+          await AlertDataService.update(this.ghost.id, data)
+          .then((response: ResponseData) => {
+              this.isLoading = false
+              this.dialog = false
+              this.resetGhost()
+              Swal.fire({ title: 'Alert update successfull', html: 'Your alert details have been successfully updated.' })
+              this.$emit('alertUpdated')
+              this.isEdit = false
+          })
+          .catch((e: Error) => {
+              this.isLoading = false
+              console.log(e);
+              Swal.fire({ title: 'Alert update error', html: e });
+          });
+      },
+
       resetGhost () {
-          this.ghost = { id: null, viewers: null, title: '', content: '' }
+          this.ghost = { id: null, title: '', content: '' }
+      },
+
+      openEdit (alert: any) {
+          this.dialog = true
+          this.ghost = Object.assign({}, alert)
+          this.isEdit = true
       }
   }
 });

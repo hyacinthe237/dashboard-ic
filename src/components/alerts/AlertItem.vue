@@ -1,5 +1,5 @@
 <template>
-  <v-list-item class="mt-2 mb-2">
+  <v-list-item class="mt-2 mb-2" @click="openAlert(alert)">
       <v-img
         alt="Infinite connection"
         class="shrink mr-10"
@@ -22,7 +22,7 @@
         </v-list-item-subtitle>
         <span style="font-size: 10px">1 hour ago</span>
       </v-list-item-content>
-      <v-divider/>
+      
     </v-list-item>
 </template>
 
@@ -39,5 +39,11 @@ export default Vue.extend({
   components: {
     IconVerticalDivider,
   },
+
+  methods: {
+      openAlert (alert: any) {
+          this.$emit('openAlert', alert)
+      }
+  }
 });
 </script>
