@@ -19,7 +19,7 @@
             </v-list-item-action>
         </v-list-item>
         <v-divider></v-divider>
-        <v-list-item class="mt-2 mb-2" to="/reported-issues" v-if="isSuperAdmin">
+        <v-list-item class="mt-2 mb-2" to="/reported-issues" v-if="isAgencyAdmin">
           <v-list-item-icon>
             <icon-report/>
           </v-list-item-icon>
@@ -104,7 +104,7 @@
             </v-list-item-action>
         </v-list-item>
         <v-divider></v-divider>
-        <v-list-item class="mt-2 mb-2" to="/reporting" v-if="isAgencyAdmin">
+        <v-list-item class="mt-2 mb-2" to="/reporting">
           <v-list-item-icon>
             <icon-reporting/>
           </v-list-item-icon>
