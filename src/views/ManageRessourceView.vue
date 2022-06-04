@@ -14,6 +14,7 @@
 import Vue from "vue";
 import Swal from 'sweetalert2';
 import RessourceTypeDataService from "@/services/RessourceTypeDataService";
+import ResourceDataService from "@/services/ResourceDataService";
 import ResponseData from "@/types/ResponseData";
 
 export default Vue.extend({
@@ -21,11 +22,15 @@ export default Vue.extend({
 
     data: () => ({
       ressource_types: [],
+      resources: [],
       isLoading: false
     }),
 
     mounted () {
-        this.$nextTick(() => { this.getRessourceTypes() })
+        this.$nextTick(() => {
+          this.getRessourceTypes()
+          this.getResources()
+        })
     },
 
     methods: {
@@ -39,9 +44,22 @@ export default Vue.extend({
             .catch((e: Error) => {
                 this.isLoading = false
                 console.log(e);
-                Swal.fire({ title: 'Get Kids error', html: e });
+                Swal.fire({ title: 'Get resource type error', html: e });
             });
-        }
+        },
+        async getResources () {
+            this.isLoading = true
+            await ResourceDataService.getAll()
+            .then((response: ResponseData) => {
+                this.isLoading = false
+                this.resources = response.data.results
+            })
+            .catch((e: Error) => {
+                this.isLoading = false
+                console.log(e);
+                Swal.fire({ title: 'Get resource error', html: e });
+            });
+        },
     }
 });
 </script>

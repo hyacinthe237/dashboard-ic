@@ -1,6 +1,6 @@
 import http from "@/http-common";
 
-class RessourceDataService {
+class ResourceDataService {
     getAll(): Promise<any> {
       return http.get("/ressource-api/ressources/");
     }
@@ -24,4 +24,4 @@ class RessourceDataService {
     }
 }
 
-export default new RessourceDataService();
+export default new ResourceDataService();
