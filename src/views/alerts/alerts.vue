@@ -1,11 +1,14 @@
 <template>
   <v-app>
-    <AppBarLogged title="Monitoring / Alert" />
+    <AppBarLogged title="Monitoring / Alert" v-show="!isLoading" />
 
-    <navigation-app-drawer/>
-    <v-content>
+    <navigation-app-drawer v-show="!isLoading"/>
+    <v-content v-show="!isLoading">
       <list-alert :alerts="alerts" @alertAdded="getAlerts" @alertUpdated="getAlerts"/>
     </v-content>
+    <div class="text-center mt-20">
+        <v-progress-circular :indeterminate="true" :color="'success'" v-show="isLoading"></v-progress-circular>
+    </div>
   </v-app>
 </template>
 

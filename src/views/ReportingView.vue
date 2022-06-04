@@ -1,9 +1,9 @@
 <template>
   <v-app>
-    <AppBarLogged title="Monitoring / Reporting" />
+    <AppBarLogged title="Monitoring / Reporting" v-show="!isLoading" />
 
-    <navigation-app-drawer />
-    <v-content>
+    <navigation-app-drawer v-show="!isLoading" />
+    <v-content v-show="!isLoading">
       <div class="main-content">
         <v-row>
           <v-col cols="4" md="4" sm="12" xs="12">
@@ -131,15 +131,45 @@
         </v-row>
       </div>
     </v-content>
+
+    <div class="text-center">
+        <v-progress-circular :indeterminate="true" :color="'success'" v-show="isLoading"></v-progress-circular>
+    </div>
   </v-app>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
+import Swal from 'sweetalert2';
+import UserDataService from "@/services/UserDataService";
+import ResponseData from "@/types/ResponseData";
 
 export default Vue.extend({
   name: "ReportingView",
-  // data: () => ({}),
+  data: () => ({
+      isLoading: false,
+      reporting: {},
+  }),
+
+  mounted () {
+      this.getUserReporting()
+  },
+
+  methods: {
+    async getUserReporting () {
+        this.isLoading = true
+        await UserDataService.getUserReporting()
+        .then((response: ResponseData) => {
+            this.isLoading = false
+            this.reporting = Object.assign({}, response.data)
+        })
+        .catch((e: Error) => {
+            this.isLoading = false
+            console.log(e);
+            Swal.fire({ title: 'Get User Reporting error', html: e });
+        });
+    }
+  }
 });
 </script>
 
