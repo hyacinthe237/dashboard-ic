@@ -594,8 +594,8 @@ export default Vue.extend({
   name: "kid",
 
   data: () => ({
-      ghost: { id: null, first_name: '', last_name: '', email: '', date_of_arrival: new Date(), birthdate: new Date(), sex: '', age: null, phone: '' } as Kid,
-      kid: { id: null, first_name: '', last_name: '', email: '', date_of_arrival: new Date(), birthdate: new Date(), sex: '', age: null, phone: '' } as Kid,
+      ghost: { id: null, first_name: '', last_name: '', email: '', date_of_arrival: new Date(), birthdate: new Date(), sex: '', age: null, phone: '', user_id: null } as Kid,
+      kid: { id: null, first_name: '', last_name: '', email: '', date_of_arrival: new Date(), birthdate: new Date(), sex: '', age: null, phone: '', user_id: null } as Kid,
       historyObject: { id: null, kid: null, name: '', image: '', content: '' } as History,
       medicalObject: { id: null, kid: null, name: '', image: '', content: '' } as Medical,
       schoolObject: { id: null, kid: null, name: '', image: '', content: '' } as School,
@@ -621,13 +621,14 @@ export default Vue.extend({
       this.getSchoolInfos()
       this.getMedicalInfos()
       this.getHistoryInfos()
+      console.log('router', this.$router)
   },
 
   methods: {
     async onFarentFileChange (file: any) {
         if(!_.isEmpty(file)) {
           this.isLoading = true
-          let id = this.$router.history.current.params.id
+          let id = this.$route.params.id
           let data = new FormData()
           data.append('parent_doc', file)
           await ParentDataService.uploadDocParent(id, data)
@@ -648,7 +649,7 @@ export default Vue.extend({
     async onSchoolFileChange (file: any) {
       if(!_.isEmpty(file)) {
           this.isLoading = true
-          let id = this.$router.history.current.params.id
+          let id = this.$route.params.id
           let data = new FormData()
           data.append('school_doc', file)
           await SchoolDataService.uploadDocSchool(id, data)
@@ -669,7 +670,7 @@ export default Vue.extend({
     async onHistoryFileChange (file: any) {
         if (!_.isEmpty(file)) {
             this.isLoading = true
-            let id = this.$router.history.current.params.id
+            let id = this.$route.params.id
             let data = new FormData()
             data.append('placement_doc', file)
 
@@ -691,7 +692,7 @@ export default Vue.extend({
     async onMedicalFileChange (file: any) {
         if (!_.isEmpty(file)) {
             this.isLoading = true
-            let id = this.$router.history.current.params.id
+            let id = this.$route.params.id
             let data = new FormData()
             data.append('medical_doc', file)
 
@@ -713,7 +714,8 @@ export default Vue.extend({
     async getParentInfos () {
         this.isLoading = true
 
-        let id = this.$router.history.current.params.id
+        let id = this.$route.params.id
+        // let id = this.$router.history.current.params.id
         await ParentDataService.getParentInfos(id)
         .then((response: ResponseData) => {
             this.isLoading = false
@@ -771,7 +773,8 @@ export default Vue.extend({
 
     async getSchoolInfos () {
         this.isLoading = true
-        let id = this.$router.history.current.params.id
+        let id = this.$route.params.id
+        // let id = this.$router.history.current.params.id
         await SchoolDataService.getSchoolInfos(id)
         .then((response: ResponseData) => {
             this.isLoading = false
@@ -783,35 +786,36 @@ export default Vue.extend({
             Swal.fire({ title: 'Get Kid school infos error', html: e });
         });
     },
-    async createSchoolInfos () {
-        this.isLoading = true
-        let userId: any = localStorage.getItem('userId')
-        let user_id = parseInt(userId, 10)
-        let id = this.$router.history.current.params.id
-        let data = new FormData()
-        data.append('kid', user_id)
-        data.append('image', this.selectedFile)
-        data.append('name', this.schoolObject.name)
-        data.append('content', this.schoolObject.content)
-        console.log('data', data)
-        await SchoolDataService.create(id, data)
-        .then((response: ResponseData) => {
-            this.isLoading = false
-            console.log('School doc uploaded', response.data)
-            Swal.fire({ title: 'School doc uploaded successfull', html: 'Your school document have been successfully uploaded.' });
-
-        })
-        .catch((e: Error) => {
-            this.isLoading = false
-            console.log(e);
-            Swal.fire({ title: 'Upload school document error', html: e });
-        });
-    },
+    // async createSchoolInfos () {
+    //     this.isLoading = true
+    //     let userId: any = localStorage.getItem('userId')
+    //     let user_id = parseInt(userId, 10)
+    //     let id = this.$router.history.current.params.id
+    //     let data = new FormData()
+    //     data.append('kid', user_id)
+    //     data.append('image', this.selectedFile)
+    //     data.append('name', this.schoolObject.name)
+    //     data.append('content', this.schoolObject.content)
+    //     console.log('data', data)
+    //     await SchoolDataService.create(id, data)
+    //     .then((response: ResponseData) => {
+    //         this.isLoading = false
+    //         console.log('School doc uploaded', response.data)
+    //         Swal.fire({ title: 'School doc uploaded successfull', html: 'Your school document have been successfully uploaded.' });
+    //
+    //     })
+    //     .catch((e: Error) => {
+    //         this.isLoading = false
+    //         console.log(e);
+    //         Swal.fire({ title: 'Upload school document error', html: e });
+    //     });
+    // },
 
     async getMedicalInfos () {
         this.isLoading = true
 
-        let id = this.$router.history.current.params.id
+        let id = this.$route.params.id
+        // let id = this.$router.history.current.params.id
         await MedicalDataService.getMedicalInfos(id)
         .then((response: ResponseData) => {
             this.isLoading = false
@@ -823,35 +827,36 @@ export default Vue.extend({
             Swal.fire({ title: 'Get Kid medical infos error', html: e });
         });
     },
-    async createMedicalInfos () {
-        this.isLoading = true
-        let userId: any = localStorage.getItem('userId')
-        let user_id = parseInt(userId, 10)
-        let id = this.$router.history.current.params.id
-        let data = new FormData()
-        data.append('kid', user_id)
-        data.append('image', this.selectedFile)
-        data.append('name', this.medicalObject.name)
-        data.append('content', this.medicalObject.content)
-
-        await MedicalDataService.create(id, data)
-        .then((response: ResponseData) => {
-            this.isLoading = false
-            console.log('Medical doc uploaded', response.data)
-            Swal.fire({ title: 'Medical doc uploaded successfull', html: 'Your medical document have been successfully uploaded.' });
-            this.getMedicalInfos()
-        })
-        .catch((e: Error) => {
-            this.isLoading = false
-            console.log(e);
-            Swal.fire({ title: 'Upload medical document error', html: e });
-        });
-    },
+    // async createMedicalInfos () {
+    //     this.isLoading = true
+    //     let userId: any = localStorage.getItem('userId')
+    //     let user_id = parseInt(userId, 10)
+    //     let id = this.$router.history.current.params.id
+    //     let data = new FormData()
+    //     data.append('kid', user_id)
+    //     data.append('image', this.selectedFile)
+    //     data.append('name', this.medicalObject.name)
+    //     data.append('content', this.medicalObject.content)
+    //
+    //     await MedicalDataService.create(id, data)
+    //     .then((response: ResponseData) => {
+    //         this.isLoading = false
+    //         console.log('Medical doc uploaded', response.data)
+    //         Swal.fire({ title: 'Medical doc uploaded successfull', html: 'Your medical document have been successfully uploaded.' });
+    //         this.getMedicalInfos()
+    //     })
+    //     .catch((e: Error) => {
+    //         this.isLoading = false
+    //         console.log(e);
+    //         Swal.fire({ title: 'Upload medical document error', html: e });
+    //     });
+    // },
 
     async getHistoryInfos () {
         this.isLoading = true
 
-        let id = this.$router.history.current.params.id
+        // let id = this.$router.history.current.params.id
+        let id = this.$route.params.id
         await HistoryDataService.getPlacementInfos(id)
         .then((response: ResponseData) => {
             this.isLoading = false
@@ -863,33 +868,33 @@ export default Vue.extend({
             Swal.fire({ title: 'Get Kid history infos error', html: e });
         });
     },
-    async createHistoryInfos () {
-        this.isLoading = true
-        let userId: any = localStorage.getItem('userId')
-        let user_id = parseInt(userId, 10)
-        let id = this.$router.history.current.params.id
-        let data = new FormData()
-        data.append('kid', user_id)
-        data.append('image', this.selectedFile)
-        data.append('name', this.historyObject.name)
-        data.append('content', this.historyObject.content)
-
-        await HistoryDataService.create(id, data)
-        .then((response: ResponseData) => {
-            this.isLoading = false
-            console.log('History doc uploaded', response.data)
-            Swal.fire({ title: 'History doc uploaded successfull', html: 'Your history document have been successfully uploaded.' });
-            this.getHistoryInfos()
-        })
-        .catch((e: Error) => {
-            this.isLoading = false
-            console.log(e);
-            Swal.fire({ title: 'Upload history document error', html: e });
-        });
-    },
+    // async createHistoryInfos () {
+    //     this.isLoading = true
+    //     let userId: any = localStorage.getItem('userId')
+    //     let user_id = parseInt(userId, 10)
+    //     let id = this.$router.history.current.params.id
+    //     let data = new FormData()
+    //     data.append('kid', user_id)
+    //     data.append('image', this.selectedFile)
+    //     data.append('name', this.historyObject.name)
+    //     data.append('content', this.historyObject.content)
+    //
+    //     await HistoryDataService.create(id, data)
+    //     .then((response: ResponseData) => {
+    //         this.isLoading = false
+    //         console.log('History doc uploaded', response.data)
+    //         Swal.fire({ title: 'History doc uploaded successfull', html: 'Your history document have been successfully uploaded.' });
+    //         this.getHistoryInfos()
+    //     })
+    //     .catch((e: Error) => {
+    //         this.isLoading = false
+    //         console.log(e);
+    //         Swal.fire({ title: 'Upload history document error', html: e });
+    //     });
+    // },
 
     resetGhost () {
-        this.ghost = { id: null, first_name: '', last_name: '', email: '', date_of_arrival: new Date(), birthdate: new Date(), sex: '', age: null, phone: '' }
+        this.ghost = { id: null, first_name: '', last_name: '', email: '', date_of_arrival: new Date(), birthdate: new Date(), sex: '', age: null, phone: '', user_id: null }
     },
     resetHistoryObject () {
         this.historyObject= { id: null, kid: null, name: '', image: '', content: '' }
@@ -906,12 +911,12 @@ export default Vue.extend({
 
     async getKid () {
         this.isLoading = true
-        let id = this.$router.history.current.params.id
+        let id = this.$route.params.id
         await KidDataService.get(id)
         .then((response: ResponseData) => {
             this.isLoading = false
             this.kid = Object.assign({}, response.data)
-            localStorage.setItem('userId', this.kid.user_id)
+            localStorage.setItem('userId', response.data.user_id)
         })
         .catch((e: Error) => {
             this.isLoading = false
@@ -927,7 +932,7 @@ export default Vue.extend({
           sex: this.kid.sex, age: this.kid.age, phone: this.kid.phone,
       };
 
-      let id = this.$router.history.current.params.id
+      let id = this.$route.params.id
       await KidDataService.update(id, data)
       .then((response: ResponseData) => {
           this.isLoading = false

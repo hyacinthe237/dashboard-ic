@@ -8,4 +8,5 @@ export default interface Kid {
   sex: string;
   age: null;
   phone: string;
+  user_id: null;
 }
