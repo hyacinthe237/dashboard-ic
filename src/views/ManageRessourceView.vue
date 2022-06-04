@@ -4,7 +4,7 @@
 
     <navigation-app-drawer v-show="!isLoading"/>
     <v-content v-show="!isLoading">
-        <list-ressources :types:="ressource_types" />
+        <list-ressources :types="ressource_types" />
     </v-content>
     <v-progress-circular :indeterminate="true" :color="'success'" v-show="isLoading"></v-progress-circular>
   </v-app>
