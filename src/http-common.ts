@@ -9,7 +9,7 @@ apiClient.defaults.headers.common['Content-Type'] = 'application/json;charset=ut
 apiClient.defaults.headers.common['Accept'] = 'application/json;multipart/form-data;'
 
 const token: any = localStorage.getItem(env.TOKEN)
-console.log(token)
+console.log(env.TOKEN)
 if (token !== null) {
     apiClient.defaults.headers.common['Authorization'] = 'Token ' + token
 }
