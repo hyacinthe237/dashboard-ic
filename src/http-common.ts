@@ -8,7 +8,7 @@ apiClient.defaults.baseURL = env.BASE_URL
 apiClient.defaults.headers.common['Content-Type'] = 'application/json;charset=utf-8'
 apiClient.defaults.headers.common['Accept'] = 'application/json;multipart/form-data;'
 
-const token: any = localStorage.getItem('infinite_api_token')
+const token: any = window.localStorage.getItem('infinite_api_token')
 console.log(`${env.TOKEN}`, token)
 if (token !== null) {
     apiClient.defaults.headers.common['Authorization'] = 'Token ' + token
