@@ -1,15 +1,14 @@
 <template>
   <div class="main-content">
     <v-dialog v-model="dialog" persistent width="600">
-        <template v-slot:activator="{ on, attrs }">
+        <!--<template v-slot:activator="{ on, attrs }">
             <v-btn
                 color="success" rounded
                 class="pa-4 mb-8" width="200"
                 v-bind="attrs" v-on="on"
             >Add new alert</v-btn>
-        </template>
+        </template>-->
 
-    <!-- Modal off Add Kid -->
     <v-card class="rounded-lg">
         <v-toolbar color="white" elevation="0">
             <v-spacer></v-spacer>
@@ -19,8 +18,8 @@
         </v-toolbar>
         <v-card-text>
             <v-container>
-                <v-form style="width: 300px; margin: auto" @submit.prevent="Create()" v-show="!isLoading">
-                      <h2 class="mb-10 text-center">{{ isEdit ? 'Edit alert' : 'Add new alert'}}</h2>
+                <v-form style="width: 300px; margin: auto" v-show="!isLoading">
+                      <h2 class="mb-10 text-center">{{ 'Alert details'}}</h2>
                       <v-text-field
                           label="Title"
                           solo rounded outlined dense
@@ -33,12 +32,6 @@
                           dense elevation="0"
                           name="content" v-model="ghost.content"
                       ></v-textarea>
-
-                  <v-btn color="success" rounded class="pa-4" width="100%" @click="Create()" v-show="!isEdit">
-                  Create</v-btn>
-
-                  <v-btn color="success" rounded class="pa-4" width="100%" @click="Update()" v-show="isEdit">
-                  Update</v-btn>
                 </v-form>
                 <v-progress-circular :indeterminate="true" :color="'success'" v-show="isLoading"></v-progress-circular>
             </v-container>
@@ -47,7 +40,7 @@
   </v-dialog>
 
 
-    <alert-item v-for="a in alerts" :key="a.id" :alert="a" @openAlert="openEdit" @confirmDelete="confirmDelete" />
+    <alert-item v-for="a in alerts" :key="a.id" :alert="a" @openAlert="openEdit"/>
   </div>
 </template>
 

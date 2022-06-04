@@ -13,7 +13,7 @@
 
       <v-list-item-content class="pa-6">
         <v-row>
-            <v-col cols="10" align="left" @click="openAlert(alert)">
+            <v-col cols="12" align="left" @click="openAlert(alert)">
                 <v-list-item-title
                   class="alert-title"
                 >
@@ -23,10 +23,6 @@
                   {{ alert.content }}
                 </v-list-item-subtitle>
                 <span style="font-size: 10px">1 hour ago</span>
-            </v-col>
-            <v-col cols="2">
-                <v-btn color="red" rounded class="pa-4" width="100%" @click="confirm(alert)">
-                Delete</v-btn>
             </v-col>
         </v-row>
       </v-list-item-content>
