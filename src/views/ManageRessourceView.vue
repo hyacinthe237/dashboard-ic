@@ -1,11 +1,12 @@
 <template>
   <v-app>
-    <AppBarLogged title="Monitoring / Manage ressources" />
+    <AppBarLogged title="Monitoring / Manage ressources" v-show="!isLoading" />
 
-    <navigation-app-drawer/>
-    <v-content>
-        <list-ressources/>
+    <navigation-app-drawer v-show="!isLoading"/>
+    <v-content v-show="!isLoading">
+        <list-ressources :types:="ressource_types" />
     </v-content>
+    <v-progress-circular :indeterminate="true" :color="'success'" v-show="isLoading"></v-progress-circular>
   </v-app>
 </template>
 

@@ -62,7 +62,7 @@
       </v-card>
     </v-dialog>
     <v-row>
-      <v-col cols="3" md="3" sm="12" xs="12">
+      <v-col cols="3" md="3" sm="12" xs="12" v-for="t in types" :key="t.id">
         <v-card
           rounded
           elevation="2"
@@ -71,124 +71,15 @@
           class="ressource-card"
         >
           <v-card-title class="justify-center">
-            <icon-education />
+            <icon-education v-if="t.label.includes('Education')"/>
+            <icon-housing v-if="t.label.includes('House')"/>
+            <icon-human v-if="t.label.includes('Human')"/>
+            <icon-medical v-if="t.label.includes('Medical')"/>
+            <icon-finance v-if="t.label.includes('Financial')"/>
+            <icon-emergency v-if="t.label.includes('Emergency')"/>
           </v-card-title>
           <v-card-text class="justify-center" style="color: #fff !important">
-            <h3>Education</h3>
-          </v-card-text>
-        </v-card>
-      </v-col>
-      <v-col cols="3" md="3" sm="12" xs="12">
-        <v-card
-          rounded
-          elevation="2"
-          dark
-          color="secondary"
-          class="ressource-card"
-        >
-          <v-card-title class="justify-center">
-            <icon-housing />
-          </v-card-title>
-          <v-card-text
-            class="justify-center text-white"
-            style="color: #fff !important"
-          >
-            <h3>
-              Housing <br />
-              Assistance
-            </h3>
-          </v-card-text>
-        </v-card>
-      </v-col>
-      <v-col cols="3" md="3" sm="12" xs="12">
-        <v-card
-          rounded
-          elevation="2"
-          dark
-          color="secondary"
-          class="ressource-card"
-        >
-          <v-card-title class="justify-center">
-            <icon-human />
-          </v-card-title>
-          <v-card-text
-            class="justify-center text-white"
-            style="color: #fff !important"
-          >
-            <h3>
-              Human <br />
-              Services
-            </h3>
-          </v-card-text>
-        </v-card>
-      </v-col>
-    </v-row>
-    <v-row>
-      <v-col cols="3" md="3" sm="12" xs="12">
-        <v-card
-          rounded
-          elevation="2"
-          dark
-          color="secondary"
-          class="ressource-card"
-        >
-          <v-card-title class="justify-center">
-            <icon-finance />
-          </v-card-title>
-          <v-card-text
-            class="justify-center text-white"
-            style="color: #fff !important"
-          >
-            <h3>
-              Financial <br />
-              Assistance
-            </h3>
-          </v-card-text>
-        </v-card>
-      </v-col>
-
-      <v-col cols="3" md="3" sm="12" xs="12">
-        <v-card
-          rounded
-          elevation="2"
-          dark
-          color="secondary"
-          class="ressource-card"
-        >
-          <v-card-title class="justify-center">
-            <icon-medical />
-          </v-card-title>
-          <v-card-text
-            class="justify-center text-white"
-            style="color: #fff !important"
-          >
-            <h3>
-              Medical <br />
-              Assistance
-            </h3>
-          </v-card-text>
-        </v-card>
-      </v-col>
-
-      <v-col cols="3" md="3" sm="12" xs="12">
-        <v-card
-          rounded
-          elevation="2"
-          dark
-          color="secondary"
-          class="ressource-card"
-        >
-          <v-card-title class="justify-center">
-            <icon-emergency />
-          </v-card-title>
-          <v-card-text
-            class="justify-center text-white"
-            style="color: #fff !important"
-          >
-            <h3>
-              Emergency <br />
-              Services
-            </h3>
+            <h3>{{ t.label }}</h3>
           </v-card-text>
         </v-card>
       </v-col>
@@ -208,6 +99,10 @@ import IconClose from "../icons/IconClose.vue";
 
 export default Vue.extend({
   name: "list-ressources",
+
+  props: {
+      types: { type: Array, default: () => {} }
+  },
 
   data() {
     return {
