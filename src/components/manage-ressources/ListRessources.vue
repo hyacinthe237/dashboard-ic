@@ -143,6 +143,13 @@ export default Vue.extend({
     IconClose,
   },
 
+  computed: {
+      auth (): any {
+        let thau: any = localStorage.getItem('infinite_user')
+        return JSON.parse(thau)
+      },
+  },
+
   methods: {
     resetGhost () {
         this.ghost = { id: null, name: '', agency:	null, description:	'', ressource_type:	null, age_range: '',  permalink:	'' }
@@ -151,8 +158,8 @@ export default Vue.extend({
     async create () {
         this.isLoading = true
         let data = {
-            name: this.ghost.name, age_range: this.ghost.age_range, permalink: this.ghost.permalink,
-            ressource_type: this.ghost.ressource_type, description: this.ghost.description
+            name: this.ghost.name, agency: this.auth.agency_id, age_range: this.ghost.age_range, permalink: this.ghost.permalink,
+            ressource_type: this.ghost.ressource_type.id, description: this.ghost.description
         };
 
         await ResourceDataService.create(data)
