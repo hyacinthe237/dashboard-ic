@@ -70,7 +70,7 @@
             </v-list-item-action>
         </v-list-item>
         <v-divider></v-divider>
-        <v-list-item class="mt-2 mb-2" to="/manage-ressources" v-if="isAgencyAdmin">
+        <v-list-item class="mt-2 mb-2" to="/manage-resources" v-if="isAgencyAdmin">
           <v-list-item-icon>
             <icon-manage-ressource/>
           </v-list-item-icon>

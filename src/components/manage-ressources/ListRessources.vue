@@ -34,9 +34,10 @@
                   item-text="label"
                   item-value="id"
                   label="Select a category"
-                  persistent-hint
+                  name="ressource_type"
               ></v-select>
               <v-select
+                  name="age_range"
                   v-model="ghost.age_range"
                   :items="items"
                   label="Select an age range"
@@ -44,6 +45,7 @@
               <v-text-field
                 label="resource name"
                 solo
+                name="name"
                 rounded
                 outlined
                 dense
@@ -52,6 +54,7 @@
               ></v-text-field>
               <v-text-field
                 label="Permalink"
+                name="permalink"
                 solo
                 rounded
                 outlined
@@ -59,7 +62,7 @@
                 elevation="0"
                 v-model="ghost.permalink"
               ></v-text-field>
-              <v-textarea
+              <!--<v-textarea
                   name="description"
                   v-model="ghost.description"
                   label="Description"
@@ -68,7 +71,7 @@
                   elevation="0"
                   outlined
                   dense
-              ></v-textarea>
+              ></v-textarea>-->
               <v-file-input
                 accept="image/*"
                 label="Click here to select an image file"
@@ -86,13 +89,13 @@
       </v-card>
     </v-dialog>
     <v-row>
-      <v-col cols="3" md="3" sm="12" xs="12" v-for="t in types" :key="t.id">
+      <v-col cols="3" md="3" sm="12" xs="12" v-for="t in types" :key="t.id" @click="openType(t)">
         <v-card
           rounded
           elevation="2"
           dark
           color="secondary"
-          class="ressource-card"
+          class="ressource-card pointer"
         >
           <v-card-title class="justify-center">
             <icon-education v-if="t.label.includes('Education')"/>
@@ -134,7 +137,7 @@ export default Vue.extend({
   },
 
   data: () => ({
-      ghost: { id: null, name: '', agency:	null, description:	'', ressource_type:	null, age_range: '',  permalink:	'', image: '' } as Resource,
+      ghost: { id: null, name: '', agency:	null, description:	'', ressource_type:	'', age_range: '',  permalink:	'', image: '' } as Resource,
       dialog: false,
       isLoading: false,
       items: [ 'Toddler [1-3]', 'Pre Schooler [4-6]', 'Kid [7-10]', 'Underage [11-12]', 'Teenager [13-18]', 'Young Adult [19-25]' ],
@@ -160,8 +163,12 @@ export default Vue.extend({
     onFileChange (file: any) {
         this.ghost.image = file
     },
+
+    openType (type: any) {
+        this.$emit('openType', type)
+    },
     resetGhost () {
-        this.ghost = { id: null, name: '', agency:	null, description:	'', ressource_type:	null, age_range: '',  permalink:	'',  image:	''  }
+        this.ghost = { id: null, name: '', agency:	null, description:	'', ressource_type:	'', age_range: '',  permalink:	'',  image:	''  }
     },
 
     async create () {
@@ -170,9 +177,8 @@ export default Vue.extend({
         data.append("name", this.ghost.name)
         data.append("agency", this.auth.agency_id)
         data.append("age_range", this.ghost.age_range)
-        data.append("ressource_type", this.ghost.ressource_type)
-        data.append("description", this.ghost.description)
         data.append("image", this.ghost.image)
+        data.append("ressource_type", this.ghost.ressource_type)
 
         await ResourceDataService.create(data)
         .then((response: ResponseData) => {

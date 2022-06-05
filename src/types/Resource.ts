@@ -3,8 +3,8 @@ export default interface Resource {
   name:	string;
   agency:	null;
   description:	string;
-  ressource_type:	null;
+  ressource_type:	string | Blob;
   age_range:	string;
   permalink:	string;
-  image:	string;
+  image:	string | Blob;
 }
