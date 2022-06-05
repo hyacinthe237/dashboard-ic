@@ -35,8 +35,6 @@
                   item-value="id"
                   label="Select a category"
                   persistent-hint
-                  return-object
-                  single-line
               ></v-select>
               <v-select
                   v-model="ghost.age_range"
@@ -71,6 +69,13 @@
                   outlined
                   dense
               ></v-textarea>
+              <v-file-input
+                accept="image/*"
+                label="Click here to select an image file"
+                outlined
+                name="image"
+                @change="onFileChange"
+              ></v-file-input>
 
               <v-btn color="success" rounded class="pa-4" width="100%" @click="create()">
                 Create
@@ -119,6 +124,7 @@ import IconClose from "../icons/IconClose.vue";
 import Resource from "@/types/Resource";
 import ResourceDataService from "@/services/ResourceDataService";
 import ResponseData from "@/types/ResponseData";
+import _ from "lodash";
 
 export default Vue.extend({
   name: "list-ressources",
@@ -128,7 +134,7 @@ export default Vue.extend({
   },
 
   data: () => ({
-      ghost: { id: null, name: '', agency:	null, description:	'', ressource_type:	null, age_range: '',  permalink:	'' } as Resource,
+      ghost: { id: null, name: '', agency:	null, description:	'', ressource_type:	null, age_range: '',  permalink:	'', image: '' } as Resource,
       dialog: false,
       isLoading: false,
       items: [ 'Toddler [1-3]', 'Pre Schooler [4-6]', 'Kid [7-10]', 'Underage [11-12]', 'Teenager [13-18]', 'Young Adult [19-25]' ],
@@ -151,16 +157,22 @@ export default Vue.extend({
   },
 
   methods: {
+    onFileChange (file: any) {
+        this.ghost.image = file
+    },
     resetGhost () {
-        this.ghost = { id: null, name: '', agency:	null, description:	'', ressource_type:	null, age_range: '',  permalink:	'' }
+        this.ghost = { id: null, name: '', agency:	null, description:	'', ressource_type:	null, age_range: '',  permalink:	'',  image:	''  }
     },
 
     async create () {
         this.isLoading = true
-        let data = {
-            name: this.ghost.name, agency: this.auth.agency_id, age_range: this.ghost.age_range, permalink: this.ghost.permalink,
-            ressource_type: this.ghost.ressource_type.id, description: this.ghost.description
-        };
+        let data = new FormData();
+        data.append("name", this.ghost.name)
+        data.append("agency", this.auth.agency_id)
+        data.append("age_range", this.ghost.age_range)
+        data.append("ressource_type", this.ghost.ressource_type)
+        data.append("description", this.ghost.description)
+        data.append("image", this.ghost.image)
 
         await ResourceDataService.create(data)
         .then((response: ResponseData) => {

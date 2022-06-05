@@ -6,4 +6,5 @@ export default interface Resource {
   ressource_type:	null;
   age_range:	string;
   permalink:	string;
+  image:	string;
 }
