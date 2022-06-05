@@ -61,6 +61,7 @@ import Swal from 'sweetalert2';
 import LoginDataService from "@/services/LoginDataService";
 import Login from "@/types/Login";
 import ResponseData from "@/types/ResponseData";
+import http from "../http-common";
 
 export default Vue.extend({
   name: "Login",
@@ -84,6 +85,7 @@ export default Vue.extend({
         await LoginDataService.login(data)
         .then((response: ResponseData) => {
             this.isLoading = false
+            http.defaults.headers.common['Authorization'] = 'Token ' + response.data.token
             localStorage.setItem(env.USER_NAME, JSON.stringify(response.data))
             localStorage.setItem(env.TOKEN, response.data.token)
             this.submitted = true;
