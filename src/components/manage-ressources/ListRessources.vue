@@ -117,13 +117,6 @@
 <script lang="ts">
 import Vue from "vue";
 import Swal from 'sweetalert2';
-import IconEducation from "../icons/IconEducation.vue";
-import IconHousing from "../icons/IconHousing.vue";
-import IconHuman from "../icons/IconHuman.vue";
-import IconMedical from "../icons/IconMedical.vue";
-import IconFinance from "../icons/IconFinance.vue";
-import IconEmergency from "../icons/IconEmergency.vue";
-import IconClose from "../icons/IconClose.vue";
 import Resource from "@/types/Resource";
 import ResourceDataService from "@/services/ResourceDataService";
 import ResponseData from "@/types/ResponseData";
@@ -142,15 +135,6 @@ export default Vue.extend({
       isLoading: false,
       items: [ 'Toddler [1-3]', 'Pre Schooler [4-6]', 'Kid [7-10]', 'Underage [11-12]', 'Teenager [13-18]', 'Young Adult [19-25]' ],
   }),
-  components: {
-    IconEducation,
-    IconHousing,
-    IconHuman,
-    IconEmergency,
-    IconMedical,
-    IconFinance,
-    IconClose,
-  },
 
   computed: {
       auth (): any {

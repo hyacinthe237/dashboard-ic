@@ -19,6 +19,12 @@ import ListTicket from "./components/tickets/ListTicket.vue";
 import IconClose from "./components/icons/IconClose.vue";
 import IconEdit from "./components/icons/IconEdit.vue";
 import KidItem from "./components/manage-kids/KidItem.vue";
+import IconEducation from "./components/icons/IconEducation.vue";
+import IconHousing from "./components/icons/IconHousing.vue";
+import IconHuman from "./components/icons/IconHuman.vue";
+import IconMedical from "./components/icons/IconMedical.vue";
+import IconFinance from "./components/icons/IconFinance.vue";
+import IconEmergency from "./components/icons/IconEmergency.vue";
 
 Vue.config.productionTip = false
 
@@ -37,6 +43,12 @@ Vue.component('list-ticket', ListTicket)
 Vue.component('icon-close', IconClose)
 Vue.component('icon-edit', IconEdit)
 Vue.component('kid-item', KidItem)
+Vue.component('icon-education', IconEducation)
+Vue.component('icon-housing', IconHousing)
+Vue.component('icon-human', IconHuman)
+Vue.component('icon-medical', IconMedical)
+Vue.component('icon-finance', IconFinance)
+Vue.component('icon-emergency', IconEmergency)
 
 new Vue({
   router,
