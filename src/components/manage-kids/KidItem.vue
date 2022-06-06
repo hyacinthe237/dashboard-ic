@@ -18,10 +18,10 @@
 
       <v-list-item-content>
         <v-list-item-title>{{ kid.first_name }} {{ kid.last_name }}</v-list-item-title>
-        <v-list-item>Birthdate: {{ kid.birthdate }}</v-list-item>
+        <!-- <v-list-item>Birthdate: {{ kid.birthdate }}</v-list-item>
         <v-list-item>Joined at: {{ kid.date_of_arrival }}</v-list-item>
         <v-list-item>Created at: {{ kid.created_at }}</v-list-item>
-        <v-list-item>Gender: {{ kid.sex }}</v-list-item>
+        <v-list-item>Gender: {{ kid.sex }}</v-list-item> -->
       </v-list-item-content>
     </v-list-item>
   </v-card>

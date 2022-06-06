@@ -14,11 +14,11 @@
             <v-toolbar color="white" elevation="0">
                 <v-spacer></v-spacer>
                 <v-toolbar-items class="pa-4">
-                    <icon-close @click.native="dialog = false" class="pointer"  :disabled="isLoading"/>
+                    <icon-close @click.native="dialog = false" class="pointer" :disabled="isLoading"/>
                 </v-toolbar-items>
             </v-toolbar>
             <v-card-text>
-                <v-container>
+                <v-container v-show="!isLoading">
                     <v-form style="width: 300px; margin: auto" @submit.prevent="CreateKid()">
                           <h2 class="mb-10 text-center">Add new kid</h2>
                           <v-text-field
@@ -87,6 +87,7 @@
                       Create</v-btn>
                     </v-form>
                 </v-container>
+                <v-progress-circular :indeterminate="true" :color="'success'" v-show="isLoading"></v-progress-circular>
             </v-card-text>
         </v-card>
         </v-dialog>
@@ -175,8 +176,8 @@ export default Vue.extend({
         })
         .catch((e: Error) => {
             this.isLoading = false
-            console.log(e);
-            Swal.fire({ title: 'Kid create error', html: e });
+            console.log(e.message)
+            Swal.fire({ title: 'Kid create error', html: e.message });
         });
     },
 
