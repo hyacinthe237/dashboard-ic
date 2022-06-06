@@ -1,88 +1,26 @@
 <template>
   <v-app>
-    <AppBarLogged title="Monitoring / Reporting" />
+    <AppBarLogged title="Monitoring / Reporting" v-show="!isLoading" />
 
-    <navigation-app-drawer />
+    <navigation-app-drawer v-show="!isLoading" />
     <v-content>
-      <div class="main-content">
-        <v-list-group active no-action>
+      <div class="main-content" v-show="!isLoading">
+        <v-list-group active no-action v-for="ie in issues" :key="ie.id">
           <template v-slot:activator>
             <v-list-item-content>
-              <v-list-item-title class="font-weight-bold pl-0"
-                >Issue Title 1</v-list-item-title
-              >
+              <v-list-item-title class="font-weight-bold pl-0">{{ ie.title }}</v-list-item-title>
             </v-list-item-content>
           </template>
 
           <v-list-item>
             <v-list-item-content>
-              <v-list-item-title>Content</v-list-item-title>
+              <v-list-item-title>{{ ie.description }}</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
         </v-list-group>
-        <icon-horizontal-divider style="width: 100%" />
-        <v-list-group active no-action>
-          <template v-slot:activator>
-            <v-list-item-content>
-              <v-list-item-title class="font-weight-bold"
-                >Issue Title 2</v-list-item-title
-              >
-            </v-list-item-content>
-          </template>
-
-          <v-list-item>
-            <v-list-item-content>
-              <v-list-item-title>Content</v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-        </v-list-group>
-        <icon-horizontal-divider style="width: 100%" />
-        <v-list-group v-model="activate" active-class="title" no-action>
-          <template v-slot:activator>
-            <v-list-item-content>
-              <v-list-item-title
-                class="font-weight-bold"
-                style="color: #28a7e3 !important"
-                >Issue Title 3</v-list-item-title
-              >
-            </v-list-item-content>
-          </template>
-
-          <v-list-item>
-            <v-list-item-content>
-              <v-list-item-title>
-                <v-card elevation="2" class="px-5 mx-1 mb-1">
-                  <v-card-title>
-                    <v-list-item class="mt-2 mb-2">
-                      <v-img
-                        alt="Infinite connection"
-                        class="shrink"
-                        contain
-                        src="@/assets/img/profile.png"
-                        transition="scale-transition"
-                        max-height="100%"
-                        width="60"
-                      />
-
-                      <v-list-item-content>
-                        <v-list-item-title class="font-weight-bold"
-                          >Nelson Nakimi
-                        </v-list-item-title>
-                      </v-list-item-content>
-                    </v-list-item>
-                  </v-card-title>
-                  <v-card-text>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-                    eu lacus eleifend, luctus purus ullamcorper, dignissim
-                    nulla. Quisque at leo non nulla consectetur semper id in
-                    dui. Curabitur venenatis leo nibh, id viverra est venenatis
-                    eget. Donec sed vehicula quam, rhoncus hendrerit diam.
-                  </v-card-text>
-                </v-card>
-              </v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-        </v-list-group>
+      </div>
+      <div class="text-center mt-20">
+          <v-progress-circular :indeterminate="true" :color="'success'" v-show="isLoading"></v-progress-circular>
       </div>
     </v-content>
   </v-app>
@@ -90,12 +28,38 @@
 
 <script lang="ts">
 import Vue from "vue";
+import Swal from 'sweetalert2';
+import IssueDataService from "@/services/IssueDataService";
+import ResponseData from "@/types/ResponseData";
 
 export default Vue.extend({
   name: "ReportedIssueView",
   data: () => ({
-    activate: true,
+      issues: [],
+      isLoading: false,
+      nextUrl: ''
   }),
+
+  mounted () {
+      this.$nextTick(() => { this.getIssues() })
+  },
+
+  methods: {
+      async getIssues () {
+          this.isLoading = true
+          await IssueDataService.getAll()
+          .then((response: ResponseData) => {
+              this.isLoading = false
+              this.issues = response.data.results
+              this.nextUrl = response.data.next
+          })
+          .catch((e: Error) => {
+              this.isLoading = false
+              console.log(e);
+              Swal.fire({ title: 'Get issues error', html: e });
+          });
+      }
+  }
 });
 </script>
 
