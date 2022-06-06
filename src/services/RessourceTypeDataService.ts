@@ -4,6 +4,9 @@ class RessourceDataService {
     getAll(): Promise<any> {
       return http.get("/ressource-api/ressource-types/");
     }
+    getResources(id: any): Promise<any> {
+      return http.get(`/ressource-api/ressource-types/${id}/ressources`);
+    }
     get(id: any): Promise<any> {
       return http.get(`/ressource-api/ressource-types/${id}/`);
     }
