@@ -18,7 +18,7 @@
                 <v-list-item-content>
                   <v-list-item-title>
                     <span class="title">Number of kids</span> <br />
-                    <span class="number"> 100</span>
+                    <span class="number">{{ reporting.number_of_kids }}</span>
                   </v-list-item-title>
                 </v-list-item-content>
               </v-list-item>
@@ -35,7 +35,7 @@
                 <v-list-item-content class="text-blue">
                   <v-list-item-title>
                     <span class="title">Number of agencies</span> <br />
-                    <span class="number"> 5</span>
+                    <span class="number">{{ nb_agency }}</span>
                   </v-list-item-title>
                 </v-list-item-content>
               </v-list-item>
@@ -52,7 +52,7 @@
                 <v-list-item-content>
                   <v-list-item-title>
                     <span class="title">Number of users</span> <br />
-                    <span class="number"> 200</span>
+                    <span class="number">{{ nb_users }}</span>
                   </v-list-item-title>
                 </v-list-item-content>
               </v-list-item>
@@ -85,7 +85,7 @@
                       <v-list-item-subtitle
                         class="reporting-number"
                       >
-                        50
+                        {{ reporting.number_of_issues_current_month }}
                       </v-list-item-subtitle>
                     </v-list-item-content>
                   </v-list-item>
@@ -103,13 +103,29 @@
                       <v-list-item-subtitle
                         class="reporting-number"
                       >
-                        50
+                        {{ reporting.number_of_issues_last_month }}
                       </v-list-item-subtitle>
                     </v-list-item-content>
                   </v-list-item>
                 </v-col>
                 <icon-vertical-divider />
                 <v-col cols="3" sm="3" md="3">
+                  <v-list-item>
+                    <v-list-item-content class="text-center">
+                      <v-list-item-title
+                        class="mb-2 bold card-reporting-subtitle"
+                      >
+                        Current Year</v-list-item-title
+                      >
+                      <v-list-item-subtitle
+                        class="reporting-number"
+                      >
+                        {{ reporting.number_of_issues_current_year }}
+                      </v-list-item-subtitle>
+                    </v-list-item-content>
+                  </v-list-item>
+                </v-col>
+                <!-- <v-col cols="3" sm="3" md="3">
                   <v-list-item>
                     <v-list-item-content class="text-center">
                       <v-list-item-title
@@ -124,7 +140,7 @@
                       </v-list-item-subtitle>
                     </v-list-item-content>
                   </v-list-item>
-                </v-col>
+                </v-col> -->
               </v-row>
             </v-card>
           </v-col>
@@ -143,16 +159,36 @@ import Vue from "vue";
 import Swal from 'sweetalert2';
 import UserDataService from "@/services/UserDataService";
 import ResponseData from "@/types/ResponseData";
+import _ from 'lodash';
 
 export default Vue.extend({
   name: "ReportingView",
   data: () => ({
       isLoading: false,
-      reporting: {},
+      reporting: {
+        number_of_agencies: null,
+        number_of_issues_current_month: 0,
+        number_of_issues_current_year: 0,
+        number_of_issues_last_month: 0,
+        number_of_kids: 0,
+        number_of_users: null,
+      },
   }),
 
   mounted () {
       this.getUserReporting()
+  },
+
+  computed: {
+      nb_agency () {
+        return !_.isEmpty(this.reporting.number_of_agencies)
+            ? this.reporting.number_of_agencies : 0
+      },
+
+      nb_users () {
+        return !_.isEmpty(this.reporting.number_of_users)
+            ? this.reporting.number_of_users : 0
+      },
   },
 
   methods: {

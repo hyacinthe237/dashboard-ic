@@ -2,7 +2,7 @@ import http from "@/http-common";
 
 class UserDataService {
     getUserReporting(): Promise<any> {
-      return http.get("/user-api/users/reporting/");
+      return http.get("/user-api/users/reporting");
     }
     getAll(): Promise<any> {
       return http.get("/user-api/users/");

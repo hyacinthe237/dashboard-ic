@@ -153,7 +153,14 @@ export default Vue.extend({
     name: "ManageRessourceView",
 
     data: () => ({
-      ressource_type: {},
+      ressource_type: {
+        created_at: '',
+        description: '',
+        id: '',
+        label: '',
+        parent_ressource: '',
+        update_at: '',
+      },
       resources: [],
       ghost: { id: null, name: '', agency:	null, description:	'', ressource_type:	'', age_range: '',  permalink:	'', image: '' } as Resource,
       dialog: false,
@@ -181,7 +188,7 @@ export default Vue.extend({
             await RessourceTypeDataService.getResources(id)
             .then((response: ResponseData) => {
                 this.isLoading = false
-                this.ressource_type = response.data.results.ressource_type
+                this.ressource_type = Object.assign({}, response.data.results.ressource_type)
                 this.resources = response.data.results.ressources
             })
             .catch((e: Error) => {
@@ -189,10 +196,6 @@ export default Vue.extend({
                 console.log(e);
                 Swal.fire({ title: 'Get resource error', html: e });
             });
-        },
-
-        openPermalink (permalink) {
-            window.open(permalink, "_blank")
         },
 
         goBack () {
