@@ -1,8 +1,8 @@
 <template>
     <v-app>
-      <AppBarLogged title="Monitoring / Alert" />
+      <AppBarLogged title="Monitoring / Alert" v-show="!isLoading" />
 
-      <navigation-app-drawer/>
+      <navigation-app-drawer v-show="!isLoading"/>
       <v-content>
         <div class="main-content">
                 <v-card class="rounded-lg">
@@ -12,11 +12,11 @@
                             <v-tabs v-model="tab" active-class="bordered" align-with-title>
                                 <v-tabs-slider color="secondary"></v-tabs-slider>
 
-                                <v-tab> Personnal informations </v-tab>
-                                <v-tab> Parents informations </v-tab>
-                                <v-tab> School informations </v-tab>
-                                <v-tab> Medical informations </v-tab>
-                                <v-tab> Placement history </v-tab>
+                                <v-tab :disabled="isLoading"> Personnal informations </v-tab>
+                                <v-tab :disabled="isLoading"> Parents informations </v-tab>
+                                <v-tab :disabled="isLoading"> School informations </v-tab>
+                                <v-tab :disabled="isLoading"> Medical informations </v-tab>
+                                <v-tab :disabled="isLoading"> Placement history </v-tab>
                             </v-tabs>
                         </template>
                     </v-toolbar>
@@ -143,7 +143,7 @@
                             </v-tab-item>
                             <v-tab-item>
                                 <v-card flat>
-                                    <v-card-text>
+                                    <v-card-text v-show="!isLoading">
                                         <v-list-item>
                                             <v-img
                                                 alt="Infinite connection"
@@ -263,11 +263,12 @@
                                             >Update Parent Infos</v-btn>
                                         </v-card-actions>
                                     </v-card-text>
+                                    <v-progress-circular :indeterminate="true" :color="'success'" v-show="isLoading"></v-progress-circular>
                                 </v-card>
                             </v-tab-item>
                             <v-tab-item>
                                 <v-card flat>
-                                    <v-card-text>
+                                    <v-card-text v-show="!isLoading">
                                       <v-list-item>
                                           <v-img
                                               alt="Infinite connection"
@@ -284,26 +285,6 @@
                                               </v-list-item-title>
                                           </v-list-item-content>
                                       </v-list-item>
-                                      <!-- <v-list-item class="">
-                                          <v-list-item-content>
-                                              <v-list-item-title>
-                                                  <v-row>
-                                                      <v-col cols="2" align="right">
-                                                          <v-subheader class="pt-7">Name :</v-subheader>
-                                                      </v-col>
-                                                      <v-col cols="4">
-                                                            <v-text-field focus v-model="schoolObject.name" name="name"></v-text-field>
-                                                      </v-col>
-                                                      <v-col cols="2" align="right">
-                                                          <v-subheader class="pt-7">Content :</v-subheader>
-                                                      </v-col>
-                                                      <v-col cols="4">
-                                                            <v-text-field focus v-model="schoolObject.content" name="content"></v-text-field>
-                                                      </v-col>
-                                                  </v-row>
-                                              </v-list-item-title>
-                                          </v-list-item-content>
-                                      </v-list-item> -->
                                       <v-list-item class="mt-40">
                                           <v-list-item-content>
                                               <v-list-item-title>
@@ -324,17 +305,6 @@
                                               </v-list-item-title>
                                           </v-list-item-content>
                                       </v-list-item>
-                                      <!-- <v-card-actions>
-                                          <v-spacer></v-spacer>
-                                          <v-btn
-                                              color="success"
-                                              rounded
-                                              class="pa-4"
-                                              width="200"
-                                              :disabled="isLoading"
-                                              @click="createSchoolInfos()"
-                                          >Create School Infos</v-btn>
-                                      </v-card-actions> -->
                                       <v-simple-table >
                                           <template v-slot:default>
                                               <thead>
@@ -359,10 +329,11 @@
                                           </template>
                                       </v-simple-table>
                                     </v-card-text>
+                                    <v-progress-circular :indeterminate="true" :color="'success'" v-show="isLoading"></v-progress-circular>
                                 </v-card>
                             </v-tab-item>
                             <v-tab-item>
-                                <v-card flat>
+                                <v-card flat v-show="!isLoading">
                                     <v-card-text>
                                         <v-list-item>
                                             <v-img
@@ -380,26 +351,6 @@
                                                 </v-list-item-title>
                                             </v-list-item-content>
                                         </v-list-item>
-                                        <!-- <v-list-item class="">
-                                            <v-list-item-content>
-                                                <v-list-item-title>
-                                                    <v-row>
-                                                        <v-col cols="2" align="right">
-                                                            <v-subheader class="pt-7">Name :</v-subheader>
-                                                        </v-col>
-                                                        <v-col cols="4">
-                                                              <v-text-field focus v-model="medicalObject.name" name="name"></v-text-field>
-                                                        </v-col>
-                                                        <v-col cols="2" align="right">
-                                                            <v-subheader class="pt-7">Content :</v-subheader>
-                                                        </v-col>
-                                                        <v-col cols="4">
-                                                              <v-text-field focus v-model="medicalObject.content" name="content"></v-text-field>
-                                                        </v-col>
-                                                    </v-row>
-                                                </v-list-item-title>
-                                            </v-list-item-content>
-                                        </v-list-item> -->
                                         <v-list-item class="mt-40">
                                             <v-list-item-content>
                                                 <v-list-item-title>
@@ -422,17 +373,6 @@
                                                 </v-list-item-title>
                                             </v-list-item-content>
                                         </v-list-item>
-                                        <!-- <v-card-actions>
-                                            <v-spacer></v-spacer>
-                                            <v-btn
-                                                color="success"
-                                                rounded
-                                                class="pa-4"
-                                                width="200"
-                                                :disabled="isLoading"
-                                                @click="createMedicalInfos()"
-                                            >Create Medical Infos</v-btn>
-                                        </v-card-actions> -->
                                     </v-card-text>
                                     <v-simple-table >
                                         <template v-slot:default>
@@ -458,9 +398,10 @@
                                         </template>
                                     </v-simple-table>
                                 </v-card>
+                                <v-progress-circular :indeterminate="true" :color="'success'" v-show="isLoading"></v-progress-circular>
                             </v-tab-item>
                             <v-tab-item>
-                                <v-card flat>
+                                <v-card flat v-show="!isLoading">
                                     <v-card-text>
                                         <v-list-item>
                                             <v-img
@@ -478,26 +419,6 @@
                                                 </v-list-item-title>
                                             </v-list-item-content>
                                         </v-list-item>
-                                        <!-- <v-list-item class="">
-                                            <v-list-item-content>
-                                                <v-list-item-title>
-                                                    <v-row>
-                                                        <v-col cols="2" align="right">
-                                                            <v-subheader class="pt-7">Name :</v-subheader>
-                                                        </v-col>
-                                                        <v-col cols="4">
-                                                              <v-text-field focus v-model="historyObject.name" name="name"></v-text-field>
-                                                        </v-col>
-                                                        <v-col cols="2" align="right">
-                                                            <v-subheader class="pt-7">Content :</v-subheader>
-                                                        </v-col>
-                                                        <v-col cols="4">
-                                                              <v-text-field focus v-model="historyObject.content" name="content"></v-text-field>
-                                                        </v-col>
-                                                    </v-row>
-                                                </v-list-item-title>
-                                            </v-list-item-content>
-                                        </v-list-item> -->
                                         <v-list-item class="mt-40">
                                             <v-list-item-content>
                                                 <v-list-item-title>
@@ -519,17 +440,6 @@
                                                 </v-list-item-title>
                                             </v-list-item-content>
                                         </v-list-item>
-                                        <!-- <v-card-actions>
-                                            <v-spacer></v-spacer>
-                                            <v-btn
-                                                color="success"
-                                                rounded
-                                                class="pa-4"
-                                                width="200"
-                                                :disabled="isLoading"
-                                                @click="createHistoryInfos()"
-                                            >Create History Infos</v-btn>
-                                        </v-card-actions> -->
                                     </v-card-text>
                                     <v-simple-table >
                                         <template v-slot:default>
@@ -555,11 +465,11 @@
                                         </template>
                                     </v-simple-table>
                                 </v-card>
+                                <v-progress-circular :indeterminate="true" :color="'success'" v-show="isLoading"></v-progress-circular>
                             </v-tab-item>
                         </v-tabs-items>
                     </v-card-text>
                 </v-card>
-                <v-progress-circular :indeterminate="true" :color="'success'" v-show="isLoading"></v-progress-circular>
         </div>
       </v-content>
     </v-app>
@@ -569,7 +479,7 @@
 import Vue from "vue";
 import Swal from 'sweetalert2';
 import ResponseData from "@/types/ResponseData";
-import _ from 'lodash';
+// import _ from 'lodash';
 // kids http & default json data
 import KidDataService from "@/services/KidDataService";
 import Kid from "@/types/Kid";
@@ -621,11 +531,10 @@ export default Vue.extend({
       this.getSchoolInfos()
       this.getMedicalInfos()
       this.getHistoryInfos()
-      console.log('router', this.$router)
   },
 
   methods: {
-    async onFarentFileChange (file: any) {
+    async onParentFileChange (file: any) {
         if(!_.isEmpty(file)) {
           this.isLoading = true
           let id = this.$route.params.id
@@ -647,7 +556,7 @@ export default Vue.extend({
     },
 
     async onSchoolFileChange (file: any) {
-      if(!_.isEmpty(file)) {
+      if(file != null) {
           this.isLoading = true
           let id = this.$route.params.id
           let data = new FormData()
@@ -668,7 +577,7 @@ export default Vue.extend({
     },
 
     async onHistoryFileChange (file: any) {
-        if (!_.isEmpty(file)) {
+        if (file != null) {
             this.isLoading = true
             let id = this.$route.params.id
             let data = new FormData()
@@ -690,7 +599,7 @@ export default Vue.extend({
     },
 
     async onMedicalFileChange (file: any) {
-        if (!_.isEmpty(file)) {
+        if (file != null) {
             this.isLoading = true
             let id = this.$route.params.id
             let data = new FormData()
@@ -715,7 +624,6 @@ export default Vue.extend({
         this.isLoading = true
 
         let id = this.$route.params.id
-        // let id = this.$router.history.current.params.id
         await ParentDataService.getParentInfos(id)
         .then((response: ResponseData) => {
             this.isLoading = false
@@ -774,7 +682,6 @@ export default Vue.extend({
     async getSchoolInfos () {
         this.isLoading = true
         let id = this.$route.params.id
-        // let id = this.$router.history.current.params.id
         await SchoolDataService.getSchoolInfos(id)
         .then((response: ResponseData) => {
             this.isLoading = false
@@ -786,36 +693,11 @@ export default Vue.extend({
             Swal.fire({ title: 'Get Kid school infos error', html: e });
         });
     },
-    // async createSchoolInfos () {
-    //     this.isLoading = true
-    //     let userId: any = localStorage.getItem('userId')
-    //     let user_id = parseInt(userId, 10)
-    //     let id = this.$router.history.current.params.id
-    //     let data = new FormData()
-    //     data.append('kid', user_id)
-    //     data.append('image', this.selectedFile)
-    //     data.append('name', this.schoolObject.name)
-    //     data.append('content', this.schoolObject.content)
-    //     console.log('data', data)
-    //     await SchoolDataService.create(id, data)
-    //     .then((response: ResponseData) => {
-    //         this.isLoading = false
-    //         console.log('School doc uploaded', response.data)
-    //         Swal.fire({ title: 'School doc uploaded successfull', html: 'Your school document have been successfully uploaded.' });
-    //
-    //     })
-    //     .catch((e: Error) => {
-    //         this.isLoading = false
-    //         console.log(e);
-    //         Swal.fire({ title: 'Upload school document error', html: e });
-    //     });
-    // },
 
     async getMedicalInfos () {
         this.isLoading = true
 
         let id = this.$route.params.id
-        // let id = this.$router.history.current.params.id
         await MedicalDataService.getMedicalInfos(id)
         .then((response: ResponseData) => {
             this.isLoading = false
@@ -827,35 +709,10 @@ export default Vue.extend({
             Swal.fire({ title: 'Get Kid medical infos error', html: e });
         });
     },
-    // async createMedicalInfos () {
-    //     this.isLoading = true
-    //     let userId: any = localStorage.getItem('userId')
-    //     let user_id = parseInt(userId, 10)
-    //     let id = this.$router.history.current.params.id
-    //     let data = new FormData()
-    //     data.append('kid', user_id)
-    //     data.append('image', this.selectedFile)
-    //     data.append('name', this.medicalObject.name)
-    //     data.append('content', this.medicalObject.content)
-    //
-    //     await MedicalDataService.create(id, data)
-    //     .then((response: ResponseData) => {
-    //         this.isLoading = false
-    //         console.log('Medical doc uploaded', response.data)
-    //         Swal.fire({ title: 'Medical doc uploaded successfull', html: 'Your medical document have been successfully uploaded.' });
-    //         this.getMedicalInfos()
-    //     })
-    //     .catch((e: Error) => {
-    //         this.isLoading = false
-    //         console.log(e);
-    //         Swal.fire({ title: 'Upload medical document error', html: e });
-    //     });
-    // },
 
     async getHistoryInfos () {
         this.isLoading = true
 
-        // let id = this.$router.history.current.params.id
         let id = this.$route.params.id
         await HistoryDataService.getPlacementInfos(id)
         .then((response: ResponseData) => {
@@ -868,30 +725,6 @@ export default Vue.extend({
             Swal.fire({ title: 'Get Kid history infos error', html: e });
         });
     },
-    // async createHistoryInfos () {
-    //     this.isLoading = true
-    //     let userId: any = localStorage.getItem('userId')
-    //     let user_id = parseInt(userId, 10)
-    //     let id = this.$router.history.current.params.id
-    //     let data = new FormData()
-    //     data.append('kid', user_id)
-    //     data.append('image', this.selectedFile)
-    //     data.append('name', this.historyObject.name)
-    //     data.append('content', this.historyObject.content)
-    //
-    //     await HistoryDataService.create(id, data)
-    //     .then((response: ResponseData) => {
-    //         this.isLoading = false
-    //         console.log('History doc uploaded', response.data)
-    //         Swal.fire({ title: 'History doc uploaded successfull', html: 'Your history document have been successfully uploaded.' });
-    //         this.getHistoryInfos()
-    //     })
-    //     .catch((e: Error) => {
-    //         this.isLoading = false
-    //         console.log(e);
-    //         Swal.fire({ title: 'Upload history document error', html: e });
-    //     });
-    // },
 
     resetGhost () {
         this.ghost = { id: null, first_name: '', last_name: '', email: '', date_of_arrival: new Date(), birthdate: new Date(), sex: '', age: null, phone: '', user_id: null }
