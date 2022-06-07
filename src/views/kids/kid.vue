@@ -324,8 +324,12 @@
                                                       <td>{{ item.content }}</td>
                                                       <td>{{ item.created_at }}</td>
                                                       <td>
-                                                        <a :href="item.image" target="_blank" class="pointer">More...</a>
-                                                        <a @click="confirmDeleteSchoolFile(item.id)" target="_blank" class="pointer red">Delete</a>
+                                                        <a :href="item.image" target="_blank" class="pointer mr-10">More...</a>
+                                                        <v-btn
+                                                            color="red" rounded
+                                                            class="red pointer" width="200"
+                                                            @click="confirmDeleteSchoolFile(item.id)"
+                                                        >Delete</v-btn>
                                                       </td>
                                                   </tr>
                                               </tbody>
@@ -396,8 +400,12 @@
                                                     <td>{{ item.content }}</td>
                                                     <td>{{ item.created_at }}</td>
                                                     <td>
-                                                      <a :href="item.image" target="_blank" class="pointer">More...</a>
-                                                      <a @click="confirmDeleteMedicalFile(item.id)" target="_blank" class="pointer red">Delete</a>
+                                                      <a :href="item.image" target="_blank" class="pointer mr-10">More...</a>
+                                                      <v-btn
+                                                          color="red" rounded
+                                                          class="red pointer" width="200"
+                                                          @click="confirmDeleteMedicalFile(item.id)"
+                                                      >Delete</v-btn>
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -466,8 +474,12 @@
                                                     <td>{{ item.content }}</td>
                                                     <td>{{ item.created_at }}</td>
                                                     <td>
-                                                      <a :href="item.image" target="_blank" class="pointer">More...</a>
-                                                      <a @click="confirmDeleteHistoryFile(item.id)" target="_blank" class="pointer red">Delete</a>
+                                                      <a :href="item.image" target="_blank" class="pointer mr-10">More...</a>
+                                                      <v-btn
+                                                          color="red" rounded
+                                                          class="red pointer" width="200"
+                                                          @click="confirmDeleteHistoryFile(item.id)"
+                                                      >Delete</v-btn>
                                                     </td>
                                                 </tr>
                                             </tbody>
