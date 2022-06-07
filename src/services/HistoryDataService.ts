@@ -7,6 +7,9 @@ class HistoryDataService {
     uploadDocPlacement(id: any, data: any): Promise<any> {
       return http.post(`/user-api/kids/${id}/upload-doc-placement-history`, data);
     }
+    delete(id: any): Promise<any> {
+      return http.delete(`/user-api/placement-histories/${id}/`);
+    }
 }
 
 export default new HistoryDataService();

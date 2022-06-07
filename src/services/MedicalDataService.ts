@@ -10,6 +10,9 @@ class MedicalDataService {
     uploadDocMedical(id: any, data: any): Promise<any> {
       return http.post(`/user-api/kids/${id}/upload-doc-medical-info`, data);
     }
+    delete(id: any): Promise<any> {
+      return http.delete(`/user-api/medical-infos/${id}/`);
+    }
 }
 
 export default new MedicalDataService();

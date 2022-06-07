@@ -323,7 +323,10 @@
                                                       <td>{{ item.name }}</td>
                                                       <td>{{ item.content }}</td>
                                                       <td>{{ item.created_at }}</td>
-                                                      <td> <a :href="item.image" target="_blank" class="pointer">More...</a> </td>
+                                                      <td>
+                                                        <a :href="item.image" target="_blank" class="pointer">More...</a>
+                                                        <a @click="confirmDeleteSchoolFile(item.id)" target="_blank" class="pointer red">Delete</a>
+                                                      </td>
                                                   </tr>
                                               </tbody>
                                           </template>
@@ -392,7 +395,10 @@
                                                     <td>{{ item.name }}</td>
                                                     <td>{{ item.content }}</td>
                                                     <td>{{ item.created_at }}</td>
-                                                    <td> <a :href="item.image" target="_blank" class="pointer">More...</a> </td>
+                                                    <td>
+                                                      <a :href="item.image" target="_blank" class="pointer">More...</a>
+                                                      <a @click="confirmDeleteMedicalFile(item.id)" target="_blank" class="pointer red">Delete</a>
+                                                    </td>
                                                 </tr>
                                             </tbody>
                                         </template>
@@ -459,7 +465,10 @@
                                                     <td>{{ item.name }}</td>
                                                     <td>{{ item.content }}</td>
                                                     <td>{{ item.created_at }}</td>
-                                                    <td> <a :href="item.image" target="_blank" class="pointer">More...</a> </td>
+                                                    <td>
+                                                      <a :href="item.image" target="_blank" class="pointer">More...</a>
+                                                      <a @click="confirmDeleteHistoryFile(item.id)" target="_blank" class="pointer red">Delete</a>
+                                                    </td>
                                                 </tr>
                                             </tbody>
                                         </template>
@@ -779,6 +788,84 @@ export default Vue.extend({
           console.log(e);
           Swal.fire({title: 'Kid update error', html: e });
       });
+    },
+
+    confirmDeleteHistoryFile (id: any) {
+        Swal.fire({
+            title: 'Are you sure ?',
+            html: "Are you sure you want to delete the selected file ?",
+        }).then((result) => {
+            if (result.value) {
+                this.deleteHistoryFile(id)
+            }
+        })
+    },
+
+    async deleteHistoryFile (id: any) {
+        this.isLoading = true
+        await HistoryDataService.delete(id)
+        .then((response: ResponseData) => {
+            this.isLoading = false
+            Swal.fire({ title: 'History file delete successfull', html: 'Your history file have been successfully deleted.' })
+            this.getHistoryInfos()
+        })
+        .catch((e: Error) => {
+            this.isLoading = false
+            console.log(e);
+            Swal.fire({ title: 'History file delete error', html: e });
+        });
+    },
+
+    confirmDeleteSchoolFile (id: any) {
+        Swal.fire({
+            title: 'Are you sure ?',
+            html: "Are you sure you want to delete the selected file ?",
+        }).then((result) => {
+            if (result.value) {
+                this.deleteSchoolFile(id)
+            }
+        })
+    },
+
+    async deleteSchoolFile (id: any) {
+        this.isLoading = true
+        await SchoolDataService.delete(id)
+        .then((response: ResponseData) => {
+            this.isLoading = false
+            Swal.fire({ title: 'School file delete successfull', html: 'Your school file have been successfully deleted.' })
+            this.getSchoolInfos()
+        })
+        .catch((e: Error) => {
+            this.isLoading = false
+            console.log(e);
+            Swal.fire({ title: 'School file delete error', html: e });
+        });
+    },
+
+    confirmDeleteMedicalFile (id: any) {
+        Swal.fire({
+            title: 'Are you sure ?',
+            html: "Are you sure you want to delete the selected file ?",
+        }).then((result) => {
+            if (result.value) {
+                this.deleteMedicalFile(id)
+            }
+        })
+    },
+
+    async deleteMedicalFile (id: any) {
+        this.isLoading = true
+        await MedicalDataService.delete(id)
+        .then((response: ResponseData) => {
+            this.isLoading = false
+            Swal.fire({ title: 'Medical file delete successfull', html: 'Your medical file have been successfully deleted.' })
+            this.getMedicalInfos()
+        })
+        .catch((e: Error) => {
+            this.isLoading = false
+            console.log(e);
+            Swal.fire({ title: 'Medical file delete error', html: e });
+        });
     },
   }
 });
