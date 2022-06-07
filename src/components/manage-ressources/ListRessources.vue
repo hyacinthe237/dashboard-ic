@@ -13,6 +13,7 @@
           width="200"
           v-bind="attrs"
           v-on="on"
+          :disabled="isLoading"
         >
           Create resource
         </v-btn>
@@ -26,7 +27,7 @@
         </v-toolbar>
         <v-card-text>
           <v-container>
-            <v-form style="width: 300px; margin: auto" @submit.prevent>
+            <v-form style="width: 300px; margin: auto" @submit.prevent v-show="!isLoading">
               <h2 class="mb-10 text-center">Create new resource</h2>
               <v-select
                   v-model="ghost.ressource_type"
@@ -84,6 +85,7 @@
                 Create
               </v-btn>
             </v-form>
+            <v-progress-circular :indeterminate="true" :color="'success'" v-show="isLoading"></v-progress-circular>
           </v-container>
         </v-card-text>
       </v-card>
