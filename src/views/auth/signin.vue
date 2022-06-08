@@ -55,13 +55,13 @@
 </template>
 
 <script lang="ts">
-import env from '../../env';
+import env from '../../../env';
 import Vue from "vue";
 import Swal from 'sweetalert2';
 import LoginDataService from "@/services/LoginDataService";
 import Login from "@/types/Login";
 import ResponseData from "@/types/ResponseData";
-import http from "../http-common";
+import http from "@/http-common";
 
 export default Vue.extend({
   name: "Login",

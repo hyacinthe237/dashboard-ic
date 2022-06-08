@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter, { RouteConfig } from 'vue-router'
 import Guard from '../middleware/middleware'
-import Login from '../views/Login.vue'
+import Login from '../views/auth/signin.vue'
 import HomeView from '../views/HomeView.vue'
 import ManageKidView from '../views/kids/kids.vue'
 import KidView from '../views/kids/kid.vue'
