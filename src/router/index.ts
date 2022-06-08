@@ -9,7 +9,7 @@ import ManageRessourcesView from '../views/resources/resources.vue'
 import ManageRessourceView from '../views/resources/resource.vue'
 import AlertView from  '../views/alerts/alerts.vue'
 import TicketView from  '../views/TicketView.vue'
-import ReportingView from  '../views/ReportingView.vue'
+import ReportingView from  '../views/reporting/reporting.vue'
 import ReportedIssueView from  '../views/ReportedIssueView.vue'
 
 Vue.use(VueRouter)
