@@ -21,6 +21,12 @@
                                 rounded class="pa-6"
                                 width="100%" @click="send()"
                             > Send </v-btn>
+
+                            <v-row align="text-center mb-7 mt-2 ml-2">
+                                <span class="ml-5 pt-2" style="font-size: 13px">You have an account ?
+                                <a @click="signin()" class="pointer" style="color: #15b715; text-decoration: none">Connect here</a>
+                                </span>
+                            </v-row>
                         </v-form>
                     </div>
                 </v-col>
@@ -55,6 +61,7 @@ export default Vue.extend({
   }),
 
   methods: {
+    signin () { this.$router.push({ name: 'signin' }) },
     async send () {
         this.isLoading = true
         let data = { email: this.ghost.email };
