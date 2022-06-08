@@ -67,7 +67,7 @@ export default Vue.extend({
 .main-content {
   height: 100%;
   width: 100%;
-  background: url("../assets/img/fam2.png") no-repeat center center;
+  background: url("../../assets/img/fam2.png") no-repeat center center;
   background-size: contain;
   position: relative;
   width: 100%;
