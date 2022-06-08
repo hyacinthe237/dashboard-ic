@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter, { RouteConfig } from 'vue-router'
 import Guard from '../middleware/middleware'
 import Login from '../views/auth/signin.vue'
+import PasswordForgot from '../views/auth/forgot.vue'
 import HomeView from '../views/home/home.vue'
 import ManageKidView from '../views/kids/kids.vue'
 import KidView from '../views/kids/kid.vue'
@@ -16,6 +17,7 @@ Vue.use(VueRouter)
 
 const routes: Array<RouteConfig> = [
   { path: '/', name: 'login', component: Login },
+  { path: '/forgot', name: 'forgot', component: PasswordForgot },
   { path: '/home', name: 'home', component: HomeView, beforeEnter: Guard.auth },
   { path: '/manage-kids', name: 'manage-kids', component: ManageKidView, beforeEnter: Guard.auth },
   { path: '/manage-kids/:id/profile', name: 'kid-profile', component: KidView, beforeEnter: Guard.auth },

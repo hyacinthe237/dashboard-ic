@@ -31,7 +31,7 @@
                                     label="remember me"
                                 ></v-checkbox>
                                 <span class="ml-5 pt-2" style="font-size: 13px">Forgot password ?
-                                <a href="#" style="color: #15b715; text-decoration: none">Request new</a>
+                                <a @click="forgot()" class="pointer" style="color: #15b715; text-decoration: none">Request new</a>
                                 </span>
                             </v-row>
 
@@ -76,6 +76,7 @@ export default Vue.extend({
   }),
 
   methods: {
+    forgot () { this.$router.push({ name: 'forgot'}) },
     async signIn () {
         this.isLoading = true
         let data = {
