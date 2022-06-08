@@ -28,12 +28,12 @@
                       <v-toolbar color="white" elevation="0">
                         <v-spacer></v-spacer>
                         <v-toolbar-items class="pa-4">
-                          <icon-close @click.native="dialog = false" class="pointer" />
+                          <icon-close @click.native="dialog = false" class="pointer" :disabled="isLoading" />
                         </v-toolbar-items>
                       </v-toolbar>
                       <v-card-text>
                         <v-container>
-                          <v-form style="width: 300px; margin: auto" @submit.prevent>
+                          <v-form style="width: 300px; margin: auto" @submit.prevent v-show="!isLoading">
                             <h2 class="mb-10 text-center">Create new resource</h2>
                             <v-select
                                 name="age_range"
@@ -73,12 +73,13 @@
                               Create
                             </v-btn>
                           </v-form>
+                          <v-progress-circular :indeterminate="true" :color="'success'" v-show="isLoading"></v-progress-circular>
                         </v-container>
                       </v-card-text>
                     </v-card>
                   </v-dialog>
               </v-col>
-              <v-col cols="6">
+              <v-col cols="6" v-show="!isLoading">
                   <template>
                     <v-btn
                       color="blue"
@@ -228,7 +229,7 @@ export default Vue.extend({
             })
             .catch((e: Error) => {
                 this.isLoading = false
-                console.log(e);
+                console.log(e)
                 Swal.fire({ title: 'Resource create error', html: e });
             });
         },
