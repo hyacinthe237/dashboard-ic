@@ -18,9 +18,9 @@
 
       <v-list-item-content>
         <v-list-item-title>{{ agency.name }}</v-list-item-title>
-        <v-list-item>Email: {{ agency.admin_email }}</v-list-item>
+        <!-- <v-list-item>Email: {{ agency.admin_email }}</v-list-item>
         <v-list-item>Address: {{ agency.address }}</v-list-item>
-        <v-list-item>Description: {{ agency.description }}</v-list-item>
+        <v-list-item>Description: {{ agency.description }}</v-list-item> -->
       </v-list-item-content>
     </v-list-item>
   </v-card>
