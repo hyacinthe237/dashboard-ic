@@ -8,7 +8,7 @@ import KidView from '../views/kids/kid.vue'
 import ManageRessourcesView from '../views/resources/resources.vue'
 import ManageRessourceView from '../views/resources/resource.vue'
 import AlertView from  '../views/alerts/alerts.vue'
-import TicketView from  '../views/TicketView.vue'
+import TicketView from  '../views/tickets/tickets.vue'
 import ReportingView from  '../views/reporting/reporting.vue'
 import ReportedIssueView from  '../views/issues/issues.vue'
 
