@@ -61,7 +61,7 @@ export default Vue.extend({
   }),
 
   methods: {
-    signin () { this.$router.push({ name: 'signin' }) },
+    signin () { this.$router.push({ name: 'login' }) },
     async send () {
         this.isLoading = true
         let data = { email: this.ghost.email };
