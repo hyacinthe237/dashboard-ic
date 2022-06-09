@@ -1,8 +1,8 @@
 <template>
   <v-app>
-    <AppBarLogged title="Monitoring / Manage kids" />
+    <AppBarLogged title="Monitoring / Manage kids" v-show="!isLoading" />
 
-    <navigation-app-drawer/>
+    <navigation-app-drawer v-show="!isLoading"/>
     <v-content>
         <list-kids :kids="kids" v-show="!isLoading" @addedKid="getKids" />
         <v-progress-circular :indeterminate="true" :color="'success'" v-show="isLoading"></v-progress-circular>
