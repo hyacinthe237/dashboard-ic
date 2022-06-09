@@ -568,10 +568,10 @@ export default Vue.extend({
               Swal.fire({ title: 'Parent doc uploaded successfull', html: 'Your Parent document have been successfully uploaded.' });
               this.getParentInfos()
           })
-          .catch((e: Error) => {
+          .catch((e: any) => {
               this.isLoading = false
-              console.log(e);
-              Swal.fire({ title: 'Upload Parent document error', html: e });
+              const message = e.response.data.message || e.response.data.msg || e.response.data
+              Swal.fire({ title: 'Upload Parent document error', html: message });
           });
         }
     },
@@ -589,10 +589,10 @@ export default Vue.extend({
               Swal.fire({ title: 'School doc uploaded successfull', html: 'Your school document have been successfully uploaded.' });
               this.getSchoolInfos()
           })
-          .catch((e: Error) => {
+          .catch((e: any) => {
               this.isLoading = false
-              console.log(e);
-              Swal.fire({ title: 'Upload school document error', html: e });
+              const message = e.response.data.message || e.response.data.msg || e.response.data
+              Swal.fire({ title: 'Upload school document error', html: message });
           });
       }
     },
@@ -611,10 +611,10 @@ export default Vue.extend({
                 Swal.fire({ title: 'History doc uploaded successfull', html: 'Your history document have been successfully uploaded.' });
                 this.getHistoryInfos()
             })
-            .catch((e: Error) => {
+            .catch((e: any) => {
                 this.isLoading = false
-                console.log(e);
-                Swal.fire({ title: 'Upload history document error', html: e });
+                const message = e.response.data.message || e.response.data.msg || e.response.data
+                Swal.fire({ title: 'Upload history document error', html: message });
             });
         }
     },
@@ -633,10 +633,10 @@ export default Vue.extend({
                 Swal.fire({ title: 'Medical doc uploaded successfull', html: 'Your medical document have been successfully uploaded.' });
                 this.getMedicalInfos()
             })
-            .catch((e: Error) => {
+            .catch((e: any) => {
                 this.isLoading = false
-                console.log(e);
-                Swal.fire({ title: 'Upload medical document error', html: e });
+                const message = e.response.data.message || e.response.data.msg || e.response.data
+                Swal.fire({ title: 'Upload medical document error', html: message });
             });
         }
     },
@@ -651,10 +651,10 @@ export default Vue.extend({
             if (!_.isEmpty(response.data)) this.parentIsNotNull = false
             this.parentObject = Object.assign({}, response.data)
         })
-        .catch((e: Error) => {
+        .catch((e: any) => {
             this.isLoading = false
-            console.log(e);
-            Swal.fire({ title: 'Get Kid parent infos error', html: e });
+            const message = e.response.data.message || e.response.data.msg || e.response.data
+            Swal.fire({ title: 'Get Kid parent infos error', html: message });
         });
     },
     async createParentInfos () {
@@ -672,10 +672,10 @@ export default Vue.extend({
           this.getParentInfos()
           Swal.fire({ title: 'Parent infos created successfull', html: 'Your parent infos details have been successfully created.' });
       })
-      .catch((e: Error) => {
+      .catch((e: any) => {
           this.isLoading = false
-          console.log(e);
-          Swal.fire({title: 'Kid update error', html: e });
+          const message = e.response.data.message || e.response.data.msg || e.response.data
+          Swal.fire({title: 'Kid update error', html: message });
       });
     },
     async updateParentInfos () {
@@ -693,10 +693,10 @@ export default Vue.extend({
           this.getParentInfos()
           Swal.fire({ title: 'Parent infos created successfull', html: 'Your parent infos details have been successfully created.' });
       })
-      .catch((e: Error) => {
+      .catch((e: any) => {
           this.isLoading = false
-          console.log(e);
-          Swal.fire({title: 'Kid update error', html: e });
+          const message = e.response.data.message || e.response.data.msg || e.response.data
+          Swal.fire({title: 'Kid update error', html: message });
       });
     },
 
@@ -708,10 +708,10 @@ export default Vue.extend({
             this.isLoading = false
             this.school_files = response.data
         })
-        .catch((e: Error) => {
+        .catch((e: any) => {
             this.isLoading = false
-            console.log(e);
-            Swal.fire({ title: 'Get Kid school infos error', html: e });
+            const message = e.response.data.message || e.response.data.msg || e.response.data
+            Swal.fire({ title: 'Get Kid school infos error', html: message });
         });
     },
 
@@ -724,10 +724,10 @@ export default Vue.extend({
             this.isLoading = false
             this.medical_files = response.data
         })
-        .catch((e: Error) => {
+        .catch((e: any) => {
             this.isLoading = false
-            console.log(e);
-            Swal.fire({ title: 'Get Kid medical infos error', html: e });
+            const message = e.response.data.message || e.response.data.msg || e.response.data
+            Swal.fire({ title: 'Get Kid medical infos error', html: message });
         });
     },
 
@@ -740,10 +740,10 @@ export default Vue.extend({
             this.isLoading = false
             this.history_files = response.data
         })
-        .catch((e: Error) => {
+        .catch((e: any) => {
             this.isLoading = false
-            console.log(e);
-            Swal.fire({ title: 'Get Kid history infos error', html: e });
+            const message = e.response.data.message || e.response.data.msg || e.response.data
+            Swal.fire({ title: 'Get Kid history infos error', html: message });
         });
     },
 
@@ -772,10 +772,10 @@ export default Vue.extend({
             this.kid = Object.assign({}, response.data)
             localStorage.setItem('userId', response.data.user_id)
         })
-        .catch((e: Error) => {
+        .catch((e: any) => {
             this.isLoading = false
-            console.log(e);
-            Swal.fire({ title: 'Get Kid infos error', html: e });
+            const message = e.response.data.message || e.response.data.msg || e.response.data
+            Swal.fire({ title: 'Get Kid infos error', html: message });
         });
     },
     async updateKid () {
@@ -795,10 +795,10 @@ export default Vue.extend({
           Swal.fire({ title: 'Kid update successfull', html: 'Your kid details have been successfully updated.' });
           this.$emit('updatedKid')
       })
-      .catch((e: Error) => {
+      .catch((e: any) => {
           this.isLoading = false
-          console.log(e);
-          Swal.fire({title: 'Kid update error', html: e });
+          const message = e.response.data.message || e.response.data.msg || e.response.data
+          Swal.fire({title: 'Kid update error', html: message });
       });
     },
 
@@ -821,10 +821,10 @@ export default Vue.extend({
             Swal.fire({ title: 'History file delete successfull', html: 'Your history file have been successfully deleted.' })
             this.getHistoryInfos()
         })
-        .catch((e: Error) => {
+        .catch((e: any) => {
             this.isLoading = false
-            console.log(e);
-            Swal.fire({ title: 'History file delete error', html: e });
+            const message = e.response.data.message || e.response.data.msg || e.response.data
+            Swal.fire({ title: 'History file delete error', html: message });
         });
     },
 
@@ -847,10 +847,10 @@ export default Vue.extend({
             Swal.fire({ title: 'School file delete successfull', html: 'Your school file have been successfully deleted.' })
             this.getSchoolInfos()
         })
-        .catch((e: Error) => {
+        .catch((e: any) => {
             this.isLoading = false
-            console.log(e);
-            Swal.fire({ title: 'School file delete error', html: e });
+            const message = e.response.data.message || e.response.data.msg || e.response.data
+            Swal.fire({ title: 'School file delete error', html: message });
         });
     },
 
@@ -873,10 +873,10 @@ export default Vue.extend({
             Swal.fire({ title: 'Medical file delete successfull', html: 'Your medical file have been successfully deleted.' })
             this.getMedicalInfos()
         })
-        .catch((e: Error) => {
+        .catch((e: any) => {
             this.isLoading = false
-            console.log(e);
-            Swal.fire({ title: 'Medical file delete error', html: e });
+            const message = e.response.data.message || e.response.data.msg || e.response.data
+            Swal.fire({ title: 'Medical file delete error', html: message });
         });
     },
   }

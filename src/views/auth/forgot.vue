@@ -71,10 +71,11 @@ export default Vue.extend({
             this.submitted = true;
             Swal.fire({ title: 'Password forgot response', html: 'You receive an email, check it please' });
         })
-        .catch((e: Error) => {
+        .catch((e: any) => {
             this.isLoading = false
-            console.log(e);
-            Swal.fire({ title: 'Login error', html: e });
+            console.log(e)
+            const message = e.response.data.message || e.response.data.msg || e.response.data
+            Swal.fire({ title: 'Password forgot error', html: message })
         });
     }
   }

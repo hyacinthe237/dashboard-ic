@@ -39,10 +39,11 @@ export default Vue.extend({
               this.isLoading = false
               this.agencies = response.data.results
           })
-          .catch((e: Error) => {
+          .catch((e: any) => {
               this.isLoading = false
               console.log(e);
-              Swal.fire({ title: 'Get Agencies error', html: e });
+              const message = e.response.data.message || e.response.data.msg || e.response.data
+              Swal.fire({ title: 'Get Agencies error', html: message });
           });
       }
   }

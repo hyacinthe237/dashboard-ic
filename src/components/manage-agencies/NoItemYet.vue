@@ -137,10 +137,10 @@ export default Vue.extend({
             this.resetGhost()
             Swal.fire({ title: 'user agency create successfull', html: 'Your user details have been successfully created.' });
         })
-        .catch((e: Error) => {
+        .catch((e: any) => {
             this.isLoading = false
-            console.log(e);
-            Swal.fire({ title: 'user agency create error', html: e });
+            const message = e.response.data.message || e.response.data.msg || e.response.data
+            Swal.fire({ title: 'user agency create error', html: message });
         });
     },
 
@@ -163,10 +163,10 @@ export default Vue.extend({
             Swal.fire({ title: 'agency create successfull', html: 'Your agency details have been successfully created.' });
             this.$emit('addedAgency')
         })
-        .catch((e: Error) => {
+        .catch((e: any) => {
             this.isLoading = false
-            console.log(e);
-            Swal.fire({ title: 'user agency create error', html: e });
+            const message = e.response.data.message || e.response.data.msg || e.response.data
+            Swal.fire({ title: 'user agency create error', html: message });
         });
     },
   }

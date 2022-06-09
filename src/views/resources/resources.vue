@@ -44,10 +44,10 @@ export default Vue.extend({
                 this.isLoading = false
                 this.ressource_types = response.data.results
             })
-            .catch((e: Error) => {
+            .catch((e: any) => {
                 this.isLoading = false
-                console.log(e);
-                Swal.fire({ title: 'Get resource type error', html: e });
+                const message = e.response.data.message || e.response.data.msg || e.response.data
+                Swal.fire({ title: 'Get resource type error', html: message });
             });
         },
         async getResources () {
@@ -57,10 +57,10 @@ export default Vue.extend({
                 this.isLoading = false
                 this.resources = response.data.results
             })
-            .catch((e: Error) => {
+            .catch((e: any) => {
                 this.isLoading = false
-                console.log(e);
-                Swal.fire({ title: 'Get resource error', html: e });
+                const message = e.response.data.message || e.response.data.msg || e.response.data
+                Swal.fire({ title: 'Get resource error', html: message });
             });
         },
     }

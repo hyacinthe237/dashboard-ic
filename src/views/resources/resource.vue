@@ -192,10 +192,10 @@ export default Vue.extend({
                 this.ressource_type = Object.assign({}, response.data.results.ressource_type)
                 this.resources = response.data.results.ressources
             })
-            .catch((e: Error) => {
+            .catch((e: any) => {
                 this.isLoading = false
-                console.log(e);
-                Swal.fire({ title: 'Get resource error', html: e });
+                const message = e.response.data.message || e.response.data.msg || e.response.data
+                Swal.fire({ title: 'Get resource error', html: message });
             });
         },
 
@@ -227,10 +227,10 @@ export default Vue.extend({
                 Swal.fire({ title: 'Resource create successfull', html: 'Your resource details have been successfully created.' });
                 this.$emit('addedResource')
             })
-            .catch((e: Error) => {
+            .catch((e: any) => {
                 this.isLoading = false
-                console.log(e)
-                Swal.fire({ title: 'Resource create error', html: e });
+                const message = e.response.data.message || e.response.data.msg || e.response.data
+                Swal.fire({ title: 'Resource create error', html: message });
             });
         },
     }

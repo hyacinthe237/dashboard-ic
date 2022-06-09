@@ -83,10 +83,10 @@ export default Vue.extend({
               Swal.fire({ title: 'Alert create successfull', html: 'Your alert details have been successfully created.' })
               this.$emit('alertAdded')
           })
-          .catch((e: Error) => {
+          .catch((e: any) => {
               this.isLoading = false
-              console.log(e);
-              Swal.fire({ title: 'Alert create error', html: e });
+              const message = e.response.data.message || e.response.data.msg || e.response.data
+              Swal.fire({ title: 'Alert create error', html: message });
           });
       },
 
@@ -105,10 +105,10 @@ export default Vue.extend({
               this.$emit('alertUpdated')
               this.isEdit = false
           })
-          .catch((e: Error) => {
+          .catch((e: any) => {
               this.isLoading = false
-              console.log(e);
-              Swal.fire({ title: 'Alert update error', html: e });
+              const message = e.response.data.message || e.response.data.msg || e.response.data
+              Swal.fire({ title: 'Alert update error', html: message });
           });
       },
 
@@ -131,10 +131,10 @@ export default Vue.extend({
               Swal.fire({ title: 'Alert delete successfull', html: 'Your alert details have been successfully deleted.' })
               this.$emit('alertUpdated')
           })
-          .catch((e: Error) => {
+          .catch((e: any) => {
               this.isLoading = false
-              console.log(e);
-              Swal.fire({ title: 'Alert delete error', html: e });
+              const message = e.response.data.message || e.response.data.msg || e.response.data
+              Swal.fire({ title: 'Alert delete error', html: message });
           });
       },
 

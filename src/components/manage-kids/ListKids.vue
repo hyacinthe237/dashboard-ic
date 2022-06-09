@@ -174,10 +174,10 @@ export default Vue.extend({
             Swal.fire({ title: 'Kid create successfull', html: 'Your kid details have been successfully created.' })
             this.$emit('addedKid')
         })
-        .catch((e: Error) => {
+        .catch((e: any) => {
             this.isLoading = false
-            console.log(e.message)
-            Swal.fire({ title: 'Kid create error', html: e.message });
+            const message = e.response.data.message || e.response.data.msg || e.response.data
+            Swal.fire({ title: 'Kid create error', html: message });
         });
     },
 
@@ -208,10 +208,10 @@ export default Vue.extend({
           Swal.fire({ title: 'Kid update successfull', html: 'Your kid details have been successfully updated.' });
           this.$emit('updatedKid')
       })
-      .catch((e: Error) => {
+      .catch((e: any) => {
           this.isLoading = false
-          console.log(e);
-          Swal.fire({title: 'Kid update error', html: e });
+          const message = e.response.data.message || e.response.data.msg || e.response.data
+          Swal.fire({title: 'Kid update error', html: message });
       });
     },
   }

@@ -173,10 +173,10 @@ export default Vue.extend({
             Swal.fire({ title: 'Resource create successfull', html: 'Your resource details have been successfully created.' });
             this.$emit('addedResource')
         })
-        .catch((e: Error) => {
+        .catch((e: any) => {
             this.isLoading = false
-            console.log(e);
-            Swal.fire({ title: 'Resource create error', html: e });
+            const message = e.response.data.message || e.response.data.msg || e.response.data
+            Swal.fire({ title: 'Resource create error', html: message });
         });
     },
   }
