@@ -34,7 +34,8 @@
                       <v-card-text>
                         <v-container>
                           <v-form style="width: 300px; margin: auto" @submit.prevent v-show="!isLoading">
-                            <h2 class="mb-10 text-center">Create new resource</h2>
+                            <h2 class="mb-10 text-center" v-show="isCreate">Create new resource</h2>
+                            <h2 class="mb-10 text-center" v-show="!isCreate">Update resource</h2>
                             <v-select
                                 name="age_range"
                                 v-model="ghost.age_range"
@@ -69,8 +70,11 @@
                               @change="onFileChange"
                             ></v-file-input>
 
-                            <v-btn color="success" rounded class="pa-4" width="100%" @click="create()">
+                            <v-btn color="success" v-show="isCreate" rounded class="pa-4" width="100%" @click="create()">
                               Create
+                            </v-btn>
+                            <v-btn color="success" v-show="!isCreate" rounded class="pa-4" width="100%" @click="update()">
+                              Update
                             </v-btn>
                           </v-form>
                           <v-progress-circular :indeterminate="true" :color="'success'" v-show="isLoading"></v-progress-circular>
@@ -186,7 +190,7 @@ export default Vue.extend({
     },
 
     methods: {
-        openEdit (r) {
+        openEdit (r: any) {
             this.isCreate = false
             this.dialog = true
             this.ghost = Object.assign({}, r)
