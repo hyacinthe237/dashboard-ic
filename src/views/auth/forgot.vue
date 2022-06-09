@@ -74,7 +74,7 @@ export default Vue.extend({
         .catch((e: any) => {
             this.isLoading = false
             console.log(e)
-            const message = e.response.data.message || e.response.data.msg || e.response.data
+            const message = e.response.data.message
             Swal.fire({ title: 'Password forgot error', html: message })
         });
     }

@@ -570,7 +570,7 @@ export default Vue.extend({
           })
           .catch((e: any) => {
               this.isLoading = false
-              const message = e.response.data.message || e.response.data.msg || e.response.data
+              const message = e.response.data.message
               Swal.fire({ title: 'Upload Parent document error', html: message });
           });
         }
@@ -591,7 +591,7 @@ export default Vue.extend({
           })
           .catch((e: any) => {
               this.isLoading = false
-              const message = e.response.data.message || e.response.data.msg || e.response.data
+              const message = e.response.data.message
               Swal.fire({ title: 'Upload school document error', html: message });
           });
       }
@@ -613,7 +613,7 @@ export default Vue.extend({
             })
             .catch((e: any) => {
                 this.isLoading = false
-                const message = e.response.data.message || e.response.data.msg || e.response.data
+                const message = e.response.data.message
                 Swal.fire({ title: 'Upload history document error', html: message });
             });
         }
@@ -635,7 +635,7 @@ export default Vue.extend({
             })
             .catch((e: any) => {
                 this.isLoading = false
-                const message = e.response.data.message || e.response.data.msg || e.response.data
+                const message = e.response.data.message
                 Swal.fire({ title: 'Upload medical document error', html: message });
             });
         }
@@ -653,7 +653,7 @@ export default Vue.extend({
         })
         .catch((e: any) => {
             this.isLoading = false
-            const message = e.response.data.message || e.response.data.msg || e.response.data
+            const message = e.response.data.message
             Swal.fire({ title: 'Get Kid parent infos error', html: message });
         });
     },
@@ -674,7 +674,7 @@ export default Vue.extend({
       })
       .catch((e: any) => {
           this.isLoading = false
-          const message = e.response.data.message || e.response.data.msg || e.response.data
+          const message = e.response.data.message
           Swal.fire({title: 'Kid update error', html: message });
       });
     },
@@ -695,7 +695,7 @@ export default Vue.extend({
       })
       .catch((e: any) => {
           this.isLoading = false
-          const message = e.response.data.message || e.response.data.msg || e.response.data
+          const message = e.response.data.message
           Swal.fire({title: 'Kid update error', html: message });
       });
     },
@@ -710,7 +710,7 @@ export default Vue.extend({
         })
         .catch((e: any) => {
             this.isLoading = false
-            const message = e.response.data.message || e.response.data.msg || e.response.data
+            const message = e.response.data.message
             Swal.fire({ title: 'Get Kid school infos error', html: message });
         });
     },
@@ -726,7 +726,7 @@ export default Vue.extend({
         })
         .catch((e: any) => {
             this.isLoading = false
-            const message = e.response.data.message || e.response.data.msg || e.response.data
+            const message = e.response.data.message
             Swal.fire({ title: 'Get Kid medical infos error', html: message });
         });
     },
@@ -742,7 +742,7 @@ export default Vue.extend({
         })
         .catch((e: any) => {
             this.isLoading = false
-            const message = e.response.data.message || e.response.data.msg || e.response.data
+            const message = e.response.data.message
             Swal.fire({ title: 'Get Kid history infos error', html: message });
         });
     },
@@ -774,7 +774,7 @@ export default Vue.extend({
         })
         .catch((e: any) => {
             this.isLoading = false
-            const message = e.response.data.message || e.response.data.msg || e.response.data
+            const message = e.response.data.message
             Swal.fire({ title: 'Get Kid infos error', html: message });
         });
     },
@@ -797,7 +797,7 @@ export default Vue.extend({
       })
       .catch((e: any) => {
           this.isLoading = false
-          const message = e.response.data.message || e.response.data.msg || e.response.data
+          const message = e.response.data.message
           Swal.fire({title: 'Kid update error', html: message });
       });
     },
@@ -823,7 +823,7 @@ export default Vue.extend({
         })
         .catch((e: any) => {
             this.isLoading = false
-            const message = e.response.data.message || e.response.data.msg || e.response.data
+            const message = e.response.data.message
             Swal.fire({ title: 'History file delete error', html: message });
         });
     },
@@ -849,7 +849,7 @@ export default Vue.extend({
         })
         .catch((e: any) => {
             this.isLoading = false
-            const message = e.response.data.message || e.response.data.msg || e.response.data
+            const message = e.response.data.message
             Swal.fire({ title: 'School file delete error', html: message });
         });
     },
@@ -875,7 +875,7 @@ export default Vue.extend({
         })
         .catch((e: any) => {
             this.isLoading = false
-            const message = e.response.data.message || e.response.data.msg || e.response.data
+            const message = e.response.data.message
             Swal.fire({ title: 'Medical file delete error', html: message });
         });
     },

@@ -85,7 +85,7 @@ export default Vue.extend({
           })
           .catch((e: any) => {
               this.isLoading = false
-              const message = e.response.data.message || e.response.data.msg || e.response.data
+              const message = e.response.data.message
               Swal.fire({ title: 'Alert create error', html: message });
           });
       },
@@ -107,7 +107,7 @@ export default Vue.extend({
           })
           .catch((e: any) => {
               this.isLoading = false
-              const message = e.response.data.message || e.response.data.msg || e.response.data
+              const message = e.response.data.message
               Swal.fire({ title: 'Alert update error', html: message });
           });
       },
@@ -133,7 +133,7 @@ export default Vue.extend({
           })
           .catch((e: any) => {
               this.isLoading = false
-              const message = e.response.data.message || e.response.data.msg || e.response.data
+              const message = e.response.data.message
               Swal.fire({ title: 'Alert delete error', html: message });
           });
       },
