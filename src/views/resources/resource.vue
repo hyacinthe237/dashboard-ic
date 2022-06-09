@@ -100,6 +100,8 @@
                     v-for="r in resources"
                     :key="r.id"
                     cols="3" md="3" sm="12" xs="12"
+                    @click="openEdit(r)"
+                    class="pointer"
                 >
                     <v-card>
                         <v-img
@@ -166,6 +168,7 @@ export default Vue.extend({
       ghost: { id: null, name: '', agency:	null, description:	'', ressource_type:	'', age_range: '',  permalink:	'', image: '' } as Resource,
       dialog: false,
       isLoading: false,
+      isCreate: true,
       items: [ 'Toddler [1-3]', 'Pre Schooler [4-6]', 'Kid [7-10]', 'Underage [11-12]', 'Teenager [13-18]', 'Young Adult [19-25]' ],
     }),
 
@@ -183,6 +186,13 @@ export default Vue.extend({
     },
 
     methods: {
+        openEdit (r) {
+            this.isCreate = false
+            this.dialog = true
+            this.ghost = Object.assign({}, r)
+            localStorage.setItem('resourceId', r.id)
+        },
+
         async getResources () {
             this.isLoading = true
             let id = this.$route.params.id
@@ -223,14 +233,39 @@ export default Vue.extend({
             await ResourceDataService.create(data)
             .then((response: ResponseData) => {
                 this.isLoading = false
+                this.dialog = false
                 this.resetGhost()
                 Swal.fire({ title: 'Resource create successfull', html: 'Your resource details have been successfully created.' });
-                this.$emit('addedResource')
+                this.getResources()
             })
             .catch((e: any) => {
                 this.isLoading = false
                 const message = e.response.data.message
                 Swal.fire({ title: 'Resource create error', html: message });
+            });
+        },
+
+        async update () {
+            this.isLoading = true
+            let data = new FormData();
+            data.append("name", this.ghost.name)
+            data.append("agency", this.auth.agency_id)
+            data.append("age_range", this.ghost.age_range)
+            data.append("image", this.ghost.image)
+            data.append("ressource_type", this.ressource_type.id)
+            let id: any = localStorage.getItem('resourceId')
+
+            await ResourceDataService.update(id, data)
+            .then((response: ResponseData) => {
+                this.isLoading = false
+                this.resetGhost()
+                Swal.fire({ title: 'Resource update successfull', html: 'Your resource details have been successfully updated.' });
+                this.getResources()
+            })
+            .catch((e: any) => {
+                this.isLoading = false
+                const message = e.response.data.message
+                Swal.fire({ title: 'Resource update error', html: message });
             });
         },
     }
