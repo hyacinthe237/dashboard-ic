@@ -40,7 +40,7 @@ export default Vue.extend({
 
   methods: {
       openItem (agency: any) {
-        this.$emit('openItem', agency)
+        this.$emit('openAgency', agency)
       }
   }
 });

@@ -12,14 +12,13 @@
                     persistent
                     width="600"
                   >
-                    <template v-slot:activator="{ on, attrs }">
+                    <template>
                       <v-btn
                         color="success"
                         rounded
                         class="pa-4 mb-10"
                         width="200"
-                        v-bind="attrs"
-                        v-on="on"
+                        @click="createModal()"
                       >
                         Create resource
                       </v-btn>
@@ -197,6 +196,13 @@ export default Vue.extend({
             localStorage.setItem('resourceId', r.id)
         },
 
+        createModal () {
+            this.dialog = true
+            this.isCreate = true
+            this.resetGhost()
+            localStorage.removeItem('resourceId')
+        },
+
         async getResources () {
             this.isLoading = true
             let id = this.$route.params.id
@@ -262,6 +268,8 @@ export default Vue.extend({
             await ResourceDataService.update(id, data)
             .then((response: ResponseData) => {
                 this.isLoading = false
+                this.dialog = false
+                this.isCreate = true
                 this.resetGhost()
                 Swal.fire({ title: 'Resource update successfull', html: 'Your resource details have been successfully updated.' });
                 this.getResources()

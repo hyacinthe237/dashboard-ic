@@ -7,14 +7,13 @@
         persistent
         width="600"
       >
-        <template v-slot:activator="{ on, attrs }">
+        <template>
           <v-btn
             color="success"
             rounded
             class="pa-4 mb-10"
             width="200"
-            v-bind="attrs"
-            v-on="on"
+            @click="createModal()"
             :disabled="isLoading"
           >
             Create new
@@ -29,8 +28,9 @@
           </v-toolbar>
           <v-card-text>
             <v-container>
-              <v-form style="width: 300px; margin: auto">
-                <h2 class="mb-10 text-center">Create agencie</h2>
+              <v-form style="width: 300px; margin: auto" v-show="!isLoading">
+                <h2 class="mb-10 text-center" v-show="isCreate">Create agency</h2>
+                <h2 class="mb-10 text-center" v-show="!isCreate">Update agency</h2>
                 <v-text-field
                   label="Name"
                   solo
@@ -73,17 +73,21 @@
                     dense
                 ></v-textarea>
 
-                <v-btn color="success" rounded class="pa-3" width="100%" @click="CreateAgency()">
+                <v-btn color="success" v-show="isCreate" rounded class="pa-3" width="100%" @click="CreateAgency()">
                   Create
                 </v-btn>
+                <v-btn color="success" v-show="!isCreate" rounded class="pa-3" width="100%" @click="UpdateAgency()">
+                  Update
+                </v-btn>
               </v-form>
+              <v-progress-circular :indeterminate="true" :color="'success'" v-show="isLoading"></v-progress-circular>
             </v-container>
           </v-card-text>
         </v-card>
       </v-dialog>
       <v-row v-show="!isLoading">
           <v-col cols="4" md="4" sm="12" xs="12" v-for="a in agencies" :key="a.id">
-              <agency-item class="pointer" :agency="a" />
+              <agency-item class="pointer" :agency="a" @openAgency="openEdit" />
           </v-col>
       </v-row>
       <v-progress-circular :indeterminate="true" :color="'success'" v-show="isLoading"></v-progress-circular>
@@ -114,6 +118,7 @@ export default Vue.extend({
       userObject: { id: null, email: '', username: '', password: '', phone: '', is_kid: false, is_family: false, is_agency_admin: false, is_superuser: false } as User,
       dialog: false,
       isLoading: false,
+      isCreate: true,
   }),
 
   components: {
@@ -148,6 +153,20 @@ export default Vue.extend({
         this.agencyObject = { id: null, admin_email: '', name: '', address: '', description: '' }
     },
 
+    openEdit (agency: any) {
+        this.isCreate = false
+        this.dialog = true
+        this.agencyObject = Object.assign({}, agency)
+        localStorage.setItem('agencyId', agency.id)
+    },
+
+    createModal () {
+        this.dialog = true
+        this.isCreate = true
+        this.resetGhost()
+        localStorage.removeItem('agencyId')
+    },
+
     async CreateAgency () {
         this.isLoading = true
         let data = {
@@ -158,15 +177,41 @@ export default Vue.extend({
         await AgencyDataService.create(data)
         .then((response: ResponseData) => {
             this.isLoading = false
-            console.log(response.data)
+            this.dialog = false
             this.resetGhost()
-            Swal.fire({ title: 'agency create successfull', html: 'Your agency details have been successfully created.' });
+            Swal.fire({ title: 'Agency create successfull', html: 'Your agency details have been successfully created.' });
             this.$emit('addedAgency')
         })
         .catch((e: any) => {
             this.isLoading = false
             const message = e.response.data.message
-            Swal.fire({ title: 'user agency create error', html: message });
+            Swal.fire({ title: 'Agency create error', html: message });
+        });
+    },
+
+    async UpdateAgency () {
+        this.isLoading = true
+        let data = {
+            admin_email: this.agencyObject.admin_email, name: this.agencyObject.name,
+            address: this.agencyObject.address, description: this.agencyObject.description
+        };
+
+        let id: any = localStorage.getItem('agencyId')
+
+        await AgencyDataService.update(id, data)
+        .then((response: ResponseData) => {
+            this.isLoading = false
+            this.dialog = false
+            this.isCreate = true
+            this.resetGhost()
+            Swal.fire({ title: 'Agency update successfull', html: 'Your agency details have been successfully updated.' });
+            this.$emit('addedAgency')
+            localStorage.removeItem('agencyId')
+        })
+        .catch((e: any) => {
+            this.isLoading = false
+            const message = e.response.data.message
+            Swal.fire({ title: 'Agency update error', html: message });
         });
     },
   }
