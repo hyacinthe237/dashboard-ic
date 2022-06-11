@@ -2,23 +2,23 @@
   <div class="main-content text-center">
     <!-- <div class="centered"> -->
       <h2 class="mb-1" v-if="agencies.length==0 && !isLoading">Not item yet</h2>
+      <template>
+        <v-btn
+          color="success"
+          rounded
+          class="pa-4 mb-10"
+          width="200"
+          @click="createModal()"
+          :disabled="isLoading"
+        >
+          Create new
+        </v-btn>
+      </template>
       <v-dialog
         v-model="dialog"
         persistent
         width="600"
       >
-        <template>
-          <v-btn
-            color="success"
-            rounded
-            class="pa-4 mb-10"
-            width="200"
-            @click="createModal()"
-            :disabled="isLoading"
-          >
-            Create new
-          </v-btn>
-        </template>
         <v-card class="rounded-lg">
           <v-toolbar color="white" elevation="0">
             <v-spacer></v-spacer>
