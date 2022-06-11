@@ -465,6 +465,17 @@
                                                           </v-col>
                                                     </v-row>
                                                 </v-list-item-title>
+                                                <v-card-actions>
+                                                    <v-spacer></v-spacer>
+                                                    <v-btn
+                                                        color="success"
+                                                        rounded
+                                                        class="pa-4"
+                                                        width="200"
+                                                        :disabled="isLoading"
+                                                        @click="saveLifeStory()"
+                                                    >Save informations</v-btn>
+                                                </v-card-actions>
                                             </v-list-item-content>
                                         </v-list-item>
                                     </v-card-text>
@@ -610,26 +621,52 @@ export default Vue.extend({
       }
     },
 
-    async onHistoryFileChange (file: any) {
-        if (file != null) {
-            this.isLoading = true
-            let id = this.$route.params.id
-            let data = new FormData()
-            data.append('placement_doc', file)
+    // async onHistoryFileChange (file: any) {
+    //     if (file != null) {
+    //         this.isLoading = true
+    //         let id = this.$route.params.id
+    //         let data = new FormData()
+    //         data.append('placement_doc', file)
+    //
+    //         await HistoryDataService.uploadDocPlacement(id, data)
+    //         .then((response: ResponseData) => {
+    //             this.isLoading = false
+    //             console.log('History doc uploaded', response.data)
+    //             Swal.fire({ title: 'History doc uploaded successfull', html: 'Your history document have been successfully uploaded.' });
+    //             this.getHistoryInfos()
+    //         })
+    //         .catch((e: any) => {
+    //             this.isLoading = false
+    //             const message = e.response.data.message
+    //             Swal.fire({ title: 'Upload history document error', html: message });
+    //         });
+    //     }
+    // },
 
-            await HistoryDataService.uploadDocPlacement(id, data)
-            .then((response: ResponseData) => {
-                this.isLoading = false
-                console.log('History doc uploaded', response.data)
-                Swal.fire({ title: 'History doc uploaded successfull', html: 'Your history document have been successfully uploaded.' });
-                this.getHistoryInfos()
-            })
-            .catch((e: any) => {
-                this.isLoading = false
-                const message = e.response.data.message
-                Swal.fire({ title: 'Upload history document error', html: message });
-            });
-        }
+    onHistoryFileChange (file: any) {
+        this.historyObject.image = file
+        this.historyObject.name = file.name
+    },
+
+    async saveLifeStory () {
+        this.isLoading = true
+        // let id = this.$route.params.id
+        let data = new FormData()
+        data.append('content', this.historyObject.content)
+        data.append('image', this.historyObject.image)
+        data.append('name', this.historyObject.name)
+
+        await HistoryDataService.create(data)
+        .then((response: ResponseData) => {
+            this.isLoading = false
+            Swal.fire({ title: 'History doc uploaded successfull', html: 'Your history document have been successfully uploaded.' });
+            this.getHistoryInfos()
+        })
+        .catch((e: any) => {
+            this.isLoading = false
+            const message = e.response.data.message
+            Swal.fire({ title: 'Upload history document error', html: message });
+        });
     },
 
     async onMedicalFileChange (file: any) {
