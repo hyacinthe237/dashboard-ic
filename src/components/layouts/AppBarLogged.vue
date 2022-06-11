@@ -17,9 +17,23 @@
 
       <v-spacer></v-spacer>
 
-      <v-toolbar-items class="mr-10">
+      <v-toolbar-items class="mr-10 pointer">
         <IconSearch class="icon-search" />
+        <span style="margin-top:20px; padding-right:50px; padding-left:50px; font-weight:bold;">Welcome, {{ username }}</span>
         <v-img
+          v-if="file != null"
+          alt="Infinite connection"
+          class="shrink mr-2"
+          contain
+          :src="file"
+          transition="scale-transition"
+          max-height="100%"
+          width="36"
+          max-width="36"
+          @click="openProfile()"
+        />
+        <v-img
+          v-if="file == null"
           alt="Infinite connection"
           class="shrink mr-2"
           contain
@@ -28,6 +42,7 @@
           max-height="100%"
           width="36"
           max-width="36"
+          @click="openProfile()"
         />
         <v-icon x-small>fa fa-angle-down fa-xs</v-icon>
       </v-toolbar-items>
@@ -46,6 +61,28 @@ export default Vue.extend({
   components: {
     IconSearch,
   },
+
   props: ["title"],
+
+  computed: {
+      auth (): any {
+        let thau: any = localStorage.getItem('infinite_user')
+        return JSON.parse(thau)
+      },
+
+      file () {
+          return null
+      },
+
+      username (): any {
+          return this.auth.username
+      }
+  },
+
+  methods: {
+    openProfile () {
+        this.$router.push({ name: 'user-profile' })
+    }
+  }
 });
 </script>

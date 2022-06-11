@@ -17,7 +17,7 @@ class UserDataService {
       return http.post("/user-api/users/", data);
     }
     update(id: any, data: any): Promise<any> {
-      return http.put(`/user-api/users/${id}/`, data);
+      return http.patch(`/user-api/users/${id}/`, data);
     }
     delete(id: any): Promise<any> {
       return http.delete(`/user-api/users/${id}/`);

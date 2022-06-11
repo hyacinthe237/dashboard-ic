@@ -12,6 +12,7 @@ import AlertView from  '../views/alerts/alerts.vue'
 import TicketView from  '../views/tickets/tickets.vue'
 import ReportingView from  '../views/reporting/reporting.vue'
 import ReportedIssueView from  '../views/issues/issues.vue'
+import UserProfileView from  '../views/user/profile.vue'
 
 Vue.use(VueRouter)
 
@@ -26,7 +27,8 @@ const routes: Array<RouteConfig> = [
   { path: '/tickets', name: 'tickets', component: TicketView, beforeEnter: Guard.auth },
   { path: '/alerts', name: 'alerts', component: AlertView, beforeEnter: Guard.auth },
   { path: '/reporting', name: 'reporting', component: ReportingView, beforeEnter: Guard.auth },
-  { path: '/reported-issues', name: 'reported-issues', component: ReportedIssueView, beforeEnter: Guard.auth }
+  { path: '/reported-issues', name: 'reported-issues', component: ReportedIssueView, beforeEnter: Guard.auth },
+  { path: '/user/profile', name: 'user-profile', component: UserProfileView, beforeEnter: Guard.auth }
 ]
 
 const router = new VueRouter({

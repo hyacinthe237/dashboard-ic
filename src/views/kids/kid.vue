@@ -16,7 +16,7 @@
                                 <v-tab :disabled="isLoading"> Parents informations </v-tab>
                                 <v-tab :disabled="isLoading"> School informations </v-tab>
                                 <v-tab :disabled="isLoading"> Medical informations </v-tab>
-                                <v-tab :disabled="isLoading"> Placement history </v-tab>
+                                <v-tab :disabled="isLoading"> Life story </v-tab>
                             </v-tabs>
                         </template>
                     </v-toolbar>
@@ -437,8 +437,21 @@
                                             <v-list-item-content>
                                                 <v-list-item-title>
                                                     <v-row>
+                                                          <v-col cols="12">
+                                                            <v-subheader class="pt-7">Fill the life story</v-subheader>
+                                                            <v-textarea
+                                                                name="content"
+                                                                v-model="historyObject.content"
+                                                                label="Please fill the life story"
+                                                                solo
+                                                                rounded
+                                                                elevation="0"
+                                                                outlined
+                                                                dense
+                                                            ></v-textarea>
+                                                          </v-col>
                                                           <v-col cols="4" align="right">
-                                                              <v-subheader class="pt-7">Upload placement information :</v-subheader>
+                                                              <v-subheader class="pt-7">Upload life story file information :</v-subheader>
                                                           </v-col>
                                                           <v-col cols="8">
                                                             <v-file-input
