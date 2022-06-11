@@ -1,21 +1,22 @@
 <template>
   <div class="main-content">
+    <template>
+      <v-btn
+        color="success"
+        rounded
+        class="pa-4 mb-10"
+        width="200"
+        :disabled="isLoading"
+        @click.native="dialog = true"
+      >
+        Create resource
+      </v-btn>
+    </template>
     <v-dialog
       v-model="dialog"
       persistent
       width="600"
     >
-      <template>
-        <v-btn
-          color="success"
-          rounded
-          class="pa-4 mb-10"
-          width="200"
-          :disabled="isLoading"
-        >
-          Create resource
-        </v-btn>
-      </template>
       <v-card class="rounded-lg">
         <v-toolbar color="white" elevation="0">
           <v-spacer></v-spacer>

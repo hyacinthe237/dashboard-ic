@@ -3,27 +3,27 @@
     <AppBarLogged title="Monitoring / Manage ressources" v-show="!isLoading" />
 
     <navigation-app-drawer v-show="!isLoading"/>
-    <v-content v-show="!isLoading" class="main-content">
+    <v-content class="main-content">
         <v-container>
-          <v-row v-show="!isLoading">
+          <v-row>
               <v-col cols="6" align="right">
+                <template>
+                  <v-btn
+                    color="success"
+                    rounded
+                    class="pa-4 mb-10"
+                    width="200"
+                    @click="createModal()"
+                  >
+                    Create resource
+                  </v-btn>
+                </template>
                   <v-dialog
                     v-model="dialog"
                     persistent
                     width="600"
                   >
-                    <template>
-                      <v-btn
-                        color="success"
-                        rounded
-                        class="pa-4 mb-10"
-                        width="200"
-                        @click="createModal()"
-                      >
-                        Create resource
-                      </v-btn>
-                    </template>
-                    <v-card class="rounded-lg">
+                    <v-card class="rounded-lg" v-show="!isLoading">
                       <v-toolbar color="white" elevation="0">
                         <v-spacer></v-spacer>
                         <v-toolbar-items class="pa-4">
