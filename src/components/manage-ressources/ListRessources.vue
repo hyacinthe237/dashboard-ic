@@ -5,14 +5,12 @@
       persistent
       width="600"
     >
-      <template v-slot:activator="{ on, attrs }">
+      <template>
         <v-btn
           color="success"
           rounded
           class="pa-4 mb-10"
           width="200"
-          v-bind="attrs"
-          v-on="on"
           :disabled="isLoading"
         >
           Create resource

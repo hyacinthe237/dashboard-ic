@@ -17,7 +17,7 @@
     "align": [false],
     "eofline": false,
     "max-classes-per-file": [true, 5],
-    "no-unused-variable": true,
+    "no-unused-variable": false,
     "quotemark": [true, "single", "avoid-escape"],
     "object-literal-sort-keys":false,
     "no-empty": false,
