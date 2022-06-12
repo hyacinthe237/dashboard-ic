@@ -79,15 +79,6 @@ export default Vue.extend({
       }
   },
 
-  watch: {
-      file: {
-          immediate: true
-          handler: function () {
-            return this.auth.image
-          }
-      }
-  },
-
   methods: {
     openProfile () {
         this.$router.push({ name: 'user-profile' })
