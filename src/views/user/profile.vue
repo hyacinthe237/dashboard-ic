@@ -102,7 +102,7 @@ export default Vue.extend({
     methods: {
         async getUser () {
             this.isLoading = true
-            let id = this.auth.user_id
+            let id = this.auth.id
             await UserDataService.get(id)
             .then((response: ResponseData) => {
                 this.isLoading = false
@@ -140,7 +140,7 @@ export default Vue.extend({
             // data.append("is_agency_admin", this.ghost.is_agency_admin)
             // data.append("is_superuser", this.ghost.is_superuser)
 
-            let id = this.auth.user_id
+            let id = this.auth.id
             await UserDataService.update(id, data)
             .then((response: ResponseData) => {
                 Swal.fire({ title: 'Profile update successfull', html: 'Your profile details have been successfully updated.' });

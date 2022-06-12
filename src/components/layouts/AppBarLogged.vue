@@ -70,12 +70,21 @@ export default Vue.extend({
         return JSON.parse(thau)
       },
 
-      file () {
-          return null
+      file (): any {
+          return this.auth.image
       },
 
       username (): any {
           return this.auth.username
+      }
+  },
+
+  watch: {
+      file: {
+          immediate: true
+          handler: function () {
+            return this.auth.image
+          }
       }
   },
 
